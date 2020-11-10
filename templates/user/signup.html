@@ -1,0 +1,42 @@
+<h4>계정생성</h4>
+<form method="post" class="post-form">
+    {% csrf_token %}
+    {% include "form_errors.html" %}
+    {{ form.as_p }}
+    <!-- <div class="form-group">
+        <label for="username">아이디</label>
+        <input type="text" class="form-control" name="username" id="username"
+                value="{{ form.username.value|default_if_none:'' }}">
+    </div>
+    <div class="form-group">
+        <label for="password1">비밀번호</label>
+        <input type="password" class="form-control" name="password1" id="password1"
+                value="{{ form.password1.value|default_if_none:'' }}">
+    </div>
+    <div class="form-group">
+        <label for="password2">비밀번호 확인</label>
+        <input type="password" class="form-control" name="password2" id="password2"
+                value="{{ form.password2.value|default_if_none:'' }}">
+    </div>
+    <div class="form-group">
+        <label for="email">이메일</label>
+        <input type="text" class="form-control" name="email" id="email"
+                value="{{ form.email.value|default_if_none:'' }}">
+    </div>
+    <div class="form-group">
+        <label for="email">소속학과</label>
+        <input type="text" class="form-control" name="first_major" id="first_major"
+                value="{{ form.first_major.value|default_if_none:'' }}">
+    </div>
+    <div class="form-group">
+        <label for="email">(다/부)전공1</label>
+        <input type="text" class="form-control" name="second_major" id="second_major"
+                value="{{ form.second_major.value|default_if_none:'' }}">
+    </div>
+    <div class="form-group">
+        <label for="email">(다/부)전공2</label>
+        <input type="text" class="form-control" name="third_major" id="third_major"
+                value="{{ form.third_major.value|default_if_none:'' }}">
+    </div> -->
+    <button type="submit" class="btn btn-primary">생성하기</button>
+</form>
