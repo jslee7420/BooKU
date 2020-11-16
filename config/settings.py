@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-import os
+import os, json
+from . import my_settings
+from django.core.exceptions import ImproperlyConfigured
 #from . import my_settings
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -21,8 +23,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '*km!l$zsn4ae40z3^vn67u&dhm+!!2!$=_cn!4icve0yfx4xk8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 INSTALLED_APPS += [
-    'user'
+    'user',
 ]
 
 MIDDLEWARE = [
@@ -133,11 +133,29 @@ AUTH_USER_MODEL = 'user.User'
 LOGIN_REDIRECT_URL = '/user/login/'
 LOGOUT_REDIRECT_URL = '/user/login/'
 
-# SITE_ID = 1
+########이메일 정보 가져오기########
+SITE_ID = 1
 
-# EMAIL_BACKEND = my_settings.EMAIL['EMAIL_BACKEND']
-# EMAIL_USE_TLS = my_settings.EMAIL['EMAIL_USE_TLS']
-# EMAIL_PORT = my_settings.EMAIL['EMAIL_PORT']
-# EMAIL_HOST = my_settings.EMAIL['EMAIL_HOST']
-# EMAIL_HOST_USER = my_settings.EMAIL['EMAIL_HOST_USER']
-# EMAIL_HOST_PASSWORD = my_settings.EMAIL['EMAIL_HOST_PASSWORD']
+EMAIL_BACKEND = my_settings.EMAIL['EMAIL_BACKEND']
+EMAIL_USE_TLS = my_settings.EMAIL['EMAIL_USE_TLS']
+EMAIL_PORT = my_settings.EMAIL['EMAIL_PORT']
+EMAIL_HOST = my_settings.EMAIL['EMAIL_HOST']
+EMAIL_HOST_USER = my_settings.EMAIL['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD = my_settings.EMAIL['EMAIL_HOST_PASSWORD']
+
+
+#####SECRET_Key 가져오기#####
+secret_file = os.path.join(BASE_DIR, 'config/secrets.json') # secrets.json 파일 위치를 명시
+
+with open(secret_file) as f:
+    secrets = json.loads(f.read())
+
+def get_secret(setting, secrets=secrets):
+    """비밀 변수를 가져오거나 명시적 예외를 반환한다."""
+    try:
+        return secrets[setting]
+    except KeyError:
+        error_msg = "Set the {} environment variable".format(setting)
+        raise ImproperlyConfigured(error_msg)
+
+SECRET_KEY = get_secret("SECRET_KEY")

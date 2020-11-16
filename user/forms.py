@@ -25,3 +25,5 @@ class UserForm(UserCreationForm):
             "password1":"비밀번호",
             "password2":"비밀번호 재확인",
         }
+
+        

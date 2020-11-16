@@ -104,4 +104,5 @@ class User(AbstractUser):
     )
 
 
- #   is_active = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=False)
+    
