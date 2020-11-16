@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
-from user.forms import UserForm
+from user.forms import UserForm, EditForm
 from django.views import View
 from django.urls import reverse
 from .models import User
@@ -64,3 +64,21 @@ def signup(request):
     return render(request, 'user/signup.html', {'form': form})
 
 
+def edit_info(request):
+
+    
+    if request.method == "POST":
+        user = User.objects.get(username=request.user)
+        form = EditForm(request.POST)
+        if form.is_valid():
+            user.first_major = form.cleaned_data['first_major']
+            user.second_major = form.cleaned_data['second_major']
+            user.third_major = form.cleaned_data['third_major']
+            user.save()
+            return redirect('user:login')
+    elif request.user.is_authenticated:
+        user = User.objects.get(username=request.user)
+        form = EditForm(instance = user)
+        return render(request, 'user/edit_info.html', {'form': form})
+    else:
+        return redirect('user:login')

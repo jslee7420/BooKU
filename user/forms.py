@@ -26,4 +26,13 @@ class UserForm(UserCreationForm):
             "password2":"비밀번호 재확인",
         }
 
-        
+
+class EditForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ("first_major","second_major","third_major")
+        labels = {
+            "first_major":"원전공",
+            "second_major":"다/부전공1",
+            "third_major":"다/부전공2", 
+        }
