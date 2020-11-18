@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <img src=" {{ object.image.url }}" class="book_detail_image" alt="...">
+      <div class="card-body">
+        <h5 class="book_detail_author">{{ object.author }}</h5>
+        <hr class="book_detail_first_line">
+        <div class="author_date">
+        <p class="book_detail_title">{{ object.title }}</p>
+        <p class="book_detail_text">{{ object.text }}</p>
+        {% if object.created == object.updated %}
+          <p class="book_detail_date">{{ object.updated }}</p>
+        {% else %}
+          <p class="book_detail_date">{{ object.created }}</p>
+        {% endif %}
+        </div>
+      </div>
+       <div class="card-body">
+        <button onclick ="location.href='{% url 'book:update' object.id %}'" class="btn_book_update">수정</button>
+        <button onclick ="location.href='{% url 'book:delete' object.id %}'" class="btn_book_delete">삭제</button>
+      </div>
+
+</body>
+</html>

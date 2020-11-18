@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="book_delete" role="alert">
+  [제목: {{object.title}} 게시물] 을 삭제하시겠습니까?
+</div>
+
+<form action="" method="post">
+  {% csrf_token %}
+  <input type="submit" class="btn_book_delete" value="삭제">
+  <button type="button" onclick="location.href='{% url 'book:index' %}'" class="btn_delete_cancel" >취소</button>
+</form>
+
+</body>
+</html>
