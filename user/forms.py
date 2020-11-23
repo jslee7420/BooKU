@@ -37,7 +37,7 @@ class EditForm(forms.ModelForm):
             "third_major":"다/부전공2", 
         }
 
-class FindPwdForm(forms.ModelForm):
+class FindForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ("email",)

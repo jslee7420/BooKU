@@ -14,4 +14,5 @@ urlpatterns = [
     path('find_pwd/', views.find_pwd, name='find_pwd'),
     path('change_pwd/<str:uidb64>/<str:token>', Change_pwd.as_view()),
     path('edit_pwd', views.edit_pwd, name='edit_pwd'),
+    path('find_id/', views.find_id, name='find_id'),
 ]

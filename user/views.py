@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
-from user.forms import UserForm, EditForm, FindPwdForm
+from user.forms import UserForm, EditForm, FindForm
 from django.contrib.auth.forms import SetPasswordForm
 
 from django.views import View
@@ -103,7 +103,7 @@ def find_pwd(request):
     """
     
     if request.method == 'POST':
-        form = FindPwdForm(request.POST)
+        form = FindForm(request.POST)
         if form.is_valid():
             try:                 #해당 이메일이 db에 존재하면
                 user = User.objects.get(email= form.cleaned_data['email'])
@@ -122,7 +122,7 @@ def find_pwd(request):
                 return HttpResponse("존재하지 않는 이메일입니다.")
             
     else:
-        form=FindPwdForm()
+        form=FindForm()
         return render(request, 'user/find_pwd.html', {'form':form})
 
 
@@ -162,3 +162,30 @@ def edit_pwd(request):
 
 
 
+def find_id(request):
+    """
+    비밀번호 찾기
+    """
+    
+    if request.method == 'POST':
+        form = FindForm(request.POST)
+        if form.is_valid():
+            try:                 #해당 이메일이 db에 존재하면
+                user = User.objects.get(email= form.cleaned_data['email'])
+                current_site = get_current_site(request)
+                domain = current_site.domain
+                uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
+                token = jwt.encode({'user':user.id},SECRET_KEY,algorithm='HS256').decode('utf-8')   #토큰 생성
+                message_data = "안녕하세요 BooKU입니다! \n 아이디는 " + user.username + "입니다."   #메세지 생성
+
+                mail_title = "BooKU 아이디를 잊으셨나요?"
+                mail_to = user.email
+                email = EmailMessage(mail_title, message_data, from_email='booku@BooKU.com',to=[mail_to])
+                email.send()
+                return HttpResponse("작성해주신 이메일로 아이디가 전송되었습니다. 이메일을 확인해주세요!")
+            except User.DoesNotExist:   #없는 사용자인 경우
+                return HttpResponse("존재하지 않는 이메일입니다.")
+            
+    else:
+        form=FindForm()
+        return render(request, 'user/find_id.html', {'form':form})

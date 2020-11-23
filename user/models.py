@@ -105,4 +105,7 @@ class User(AbstractUser):
 
 
     is_active = models.BooleanField(default=False)
+
+
+    email = models.EmailField(unique=True, blank=False)
     
