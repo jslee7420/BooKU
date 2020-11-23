@@ -126,7 +126,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'book', 'static'),
+    os.path.join(BASE_DIR, 'static'),
 ]
 
 MEDIA_URL = '/res/'
@@ -147,6 +147,7 @@ EMAIL_PORT = my_settings.EMAIL['EMAIL_PORT']
 EMAIL_HOST = my_settings.EMAIL['EMAIL_HOST']
 EMAIL_HOST_USER = my_settings.EMAIL['EMAIL_HOST_USER']
 EMAIL_HOST_PASSWORD = my_settings.EMAIL['EMAIL_HOST_PASSWORD']
+
 
 
 #####SECRET_Key 가져오기#####

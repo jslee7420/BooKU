@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import User
-
+from django.contrib.auth.forms import PasswordChangeForm
 
 class UserForm(UserCreationForm):
     # email = forms.EmailField()
@@ -35,4 +35,12 @@ class EditForm(forms.ModelForm):
             "first_major":"원전공",
             "second_major":"다/부전공1",
             "third_major":"다/부전공2", 
+        }
+
+class FindPwdForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ("email",)
+        labels = {
+            "email":"이메일",
         }

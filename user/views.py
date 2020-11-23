@@ -1,12 +1,14 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
-from user.forms import UserForm, EditForm
+from user.forms import UserForm, EditForm, FindPwdForm
+from django.contrib.auth.forms import SetPasswordForm
+
 from django.views import View
 from django.urls import reverse
 from .models import User
 import jwt
 import json
-from .text import message
+from .text import signup_message, change_pwd_message
 from config.my_settings import EMAIL
 from config.settings import SECRET_KEY
 
@@ -16,6 +18,9 @@ from django.utils.http import urlsafe_base64_decode
 from django.utils.http import urlsafe_base64_encode 
 from django.core.mail import EmailMessage
 from django.utils.encoding import force_bytes, force_text
+
+
+
 
 
 class Activate(View):
@@ -51,7 +56,7 @@ def signup(request):
             domain = current_site.domain
             uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
             token = jwt.encode({'user':user.id},SECRET_KEY,algorithm='HS256').decode('utf-8')   #토큰 생성
-            message_data = message(domain, uidb64, token)   #메세지 생성
+            message_data = signup_message(domain, uidb64, token)   #메세지 생성
 
             mail_title = "BooKU 가입을 환영합니다! 이메일 인증을 완료해주세요!"
             mail_to = user.email
@@ -65,7 +70,9 @@ def signup(request):
 
 
 def edit_info(request):
-
+    """
+    학과변경
+    """
     
     if request.method == "POST":
         user = User.objects.get(username=request.user)
@@ -82,3 +89,76 @@ def edit_info(request):
         return render(request, 'user/edit_info.html', {'form': form})
     else:
         return redirect('user:login')
+
+
+# def find_id(request):   #나중에 구현
+#     if request.method =="POST":
+#         return
+#     else:
+#         return render(request, 'user/find_id.html')
+
+def find_pwd(request):
+    """
+    비밀번호 찾기
+    """
+    
+    if request.method == 'POST':
+        form = FindPwdForm(request.POST)
+        if form.is_valid():
+            try:                 #해당 이메일이 db에 존재하면
+                user = User.objects.get(email= form.cleaned_data['email'])
+                current_site = get_current_site(request)
+                domain = current_site.domain
+                uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
+                token = jwt.encode({'user':user.id},SECRET_KEY,algorithm='HS256').decode('utf-8')   #토큰 생성
+                message_data = change_pwd_message(domain, uidb64, token)   #메세지 생성
+
+                mail_title = "BooKU 비밀번호를 잊으셨나요?"
+                mail_to = user.email
+                email = EmailMessage(mail_title, message_data, from_email='booku@BooKU.com',to=[mail_to])
+                email.send()
+                return HttpResponse("작성해주신 이메일로 비밀번호 변경 링크가 전송되었습니다. 이메일을 확인해주세요!")
+            except User.DoesNotExist:   #없는 사용자인 경우
+                return HttpResponse("존재하지 않는 이메일입니다.")
+            
+    else:
+        form=FindPwdForm()
+        return render(request, 'user/find_pwd.html', {'form':form})
+
+
+
+
+class Change_pwd(View):
+    def get(self, request, uidb64, token):
+        try:
+            uid = force_text(urlsafe_base64_decode(uidb64)) #userid 디코딩
+            user = User.objects.get(pk=uid)
+            user_dic = jwt.decode(token,SECRET_KEY,algorithm='HS256')   #token을 SECRET_KEY를 활용하여 디코딩
+            if user.id == user_dic["user"]:
+                authenticate(username=user.username, password= user.password)
+                return redirect("user:edit_pwd")
+
+            return HttpResponse("auth fail") #JsonResponse({'message':'auth fail'}, status=400)    #추후 수정
+        except ValidationError:
+            return HttpResponse("type_error") #JsonResponse({'message':'type_error'}, status=400)   #추후 수정
+        except KeyError:
+            return HttpResponse("INVALID_KEY") #JsonResponse({'message':'INVALID_KEY'}, status=400)  #추후 수정
+
+
+def edit_pwd(request):
+    """
+    개인정보 수정(지금은 임시로 비밀번호 수정만 담당)
+    """
+    if request.method == "POST":
+        form = SetPasswordForm(data=request.POST, user=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('user:login')
+        else:
+            return HttpResponse("폼 에러")
+    else:
+        form = SetPasswordForm(request.user)
+        return render(request, 'user/edit_pwd.html', {'form': form})
+
+
+
