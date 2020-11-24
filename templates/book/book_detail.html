@@ -15,14 +15,25 @@
         {% if object.created == object.updated %}
           <p class="book_detail_date">{{ object.updated }}</p>
         {% else %}
-          <p class="book_detail_date">{{ object.created }}</p>
+          <p class="book_detail_date">{{ object.created }}
+          {{ object.kakaoUrl }}</p>
         {% endif %}
         </div>
       </div>
+     {% if user == object.author %}
        <div class="card-body">
         <button onclick ="location.href='{% url 'book:update' object.id %}'" class="btn_book_update">수정</button>
         <button onclick ="location.href='{% url 'book:delete' object.id %}'" class="btn_book_delete">삭제</button>
       </div>
+        {% if object.DEAL_FLAG == 1 %} <!--거래중이면-->
+            <button onclick ="location.href='{% url 'book:complete' object.id %}'" class="btn_book_update">거래완료</button>
+             {{ complete_book_info.DEAL_FLAG }}
+        {% endif %}
+
+        {% if object.DEAL_FLAG == 0 %} <!--거래중이 아니면-->
+            <button onclick ="location.href='{% url 'book:update' object.id %}'" value= {{object.id}} class="btn_book_update">거래다시시작</button>
+        {% endif %}
+     {% endif %}
 
 </body>
 </html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table id="book_table">
+    <a href="{% url 'allbook:index' %}" class="back_to_post"><  리스트 목록으로</a>
+    <tbody>
+    {% if not books %}
+
+        <div class="no_search">검색 결과가 없습니다</div>
+
+    {% else %}
+
+    {% for book in books.all %}
+        <tr class="text-center">
+            <td><a href="{% url 'allbook:detail' book.id %}"><img src=" {{ book.image.url }}" class="book_list_img" alt="..."></a></td>
+            <td><a href="{% url 'allbook:detail' book.id %}" class="book_list_title">{{ book.title|truncatechars:30 }}</a>
+                <br><a href="{% url 'allbook:detail' book.id %}" class="book_list_text"><br/>{{ book.text|truncatechars:79 }}</a><br><br><br></td>
+        </tr>
+    {% endfor %}
+    {% endif %}
+    </tbody>
+    </div>
+</table>
+</body>
+</html>
