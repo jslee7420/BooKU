@@ -1,5 +1,6 @@
+from django.conf.urls import url
 from django.urls import path
-from .views import BookList, BookCreate, BookDelete, BookDetail, BookUpdate, search
+from .views import BookList, BookCreate, BookDelete, BookDetail, BookUpdate, search, complete_sale
 
 app_name = "book"
 
@@ -10,5 +11,6 @@ urlpatterns = [
     path("detail/<int:pk>/", BookDetail.as_view(), name='detail'),
     path("", BookList.as_view(), name='index'),
     path("search/", search, name='search'),
+    path("complete/<int:pk>/", complete_sale, name='complete'),
 ]
 

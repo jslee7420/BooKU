@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="row">
+    <a class="book_create_intro" href="{% url 'book:index' %}"> 교양책 등록하기 </a>
+
+    <div class="col">
+
+        <form id="form_book" class=form_book action=" " method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="확인" class="btn_book_upload">
+            <button type="button" onclick="location.href='{% url 'allbook:index' %}'" class="btn_book_unload" >취소</button>
+        </form>
+  </div>
+
+</div>
+</body>
+</html>

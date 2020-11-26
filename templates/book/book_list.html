@@ -13,14 +13,10 @@
             {% for object in object_list %}
                 <tr class="text-center">
                     <td><a href="{% url 'book:detail' object.id %}"><img src=" {{ object.image.url }}" class="book_list_img" alt="..."></a></td>
-                    <td><a href="{% url 'book:detail' object.id %}" class="book_list_title">{{ object.title|truncatechars:30 }}</a>
-                    <br><a href="{% url 'book:detail' object.id %}" class="book_list_text"><br/>{{ object.text|truncatechars:79 }}</a></td>
-                    {{ object.category }}
-                    {{ object.lecture }}
-
-                    {{ object.price }}
-                    {% if object.DEAL_FLAG == 1 %} 거래중 {% endif %}
-                    {% if object.DEAL_FLAG == 0 %} 거래완료 {% endif %}
+                    <td><a href="{% url 'book:detail' object.id %}" class="book_list_title">{{ object.title|truncatechars:30 }} {{ object.lecture }}</a>
+                    <br><a href="{% url 'book:detail' object.id %}" class="book_list_text"><br/>{{ object.text|truncatechars:79 }}   {{ object.price }}</a></td>
+                    <td>{% if object.DEAL_FLAG == 1 %} 거래중 {% endif %}
+                    {% if object.DEAL_FLAG == 0 %} 거래완료 {% endif %}</td>
                 </tr>
             {% endfor %}
         {% else %}

@@ -74,20 +74,20 @@ class User(AbstractUser):
 
     university=models.CharField(max_length=20, default="Konkuk")
     first_major = models.CharField(
-        max_length=20,
+        max_length=30,
         choices=MAJOR_CHOICES,
         default=''
         )
 
     second_major = models.CharField(
-        max_length=20,
+        max_length=30,
         choices=MAJOR_CHOICES,
         default='',
         blank=True,
         )
 
     third_major = models.CharField(
-        max_length=20,
+        max_length=30,
         choices=MAJOR_CHOICES,
         default='',
         blank=True,
@@ -108,4 +108,8 @@ class User(AbstractUser):
 
 
     email = models.EmailField(unique=True, blank=False)
+
+
+
+
     
