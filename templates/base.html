@@ -1,21 +1,34 @@
 {% load static %}
 <!doctype html>
 <html lang="ko">
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
-        <!-- pybo CSS -->
-        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
-        <title>BooKU</title>
-    </head>
-    <body>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="BooKU">
+
+    <title>BooKU</title>
+    <!--reset CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+    <!-- custom CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
+</head>
+
+<body>
+    <header>
         {% include "navbar.html" %}
-    <!-- 기본 템플릿 안에 삽입될 내용 Start -->
-    {% block content %}
-    {% endblock %}
-    <!-- 기본 템플릿 안에 삽입될 내용 End -->
-    </body>
+        
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+        <!-- 기본 템플릿 안에 삽입될 내용 End -->
+    </main>
+    <!--footer 추가-->
+</body>
+
 </html>

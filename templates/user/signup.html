@@ -1,9 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="signup">
+    <form>
+        {% csrf_token %}
+        {% include "form_errors.html" %}
+        <div class="id"></div>
+        <div class="email"></div>
+        <div class="pwd1"></div>
+        <div class="pwd2"></div>
+        <div class="email"></div>
+        <div class="school">
+            <div class="major_col"></div>
+            <div class="major_col">
+                <div class="major_row"></div>
+                <div class="major_row"></div>
+            </div>
+        </div>
+        <div class="button"><button type="submit">가입하기</button></div>
+    </form>
+</div>
+<!--
 <h4>계정생성</h4>
-<form method="post" class="post-form">
+<form method="post" action="{% url 'user:signup' %}">
     {% csrf_token %}
     {% include "form_errors.html" %}
     {{ form.as_p }}
-    <!-- <div class="form-group">
+    <div class="form-group">
         <label for="username">아이디</label>
         <input type="text" class="form-control" name="username" id="username"
                 value="{{ form.username.value|default_if_none:'' }}">
@@ -37,6 +60,7 @@
         <label for="email">(다/부)전공2</label>
         <input type="text" class="form-control" name="third_major" id="third_major"
                 value="{{ form.third_major.value|default_if_none:'' }}">
-    </div> -->
+    </div>
     <button type="submit" class="btn btn-primary">생성하기</button>
-</form>
+</form>-->
+{% endblock %}
