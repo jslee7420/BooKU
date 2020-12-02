@@ -1,20 +1,52 @@
 {% extends "base.html" %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}">
+{% endblock %}
 {% block content %}
 
 <div class="signup">
+    <h1>회원가입</h1>
     <form>
         {% csrf_token %}
         {% include "form_errors.html" %}
-        <div class="id"></div>
-        <div class="email"></div>
-        <div class="pwd1"></div>
-        <div class="pwd2"></div>
-        <div class="email"></div>
+        <div class="id">
+            <label for="username">아이디</label>
+            <input type="text" class="" name="username" id="username"
+                value="{{ form.username.value|default_if_none:'' }}">
+        </div>
+        <div class="pwd1">
+            <label for="password1">비밀번호</label>
+            <input type="password" class="" name="password1" id="password1"
+                value="{{ form.password1.value|default_if_none:'' }}">
+        </div>
+        <div class="pwd2">
+            <label for="password2">비밀번호 확인</label>
+            <input type="password" class="" name="password2" id="password2"
+                value="{{ form.password2.value|default_if_none:'' }}">
+        </div>
+        <div class="email">
+            <label for="email">이메일</label>
+            <input type="text" class="" name="email" id="email"
+                value="{{ form.email.value|default_if_none:'' }}">
+        </div>
         <div class="school">
-            <div class="major_col"></div>
             <div class="major_col">
-                <div class="major_row"></div>
-                <div class="major_row"></div>
+                <label for="email">소속학과</label>
+                <input type="text" class=" name="first_major" id="first_major"
+                    value="{{ form.first_major.value|default_if_none:'' }}">
+            </div>
+            <div class="major_col">
+                <div class="major_row">
+                    <label for="email">(다/부)전공1</label>
+                    <input type="text" class="" name="second_major" id="second_major"
+                        value="{{ form.second_major.value|default_if_none:'' }}">
+                </div>
+                <div class="major_row">
+                    <label for="email">(다/부)전공2</label>
+                    <input type="text" class="" name="third_major" id="third_major"
+                        value="{{ form.third_major.value|default_if_none:'' }}">
+                </div>
             </div>
         </div>
         <div class="button"><button type="submit">가입하기</button></div>

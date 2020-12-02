@@ -1,23 +1,27 @@
 {% extends "base.html" %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+{% endblock %}
 
 {% block content %}
-<div class="login">
+<div class="container">
     <div class="heading"><h1>로그인</h1></div>
     <form method="post" action="{% url 'user:login' %}">
         {% csrf_token %}
         {% include "form_errors.html" %}
         <div class="id">
-            <input type="text">
+            <input type="text" >
         </div>
         <div class="pwd">
             <input type="text">
         </div>
         <div class="button">
-            <button type="submit">로그인</button>
+            <button class="submit" type="submit">로그인</button>
         </div>
     </form>
-    <div class="signup">
-        <span>아직 회원이 아니라면<a href="{% url 'user:signup' %}">가입하기</a></span>
+    <div class="ifnot">
+        <span>아직 회원이 아니라면? <a class="signup" href="{% url 'user:signup' %}">가입하기</a></span>
     </div>
 </div>
 {% endblock %}

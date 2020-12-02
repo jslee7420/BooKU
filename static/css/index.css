@@ -1,0 +1,53 @@
+.body{
+    width:1500px;
+    margin:auto;
+    margin-top:50px;
+    font-size:0;
+    /* background-color:orange; */
+}
+
+section{
+    display:inline-block;
+    width:50%;
+    vertical-align: top;
+    /* background-color: greenyellow; */
+}
+
+.section-a{
+    /* background-color:blue; */
+}
+
+.section-b{
+    /* background-color:red; */
+}
+
+.heading{
+    height: 300px;
+    padding:auto;
+    margin-bottom:20px;
+    /* background-color: pink; */
+}
+
+.content{
+    font-family: NanumGothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    color: #797979;
+    width:80%;
+}
+
+h1{
+    font-family: Nosifer Caps;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 64px;
+    color: #202336;
+    mix-blend-mode: normal;
+    position: relative;
+    top:100px;
+}
+
+.img{
+    display: inline-block;
+}
