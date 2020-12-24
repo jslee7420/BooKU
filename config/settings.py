@@ -136,8 +136,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 AUTH_USER_MODEL = 'user.User'
 
-LOGIN_REDIRECT_URL = '/user/login/'
-LOGOUT_REDIRECT_URL = '/user/login/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 ########이메일 정보 가져오기########
 SITE_ID = 1

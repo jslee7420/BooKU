@@ -63,8 +63,8 @@ def signup(request):
             mail_to = user.email
             email = EmailMessage(mail_title, message_data, from_email='booku@BooKU.com',to=[mail_to])
             email.send()
-
             return redirect('user:login')
+
     else:
         form = UserForm()
     return render(request, 'user/signup.html', {'form': form})

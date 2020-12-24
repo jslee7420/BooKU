@@ -53,7 +53,7 @@ input{
 }
 
 .ifnot{
-    margin-top:10px;
+    margin-top:15px;
 
     font-family: Inter;
     font-style: normal;
@@ -63,3 +63,29 @@ input{
 
     color: #797979;
 }
+
+form input::placeholder{
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    /* identical to box height */
+
+
+    color: #9C9C9C;
+}
+
+form input{
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    padding-left: 20px;
+}
+
+form input:focus{
+    outline: none;
+}
+
