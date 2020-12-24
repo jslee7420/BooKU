@@ -11,10 +11,10 @@
         {% csrf_token %}
         {% include "form_errors.html" %}
         <div class="id">
-            <input type="text" >
+            <input type="text" placeholder="아이디" name="username" id="username" value="{{form.username.value|default_if_none:''}}">
         </div>
         <div class="pwd">
-            <input type="text">
+            <input type="password" placeholder=" 비밀번호" name="password" id="password"  value="{{form.password.value|default_if_none:''}}">
         </div>
         <div class="button">
             <button class="submit" type="submit">로그인</button>

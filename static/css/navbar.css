@@ -39,7 +39,6 @@ nav{
 
 .nav-items{
     float:right;
-    width:50%;
     height:100%;
 
     display: flex;
@@ -48,7 +47,6 @@ nav{
     /*중앙정렬*/
     justify-content: center;
 
-    /*background-color: brown;*/
 }
 
 .nav-item{
@@ -56,15 +54,71 @@ nav{
     height: 100%;
     list-style:none;
     float:left;
-    margin: 0px 3px;
+    margin: 0px 10px;
     
+    
+
+   /* background-color: chartreuse;*/
+}
+
+.login_logout{
+    display: inline-block;
+    height: 55px;
+    width: 165px;
+
+    border: 1px solid #FB8F1D;
+    box-sizing: border-box;
+    border-radius: 8px;
+
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 50px;
+
+    text-align: center;
+    background-color: white;
+    color: #FB8F1D;
+}
+
+
+.signup_mypage{
+    display: inline-block;
+    height: 55px;
+    width: 165px;
+
+    border: 1px solid #FB8F1D;
+    box-sizing: border-box;
+    border-radius: 8px;
+
+    
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 50px;
+    text-align: center;
+    background-color:#FB8F1D;
+    color: white;
+}
+
+.login_logout:hover{
+    color: #FB8F1D;
+    text-decoration: none;
+    font-weight: bold;
+}
+.signup_mypage:hover{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.not_btn{
+    line-height: 40px;
+}
+
+.nav-link{
     font-family: Inter;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
-    line-height: 19px;
+    line-height: 30px;
     text-align: center;
     color: #B8BECD;
-
-   /* background-color: chartreuse;*/
 }
