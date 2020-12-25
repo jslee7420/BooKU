@@ -48,7 +48,7 @@ input{
 }
 
 .button{
-    margin-top:100px;
+    margin-top:50px;
     text-align: center;
 }
 
@@ -88,4 +88,3 @@ form input{
 form input:focus{
     outline: none;
 }
-

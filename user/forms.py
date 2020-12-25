@@ -37,10 +37,10 @@ class EditForm(forms.ModelForm):
             "third_major":"다/부전공2", 
         }
 
-class FindForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ("email",)
-        labels = {
-            "email":"이메일",
-        }
+class FindPwdForm(forms.Form):
+    email = forms.EmailField(label='email')
+
+
+class LoginForm(forms.Form):
+    email = forms.EmailField(label='email')
+    password = forms.CharField(max_length=20)

@@ -1,6 +1,7 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as auth_login
 from django.shortcuts import render, redirect
-from user.forms import UserForm, EditForm, FindForm
+from user.forms import UserForm, EditForm, FindPwdForm, LoginForm
 from django.contrib.auth.forms import SetPasswordForm
 
 from django.views import View
@@ -41,7 +42,29 @@ class Activate(View):
         except KeyError:
             return JsonResponse({'message':'INVALID_KEY'}, status=400)  #추후 수정
 
-
+def login(request):
+    """
+    로그인
+    """
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            user = User.objects.filter(email=request.POST['email'])
+            if user:
+                password = request.POST['password']
+                user = user[0]
+                user = authenticate(request, username = user.username, password = password)
+                if user is not None:
+                    auth_login(request, user)
+                    return redirect('user:index')
+                else:
+                    form.add_error('password',"비밀번호가 일치하지 않습니다.")
+            else:
+                form.add_error('email',"존재하지 않는 계정입니다.")
+        return render(request, 'user/login.html', {'form':form})
+    else:
+        form = LoginForm()
+        return render(request, 'user/login.html', {'form':form})
 
 def signup(request):
     """
@@ -102,9 +125,8 @@ def find_pwd(request):
     """
     비밀번호 찾기
     """
-    
     if request.method == 'POST':
-        form = FindForm(request.POST)
+        form = FindPwdForm(request.POST)
         if form.is_valid():
             try:                 #해당 이메일이 db에 존재하면
                 user = User.objects.get(email= form.cleaned_data['email'])
@@ -121,9 +143,10 @@ def find_pwd(request):
                 return HttpResponse("작성해주신 이메일로 비밀번호 변경 링크가 전송되었습니다. 이메일을 확인해주세요!")
             except User.DoesNotExist:   #없는 사용자인 경우
                 return HttpResponse("존재하지 않는 이메일입니다.")
-            
+        else:
+            return render(request, 'user/find_pwd.html', {'form':form})
     else:
-        form=FindForm()
+        form=FindPwdForm()
         return render(request, 'user/find_pwd.html', {'form':form})
 
 
