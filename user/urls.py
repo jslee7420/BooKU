@@ -7,14 +7,15 @@ app_name = 'user'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    # path('login/', auth_views.LoginView.as_view(template_name='user/login.html'), name='login'),
     path('login/', views.login, name='login'),
     path('signup/', views.signup, name = 'signup'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('activate/<str:uidb64>/<str:token>', Activate.as_view()),
-    # path('find_id/',views.find_id, name='find_id'),
     path('find_pwd/', views.find_pwd, name='find_pwd'),
     path('change_pwd/<str:uidb64>/<str:token>', Change_pwd.as_view()),
-    path('edit_pwd', views.edit_pwd, name='edit_pwd'),
-    path('find_id/', views.find_id, name='find_id'),
+    path('change_pwd', views.change_pwd, name='change_pwd'),
+    path('email_auth_notice/', views.email_auth_notice, name='email_auth_notice'),
+    path('email_auth_confirm/', views.email_auth_confirm, name='email_auth_confirm'),
+    path('change_major/', views.change_major, name='change_major'),
+    path('change_account_info/',views.change_account_info, name='change_account_info'),
 ]

@@ -1,7 +1,9 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import User
-from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth import get_user_model
+
 
 class UserForm(UserCreationForm):
     # email = forms.EmailField()
@@ -27,15 +29,10 @@ class UserForm(UserCreationForm):
         }
 
 
-class EditForm(forms.ModelForm):
+class ChangeMajorForm(UserChangeForm):
     class Meta:
-        model = User
+        model = get_user_model()
         fields = ("first_major","second_major","third_major")
-        labels = {
-            "first_major":"원전공",
-            "second_major":"다/부전공1",
-            "third_major":"다/부전공2", 
-        }
 
 class FindPwdForm(forms.Form):
     email = forms.EmailField(label='email')
@@ -44,3 +41,8 @@ class FindPwdForm(forms.Form):
 class LoginForm(forms.Form):
     email = forms.EmailField(label='email')
     password = forms.CharField(max_length=20)
+
+# class ChangeAccountInfoForm(UserChangeForm):
+#     class Meta:
+#         model = get_user_model()
+#         fields =("username")

@@ -1,0 +1,26 @@
+.content{
+    width:750px;
+    margin:0 auto;
+    margin-top:50px;
+}
+
+.content h2{
+    margin-bottom: 50px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 44px;
+
+    color: #4A4A4A;
+}
+
+.content p{
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 27px;
+
+    color: #5C5C5C;
+}

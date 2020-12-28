@@ -1,5 +1,4 @@
 <nav>
-
     <a class="logo" href="{% url 'user:index' %}">
         <!-- BooKU Image and Logo -->
         <svg width="82" height="61" viewBox="0 0 82 61" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -42,7 +41,7 @@
             </li>
             <li class="nav-item">
                 {% if user.is_authenticated %}
-                <a class="signup_mypage" href="">My Page</a>
+                <a class="signup_mypage" href="{% url 'user:change_major' %}">My Page</a>
                 {% else %}
                 <a class="signup_mypage" href="{% url 'user:signup' %}">Sign Up</a>
                 {% endif %}
