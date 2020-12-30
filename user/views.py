@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
-from django.shortcuts import render, redirect
-from user.forms import UserForm, ChangeMajorForm, FindPwdForm, LoginForm
+from django.shortcuts import render, redirect, get_object_or_404
+from user.forms import UserForm, ChangeMajorForm, FindPwdForm, LoginForm, ChangeUsernameForm
 from django.contrib.auth.forms import SetPasswordForm
 
 from django.views import View
@@ -30,8 +30,10 @@ from django.contrib.auth.forms import PasswordChangeForm
 def index(request):
     return render(request,"index.html")
 
-
 class Activate(View):
+    """
+    계정활성화
+    """
     def get(self, request, uidb64, token):
         try:
             uid = force_text(urlsafe_base64_decode(uidb64)) #userid 디코딩
@@ -110,28 +112,6 @@ def email_auth_confirm(request):
     return render(request, 'user/email_auth_confirm.html')
 
 
-# def edit_info(request):
-#     """
-#     학과변경
-#     """
-    
-#     if request.method == "POST":
-#         user = User.objects.get(username=request.user)
-#         form = EditForm(request.POST)
-#         if form.is_valid():
-#             user.first_major = form.cleaned_data['first_major']
-#             user.second_major = form.cleaned_data['second_major']
-#             user.third_major = form.cleaned_data['third_major']
-#             user.save()
-#             return redirect('user:login')
-#     elif request.user.is_authenticated:
-#         user = User.objects.get(username=request.user)
-#         form = EditForm(instance = user)
-#         return render(request, 'user/edit_info.html', {'form': form})
-#     else:
-#         return redirect('user:login')
-
-
 def find_pwd(request):
     """
     비밀번호 찾기
@@ -160,9 +140,6 @@ def find_pwd(request):
         form=FindPwdForm()
         return render(request, 'user/find_pwd.html', {'form':form})
 
-
-
-
 class Change_pwd(View):
     def get(self, request, uidb64, token):
         try:
@@ -179,22 +156,6 @@ class Change_pwd(View):
         except KeyError:
             return HttpResponse("INVALID_KEY") #JsonResponse({'message':'INVALID_KEY'}, status=400)  #추후 수정
 
-# @login_required(login_url='user:login')
-# def change_pwd(request):
-#     """
-#     비밀번호 변경
-#     """
-#     if request.method == "POST":
-#         form = SetPasswordForm(data=request.POST, user=request.user)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('user:login')
-#         else:
-#             return HttpResponse("폼 에러")
-#     else:
-#         form = SetPasswordForm(request.user)
-#         return render(request, 'user/change_pwd.html', {'form': form})
-
 
 @login_required(login_url='user:login')
 def change_major(request):
@@ -205,9 +166,8 @@ def change_major(request):
         form = ChangeMajorForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return render(request, 'user/change_major.html', {'form':form})
+            return render(request, 'user/change_major.html', {'form':form,'message':'학과정보 변경완료!'})
     else:
-        
         form =  ChangeMajorForm(instance=request.user)
     return render(request, 'user/change_major.html', {'form':form})
 
@@ -220,17 +180,30 @@ def change_account_info(request):
 
 @login_required(login_url='user:login')
 def change_pwd(request):
+    """
+    비밀번호 변경
+    """
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
             user = form.save()
-            update_session_auth_hash(request, user)  # Important!
-            messages.success(request, '비밀번호가 변경되었습니다!')
-            return redirect('user:change_pwd')
-        else:
-            messages.error(request, '잘못된 입력입니다.')
+            update_session_auth_hash(request, user)
+            return render(request, 'user/change_pwd.html', {'message':'비밀번호 변경완료!'})
     else:
         form = PasswordChangeForm(request.user)
-    return render(request, 'user/change_pwd.html', {
-        'form': form
-    })
+    return render(request, 'user/change_pwd.html', {'form': form})
+
+
+@login_required(login_url='user:login')
+def change_username(request):
+    """
+    닉네임 변경
+    """
+    if request.method == 'POST':
+        form = ChangeUsernameForm(request.POST, instance = request.user)
+        if form.is_valid():
+            user = form.save()
+            return render(request, 'user/change_username.html', {'message':'닉네임 변경완료!'})
+    else:
+        form = ChangeUsernameForm(instance = request.user)
+    return render(request, 'user/change_username.html', {'form': form})

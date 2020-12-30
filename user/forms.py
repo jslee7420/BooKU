@@ -29,10 +29,10 @@ class UserForm(UserCreationForm):
         }
 
 
-class ChangeMajorForm(UserChangeForm):
+class ChangeMajorForm(forms.ModelForm):
     class Meta:
-        model = get_user_model()
-        fields = ("first_major","second_major","third_major")
+        model = User
+        fields = ["first_major","second_major","third_major"]
 
 class FindPwdForm(forms.Form):
     email = forms.EmailField(label='email')
@@ -42,7 +42,7 @@ class LoginForm(forms.Form):
     email = forms.EmailField(label='email')
     password = forms.CharField(max_length=20)
 
-# class ChangeAccountInfoForm(UserChangeForm):
-#     class Meta:
-#         model = get_user_model()
-#         fields =("username")
+class ChangeUsernameForm(forms.ModelForm):
+    class Meta:
+        model =User
+        fields = ['username']

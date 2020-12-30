@@ -15,6 +15,7 @@
             <div class="major_col1 form-group">
                 <select class="first_major" name="first_major" id="first_major">
                     <option value="" disabled selected hidden>원전공</option>
+                    <option value="{{form.first_major.value}}" selected hidden>{{form.first_major.value}}</option>
                     <optgroup label="문과대학">
                         <option value="영어영문학과">영어영문학과</option>
                         <option value="국어국문학과">국어국문학과</option>
@@ -108,6 +109,9 @@
                     <select name="second_major" id="second_major">
                         <option value="" disabled selected hidden>다/부전공1</option>
                         <option value="">해당사항 없음</option>
+                        {% if form.second_major.value %}
+                        <option value="{{form.second_major.value}}" selected hidden>{{form.second_major.value}}</option>
+                        {% endif %}
                         <optgroup label="문과대학">
                             <option value="영어영문학과">영어영문학과</option>
                             <option value="국어국문학과">국어국문학과</option>
@@ -199,6 +203,9 @@
                     <select name="third_major" id="third_major">
                         <option value="" disabled selected hidden>다/부전공2</option>
                         <option value="">해당사항 없음</option>
+                        {% if form.third_major.value %}
+                        <option value="{{form.third_major.value}}" selected hidden>{{form.third_major.value}}</option>
+                        {% endif %}
                         <optgroup label="문과대학">
                             <option value="영어영문학과">영어영문학과</option>
                             <option value="국어국문학과">국어국문학과</option>
@@ -291,4 +298,9 @@
         <button type="submit">변경하기</button>
     </form>
 </div>
+{% if message %}
+<script>
+    alert('{{ message }}');
+</script>
+{% endif%}
 {% endblock %}

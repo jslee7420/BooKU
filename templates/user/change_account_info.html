@@ -6,7 +6,7 @@
 {% block content %}
 <div class="content">
     {% include 'user/my_page_header.html'%}
-    <a class="change" href="">아이디 변경</a>
+    <a class="change" href="{% url 'user:change_username' %}">닉네임 변경</a>
     <a class="change" href="{% url 'user:change_pwd' %}">비밀번호 변경</a>
 </div>
 {% endblock %}

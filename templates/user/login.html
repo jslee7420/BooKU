@@ -6,7 +6,7 @@
 
 {% block content %}
 <div class="container">
-    <div class="heading"><h1>로그인</h1></div>
+    <div class="heading"><h1>로그인<hr></h1></div>
     <form method="post" action="{% url 'user:login' %}">
         {% csrf_token %}
         {% include "form_errors.html" %}
@@ -21,7 +21,8 @@
         </div>
     </form>
     <div class="ifnot">
-        <span>아직 회원이 아니라면? <a class="signup" href="{% url 'user:signup' %}">가입하기</a> | <a href="{% url 'user:find_pwd' %}">비밀번호 찾기</a></span>
+        <span>아직 회원이 아니라면? <a class="signup" href="{% url 'user:signup' %}">가입하기</a><br>
+        비밀번호가 기억나지 않는다면? <a href="{% url 'user:find_pwd' %}">비밀번호 찾기</a></span>
     </div>
 </div>
 {% endblock %}

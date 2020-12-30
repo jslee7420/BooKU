@@ -3,7 +3,7 @@ from django.db import models
 
 class User(AbstractUser):
     GENDER_CHOICES = [
-        ('Female','여'),
+        ('female','여'),
         ('male','남'),
     ]
 
@@ -73,6 +73,7 @@ class User(AbstractUser):
 
 
     university=models.CharField(max_length=20, default="Konkuk")
+    
     first_major = models.CharField(
         max_length=30,
         choices=MAJOR_CHOICES,

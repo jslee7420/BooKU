@@ -18,4 +18,5 @@ urlpatterns = [
     path('email_auth_confirm/', views.email_auth_confirm, name='email_auth_confirm'),
     path('change_major/', views.change_major, name='change_major'),
     path('change_account_info/',views.change_account_info, name='change_account_info'),
+    path('change_username/', views.change_username, name='change_username'),
 ]

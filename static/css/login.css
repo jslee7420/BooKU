@@ -6,8 +6,15 @@
 }
 
 .heading{
-    text-align: center;
     margin-bottom:70px;
+}
+
+h1>hr{
+    margin-left:0;
+    width: 40px;
+    height: 2.5px;
+    background: #4A4A4A;
+    border-radius: 4px;
 }
 
 h1{
