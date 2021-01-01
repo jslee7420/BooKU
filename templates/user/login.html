@@ -4,6 +4,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
 {% endblock %}
 
+
 {% block content %}
 <div class="container">
     <div class="heading"><h1>로그인<hr></h1></div>
@@ -20,9 +21,31 @@
             <button class="submit" type="submit">로그인</button>
         </div>
     </form>
-    <div class="ifnot">
+    <div class="small_description">
         <span>아직 회원이 아니라면? <a class="signup" href="{% url 'user:signup' %}">가입하기</a><br>
-        비밀번호가 기억나지 않는다면? <a href="{% url 'user:find_pwd' %}">비밀번호 찾기</a></span>
+        비밀번호가 기억나지 않는다면? <a  href="{% url 'password_reset' %}">비밀번호 찾기</a></span>
     </div>
 </div>
+<div class="modal_wrap hidden">
+    <div class="modal_overlay"></div>
+    <div class="modal_content">
+        <button class="close_btn">X</button>
+        <div class="heading">
+            <h1 class="center">비밀번호 찾기</h1>
+            <p class="small_description">가입에 사용하신 이메일로 비밀번호 변경링크를 전송해드립니다</p>
+        </div>
+        <form method="post" action="{% url 'user:find_pwd' %}">
+            {% csrf_token %}
+            {% include "form_errors.html" %}
+            <div class="email">
+                <label for="email">이메일</label>
+                <input type="text" placeholder="학교 이메일" name="email" id="email" value="{{form.email.value|default_if_none:''}}">
+            </div>
+            <div class="button">
+                <button class="submit" type="submit">비밀번호 찾기</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript" src="{% static 'js/forgot_password.js' %}"></script>
 {% endblock %}

@@ -96,3 +96,12 @@ form button{
     border-radius: 15px;
     border:none;
 }
+h3{
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    color: #4A4A4A;
+    margin-bottom: 80px;
+}
+

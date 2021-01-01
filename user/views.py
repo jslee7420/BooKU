@@ -25,6 +25,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import views as auth_views
 
 
 def index(request):
@@ -72,6 +73,11 @@ def login(request):
     else:
         form = LoginForm()
     return render(request, 'user/login.html', {'form':form})
+
+class PasswordRestView(auth_views.PasswordResetView):
+    success_url= ('user/')
+
+
 
 def signup(request):
     """
@@ -135,10 +141,10 @@ def find_pwd(request):
             except User.DoesNotExist:   #없는 사용자인 경우
                 return HttpResponse("존재하지 않는 이메일입니다.")
         else:
-            return render(request, 'user/find_pwd.html', {'form':form})
+            return render(request, 'user/login.html', {'form':form})
     else:
         form=FindPwdForm()
-        return render(request, 'user/find_pwd.html', {'form':form})
+        return render(request, 'user/login.html', {'form':form})
 
 class Change_pwd(View):
     def get(self, request, uidb64, token):
