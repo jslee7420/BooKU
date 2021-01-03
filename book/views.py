@@ -1,24 +1,27 @@
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
 from book.models import Book
+from .forms import BookForm
 
-def get_first(User):
-    return User.get_first()
-
-def complete_sale(request,pk):
+def update_deal(request,pk):
     book1 = Book.objects.get(pk =pk)
-    book1.DEAL_FLAG = 0
-    context = {'complete_book_info': book1}
-    return render(request,'book/book_detail.html', context)
+    if book1.deal_flag == 0:
+        book1.deal_flag = 1
+        book1.save()
+    else:
+        book1.deal_flag = 0
+        book1.save()
 
+    context = {'object': book1}
+    return render(request,'book/book_detail.html', context)
 
 class BookCreate(CreateView):
     model = Book
-    fields = ['title', 'state', 'price', 'lecture', 'text', 'image','major_category','kakaoUrl']
+    fields = ['title', 'text', 'image','lecture', 'state', 'price', 'kakaoUrl','major_category','writer']
     template_name_suffix = '_create'
-    success_url = '/book' #나중에 전공책url, 교양책url 구분
-
+    success_url = '/book'
 
     def form_valid(self, form):
         form.instance.author_id = self.request.user.id
@@ -27,6 +30,25 @@ class BookCreate(CreateView):
             return redirect('/book')
         else:
             return self.render_to_response({'form': form})
+
+def book_new(request):
+    MAJOR_CHOICES = (
+        ('all', '전체'),
+        ('first_major', str(request.user.first_major)),
+        ('second_major', str(request.user.second_major)),
+        ('third_major', str(request.user.third_major)),
+    )
+
+    if request.method == 'POST':
+        form = BookForm(request.POST, request.FILES, tuple=MAJOR_CHOICES)
+        book = form.save()
+        return redirect(book)
+
+    else:
+        form = BookForm()
+        return render(request, 'book/book_create.html',{
+		    'form': form,
+	    })
 
 class BookList(ListView):
     model = Book
@@ -56,6 +78,22 @@ class BookList(ListView):
 
         return context
 
+def get_first_major_list(request):
+
+    book_list = Book.objects.all().filter(major_category=request.user.first_major)
+    return render(request, 'book/book_list.html', {'object_list': book_list})
+
+def get_second_major_list(request):
+    if request.user.second_major != "":
+        book_list = Book.objects.all().filter(major_category=request.user.second_major)
+        return render(request, 'book/book_list.html', {'object_list': book_list})
+
+def get_third_major_list(request):
+    if request.user.third_major != "":
+        book_list = Book.objects.all().filter(major_category=request.user.third_major)
+        return render(request, 'book/book_list.html', {'object_list': book_list})
+
+
 class BookDetail(DetailView):
     model = Book
     template_name_suffix = '_detail'
@@ -63,8 +101,7 @@ class BookDetail(DetailView):
 class BookUpdate(UpdateView):
     model = Book
     context_object_name = 'update_book'
-    fields = ['title', 'category', 'state', 'price','lecture',
-              'text', 'image']
+    fields = ['title', 'writer', 'text', 'image','lecture', 'state', 'price', 'kakaoUrl','major_category']
     template_name_suffix = '_update'
     success_url = '/book'
 
@@ -83,7 +120,7 @@ def search(request):
     q = request.POST.get('q', "")
 
     if q:
-        books = books.filter(Q(title__icontains=q) or Q(text__icontains=q) or Q(author__icontains=q)).distinct() #검색조건
+        books = books.filter(Q(title__icontains=q) or Q(lecture__icontains=q) or Q(writer__icontains=q)).distinct() #검색조건
         return render(request, 'book/book_search.html', {'books': books, 'q': q})
     #필터 넣기 제목, 제목+작성자, 글내용
     else:

@@ -104,11 +104,17 @@ class User(AbstractUser):
         default='',
     )
 
-
     is_active = models.BooleanField(default=False)
-
-
     email = models.EmailField(unique=True, blank=False)
+
+    def make_major_choices(self):
+        major_choices = (
+            ('all','전체'),
+            ('major1',self.first_major),
+            ('major2',self.second_major),
+            ('major3', self.third_major),
+        )
+        return major_choices
 
 
 

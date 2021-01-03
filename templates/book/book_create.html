@@ -5,19 +5,82 @@
     <title>Title</title>
 </head>
 <body>
+<script language="JavaScript">
+        function getSelectValue(frm)
+        {
+            frm.textValue.value = frm.selectBox.options[frm.selectBox.selectedIndex].text;
+            frm.optionValue.value = frm.selectBox.options[frm.selectBox.selectedIndex].value;
+        }
+ </script>
+
+{% if user.is_authenticated %}
 <div class="row">
     <a class="book_create_intro" href="{% url 'book:index' %}"> 전공책 등록하기 </a>
-
     <div class="col">
-
-        <form id="form_book" class=form_book action=" " method="post" enctype="multipart/form-data">
+        <form id="form_book" class="form_book" action=" " method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form.as_p }}
+            <!--{{ form.as_p }}-->
+            <p>
+            <label for="id_title" id="book_title">제목</label>
+            <input type="text" class="book_title_input" name="title" placeholder="제목을 입력해 주세요." maxlength="50" required id="id_title">
+            </p>
+            <p>
+            <label for="id_writer" id="book_writer">저자</label>
+            <input type="text" class="book_writer_input" maxlength="50" name="writer" required id="id_writer">
+            </p>
+            <p>
+            <label for="id_text" id="book_text">게시글</label>
+            <textarea name="text" class="book_text_input" form="form_book" cols="40" rows="5" placeholder="내용을 입력해 주세요." required id="id_text" ></textarea>
+                <!--<input type="text" name="text" maxlength="50" required id="id_text">-->
+            </p>
+            <p>
+            <label for="id_image" id="book_image">이미지</label>
+            <input type="file" class="book_image_input" name="image" required id="id_image">
+            </p>
+            <p>
+            <label for="id_lecture" id="book_lecture">수업</label>
+            <input type="text" class="book_lecture_input" name="lecture" maxlength="100" required id="id_lecture">
+            </p>
+            <p>
+            <label id="book_state">도서 상태</label>
+                <input type="radio" name="state" value="하">하
+                <input type="radio" name="state" value="보통">보통
+                <input type="radio" name="state" value="상">상
+                <input type="radio" name="state" value="최상">최상
+            </p>
+            <p>
+            <label for="id_price" id="book_price">가격</label>
+                <input type="number" class="book_price_input" name="price" min="0" required id="id_price">
+                <!--<input type="checkbox" name="freebox" onchange="">무료 나눔-->
+            </p>
+            <p>
+            <label for="id_chatting" id="book_chatting">오픈채팅 주소</label>
+            <input type="url" class="book_chatting_input" name="kakaoUrl" required id="id_chatting">
+            </p>
+            <p>
+            <label for="id_major" >전공 카테고리</label>
+            <!--<input type="hidden" name="major_category">-->
+            <select name="major_category" form="form_book" id="id_major">
+                <option value="전체" selected>전체</option>
+                <optgroup label="원전공">
+                <option value="{{user.first_major}}"> {{user.first_major}} </option>
+                </optgroup>
+                <optgroup label="다/부전공">
+                    {% if user.second_major != "" %}
+                        <option value="{{user.second_major}}"> {{user.second_major}} </option>
+                    {% endif %}
+                    {% if user.third_major != "" %}
+                        <option value="{{user.third_major}}"> {{user.third_major}} </option>
+                    {% endif %}
+                </optgroup>
+            </select>
+            </p>
             <input type="submit" value="확인" class="btn_book_upload">
             <button type="button" onclick="location.href='{% url 'book:index' %}'" class="btn_book_unload" >취소</button>
         </form>
   </div>
 
 </div>
+{% endif %}
 </body>
 </html>

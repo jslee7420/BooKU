@@ -5,18 +5,38 @@
     <title>Title</title>
 </head>
 <body>
+<script>
+
+</script>
 <div class="container">
-     <button type="button" id="btn_create" onclick="location.href='{% url 'book:create' %}'">글 작성하기</button>
+    <button type="button" id="btn_create" onclick="location.href='{% url 'book:create' %}'">글 작성하기</button>
+    <form method="post">
+    <select name="up_category_menu">
+        <option value="전체" onclick="location.href='{% url 'book:index' %}'"> 전체 </option>
+        <option value="{{user.first_major}}" onclick="location.href='{% url 'book:major1' %}'"> {{user.first_major}} </option>
+        {% if user.second_major != "" %}
+            <option value="{{user.second_major}}" onclick="location.href='{% url 'book:major2' %}'"> {{user.second_major}} </option>
+        {% endif %}
+        {% if user.third_major != "" %}
+            <option value="{{user.third_major}} " onclick="location.href='{% url 'book:major3' %}'"> {{user.third_major}} </option>
+        {% endif %}
+    </select>
+    </form>
 <table id="book_table">
     <tbody>
         {% if object_list %}
             {% for object in object_list %}
                 <tr class="text-center">
-                    <td><a href="{% url 'book:detail' object.id %}"><img src=" {{ object.image.url }}" class="book_list_img" alt="..."></a></td>
+                    <td><a href="{% url 'book:detail' object.id %}">
+                        {% if object.image.url != "" %}
+                            <img src=" {{ object.image.url }}" class="book_list_img" alt="..." height="280" width="180">
+                        {% endif %}
+                        </a>
+                    </td>
                     <td><a href="{% url 'book:detail' object.id %}" class="book_list_title">{{ object.title|truncatechars:30 }} {{ object.lecture }}</a>
                     <br><a href="{% url 'book:detail' object.id %}" class="book_list_text"><br/>{{ object.text|truncatechars:79 }}   {{ object.price }}</a></td>
-                    <td>{% if object.DEAL_FLAG == 1 %} 거래중 {% endif %}
-                    {% if object.DEAL_FLAG == 0 %} 거래완료 {% endif %}</td>
+                    <td>{% if object.deal_flag == 1 %} 거래중 {% endif %}
+                    {% if object.deal_flag == 0 %} 거래완료 {% endif %}</td>
                 </tr>
             {% endfor %}
         {% else %}

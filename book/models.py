@@ -1,8 +1,9 @@
+from typing import Tuple
 from django.db import models
 from django.urls import reverse
 from config import settings
 from user.models import User
-
+from django.contrib.auth import get_user_model
 
 def my_view(request):
     username = None
@@ -10,61 +11,48 @@ def my_view(request):
         username = request.user.username
     return username
 
+def get_login_user(request):
+    return request.user
+
 class Book(models.Model):
     STATE_CHOICES =(
-        ('A','아주좋음'),
-        ('B', '좋음'),
-        ('C', '보통'),
-        ('D', '나쁨'),
+        ('최상','최상'),
+        ('상', '상'),
+        ('보통', '보통'),
+        ('하', '하'),
     )
-
-    #MAJOR_CHOICES = (
-        #('one', User.objects.get('first_major')),
-        #('two', User.objects.get('second_major')),
-        #('three', User.objects.get('third_major')),
-    #)
-
-    DEAL_FLAG = 1 #거래중이면 1, 거래완료면 0
-    MAJOR_FLAG = 1 #전공책이면 1, 교양책이면 0
-    deal = "거래중"
-    unmajor =""
-
+    #user = get_user_model()
+    writer = models.CharField(max_length=50, null=True,verbose_name='저자')
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user')
     title = models.TextField(verbose_name='제목', max_length=50, null=False)
     lecture = models.CharField(verbose_name='수업', max_length=50, null=True)
     text = models.TextField(verbose_name='게시글',null=False)
 
-    state = models.CharField(max_length=10, choices=STATE_CHOICES)
-    price = models.PositiveIntegerField(default=0)
-    image = models.ImageField(upload_to='timeline_post/%Y/%m/%d', blank=True)
+    state = models.CharField(max_length=10, choices=STATE_CHOICES, verbose_name='도서 상태')
+    price = models.PositiveIntegerField(default=0, verbose_name='가격')
+    image = models.ImageField(upload_to='timeline_post/%Y/%m/%d', blank=True, null=True, verbose_name='이미지')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
-    userinfo = User.objects.filter(username=User.username).values('first_major')
-    major_category = models.CharField(max_length=40) #default=User)#, default=User.objects.get('first_major'))
-    kakaoUrl = models.URLField(default='', help_text='생성한 오픈 카카오톡 링크를 작성해 주세요')
+    major_category = models.CharField(max_length=40, verbose_name='전공 카테고리')#, choices=user.make_major_choices())
+    kakaoUrl = models.URLField(default='', help_text='생성한 오픈 카카오톡 링크를 작성해 주세요', verbose_name='오픈채팅 주소')
+    deal_flag = models.BooleanField(default=1) #거래중이면 1, 거래완료면 0
 
     class Meta:
         ordering = ['-created']
-
-    def checkMajor(self):
-        if (self.MAJOR_FLAG == 1):
-            return 1
-        elif (self.MAJOR_FLAG == 0):
-            return 0
-
-
-    def checkDeal(self):
-        if(self.DEAL_FLAG==1):
-            self.deal = "거래완료"
-            return 1
-        elif(self.DEAL_FLAG==0):
-            self.deal = "거래중"
-            return 0
 
     def get_absolute_url(self):
         return reverse('book:detail', args=[self.id])
 
     def get_image_url(self):
         return '%s%s' % (settings.MEDIA_URL, self.image)
+
+
+
+
+
+
+
+
+
 

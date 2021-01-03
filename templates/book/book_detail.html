@@ -5,18 +5,21 @@
     <title>Title</title>
 </head>
 <body>
-    <img src=" {{ object.image.url }}" class="book_detail_image" alt="...">
+    <img src=" {{ object.image.url }}" class="book_detail_image" alt="..." >
       <div class="card-body">
         <h5 class="book_detail_author">{{ object.author }}</h5>
         <hr class="book_detail_first_line">
         <div class="author_date">
         <p class="book_detail_title">{{ object.title }}</p>
+            {{ object.writer }}
         <p class="book_detail_text">{{ object.text }}</p>
+            {{ object.major_category }}
         {% if object.created == object.updated %}
           <p class="book_detail_date">{{ object.updated }}</p>
         {% else %}
           <p class="book_detail_date">{{ object.created }}
           {{ object.kakaoUrl }}</p>
+            {{ object.state }}
         {% endif %}
         </div>
       </div>
@@ -25,14 +28,17 @@
         <button onclick ="location.href='{% url 'book:update' object.id %}'" class="btn_book_update">수정</button>
         <button onclick ="location.href='{% url 'book:delete' object.id %}'" class="btn_book_delete">삭제</button>
       </div>
-        {% if object.DEAL_FLAG == 1 %} <!--거래중이면-->
-            <button onclick ="location.href='{% url 'book:complete' object.id %}'" class="btn_book_update">거래완료</button>
-             {{ complete_book_info.DEAL_FLAG }}
+
+        {% if object.deal_flag == 1 %} <!-- 거래중 -->
+            거래중입니다!
+            <button onclick ="location.href='{% url 'book:update_deal' object.id %}'" class="btn_book_update">거래 완료</button>
         {% endif %}
 
-        {% if object.DEAL_FLAG == 0 %} <!--거래중이 아니면-->
-            <button onclick ="location.href='{% url 'book:update' object.id %}'" value= {{object.id}} class="btn_book_update">거래다시시작</button>
+        {% if object.deal_flag == 0 %} <!-- 거래 중이 아닐때 -->
+            거래가 완료되었습니다!
+            <button onclick ="location.href='{% url 'book:update_deal' object.id %}'"  class="btn_book_update">거래다시시작</button>
         {% endif %}
+
      {% endif %}
 
 </body>
