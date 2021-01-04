@@ -43,7 +43,7 @@ function changeMajorSelect(){
         <option value="all" selected> 전체 </option>
         <option value="major1"> {{user.first_major}} </option>
         {% if user.second_major != "" %}
-            <option value="major2"> {{user.second_major}} </option>
+            <option value="major2" selected> {{user.second_major}} </option>
         {% endif %}
         {% if user.third_major != "" %}
             <option value="major3"> {{user.third_major}} </option>
@@ -111,7 +111,6 @@ function changeMajorSelect(){
 </ul>
     </div>
 {% endif %}
-
 </div>
 </body>
 </html>

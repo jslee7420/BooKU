@@ -40,8 +40,8 @@ function changeMajorSelect(){
     </form>
     <form method="post">
     <select id="up_category_menu" name="up_category_menu" onchange="changeMajorSelect()">
-        <option value="all" selected> 전체 </option>
-        <option value="major1"> {{user.first_major}} </option>
+        <option value="all" > 전체 </option>
+        <option value="major1" selected > {{user.first_major}} </option>
         {% if user.second_major != "" %}
             <option value="major2"> {{user.second_major}} </option>
         {% endif %}
@@ -111,7 +111,6 @@ function changeMajorSelect(){
 </ul>
     </div>
 {% endif %}
-
 </div>
 </body>
 </html>

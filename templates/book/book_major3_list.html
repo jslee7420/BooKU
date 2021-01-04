@@ -46,7 +46,7 @@ function changeMajorSelect(){
             <option value="major2"> {{user.second_major}} </option>
         {% endif %}
         {% if user.third_major != "" %}
-            <option value="major3"> {{user.third_major}} </option>
+            <option value="major3" selected> {{user.third_major}} </option>
         {% endif %}
     </select>
     </form>
@@ -111,7 +111,6 @@ function changeMajorSelect(){
 </ul>
     </div>
 {% endif %}
-
 </div>
 </body>
 </html>

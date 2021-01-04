@@ -79,19 +79,18 @@ class BookList(ListView):
         return context
 
 def get_first_major_list(request):
-
     book_list = Book.objects.all().filter(major_category=request.user.first_major)
-    return render(request, 'book/book_list.html', {'object_list': book_list})
+    return render(request, 'book/book_major1_list.html', {'object_list': book_list})
 
 def get_second_major_list(request):
     if request.user.second_major != "":
         book_list = Book.objects.all().filter(major_category=request.user.second_major)
-        return render(request, 'book/book_list.html', {'object_list': book_list})
+        return render(request, 'book/book_major2_list.html', {'object_list': book_list})
 
 def get_third_major_list(request):
     if request.user.third_major != "":
         book_list = Book.objects.all().filter(major_category=request.user.third_major)
-        return render(request, 'book/book_list.html', {'object_list': book_list})
+        return render(request, 'book/book_major3_list.html', {'object_list': book_list})
 
 
 class BookDetail(DetailView):
