@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+    <div><button onclick ="location.href='{% url 'book:index' %}'" class="btn_book_delete">이전</button></div>
     <img src=" {{ object.image.url }}" class="book_detail_image" alt="..." height="280" width="180">
       <div class="card-body">
         <h5 class="book_detail_author">{{ object.author }}</h5>

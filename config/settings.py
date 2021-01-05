@@ -42,7 +42,6 @@ INSTALLED_APPS = [
 ]
 INSTALLED_APPS += [
     'book',
-    'allbook',
     'user',
 ]
 
@@ -127,12 +126,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'book', 'allbook', 'static', 'user'),
+    os.path.join(BASE_DIR,'static'),
 ]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 
 AUTH_USER_MODEL = 'user.User'
 
@@ -148,8 +146,6 @@ EMAIL_PORT = my_settings.EMAIL['EMAIL_PORT']
 EMAIL_HOST = my_settings.EMAIL['EMAIL_HOST']
 EMAIL_HOST_USER = my_settings.EMAIL['EMAIL_HOST_USER']
 EMAIL_HOST_PASSWORD = my_settings.EMAIL['EMAIL_HOST_PASSWORD']
-
-
 
 #####SECRET_Key 가져오기#####
 secret_file = os.path.join(BASE_DIR, 'secrets.json') # secrets.json 파일 위치를 명시
