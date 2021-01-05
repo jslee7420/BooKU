@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('user/',include('user.urls')),
+    path('',include('user.urls')),
     path('book/', include('book.urls')),
     path('password_reset/', auth_views.PasswordResetView.as_view(template_name="user/password_reset.html"), name="password_reset"),
     path('password_reset_done/', auth_views.PasswordResetDoneView.as_view(template_name="user/password_reset_done.html"), name="password_reset_done"),
