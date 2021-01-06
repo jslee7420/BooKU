@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/book_list.css' %}">
+{% endblock %}
+{% block content %}
+
 <script type="text/javascript">
 function changeMajorSelect(){
     var selectBox = document.getElementById("up_category_menu");
@@ -32,16 +32,18 @@ function changeMajorSelect(){
     }
 }
 </script>
+
 <div class="container">
-    <button type="button" id="btn_create" onclick="location.href='{% url 'book:create' %}'">글 작성하기</button>
+
     <form action="{% url 'book:search' %}" method="post"> {% csrf_token %}
-        <input class="search_input" type="search" placeholder="    검색어를 입력해 주세요" name="q" value="{{q}}">
-        <button type="submit" class="btn_search" > 검색 </button>
+        <input class="search_input" type="search" placeholder="     도서 검색 (수업, 책제목, 저자 등)" name="q" value="{{q}}">
+        <button type="submit" class="btn_search" > <img src="{% static 'img/search_btn.png' %}" alt="" height="45" width="43"> </button>
     </form>
+    <button type="button" id="btn_create" onclick="location.href='{% url 'book:create' %}'" >전공책 등록하기</button>
     <form method="post">
     <select id="up_category_menu" name="up_category_menu" onchange="changeMajorSelect()">
         <option value="all" selected> 전체 </option>
-        <option value="major1"> {{user.first_major}} </option>
+        <option value="major1"  > {{user.first_major}} </option>
         {% if user.second_major != "" %}
             <option value="major2"> {{user.second_major}} </option>
         {% endif %}
@@ -50,21 +52,37 @@ function changeMajorSelect(){
         {% endif %}
     </select>
     </form>
+    <hr id="line_major_bar">
+    <div class="filtering-box"> 필터링</div>
+
 <table id="book_table">
+    <thead>
+        <th>사진</th>
+        <th>제목(저자)</th>
+        <th>학과+수업</th>
+        <th>상태</th>
+        <th>가격</th>
+        <th>거래가능</th>
+    </thead>
     <tbody>
         {% if object_list %}
             {% for object in object_list %}
-                <tr class="text-center">
+                <tr class="tabel_row" onclick="location.href='{% url 'book:detail' object.id %}'">
                     <td><a href="{% url 'book:detail' object.id %}">
                         {% if object.image.url != "" %}
-                            <img src=" {{ object.image.url }}" class="book_list_img" alt="..." height="280" width="180">
+                            <img src=" {{ object.image.url }}" class="book_list_img" alt="..." height="94px" width="99px">
                         {% endif %}
                         </a>
                     </td>
-                    <td><a href="{% url 'book:detail' object.id %}" class="book_list_title">{{ object.title|truncatechars:30 }} {{ object.lecture }}</a>
-                    <br><a href="{% url 'book:detail' object.id %}" class="book_list_text"><br/>{{ object.text|truncatechars:79 }}   {{ object.price }}</a></td>
-                    <td>{% if object.deal_flag == 1 %} 거래중 {% endif %}
-                    {% if object.deal_flag == 0 %} 거래완료 {% endif %}</td>
+                    <td><div style="font-size: 22px;">{{ object.title|truncatechars:30 }}</div> <br> <div style="font-weight: normal;"> 저자: {{ object.writer }}</div> </td>
+                    <td> <div style="font-weight: normal;">{{ object.major_category }}</div> <br> <div style="font-size: 21px;"> {{ object.lecture }}</div> </td>
+                    <td> {{ object.state }}  </td>
+                    <td>{{ object.price }}₩  </td>
+                    <td>
+                        {% if object.deal_flag == 1 %} 거래중 {% endif %}
+                        <div style="color:#ADADAD;">{% if object.deal_flag == 0 %} 거래완료 {% endif %}</div>
+
+                    </td>
                 </tr>
             {% endfor %}
         {% else %}
@@ -111,7 +129,4 @@ function changeMajorSelect(){
 </ul>
     </div>
 {% endif %}
-
-</div>
-</body>
-</html>
+{% endblock %}

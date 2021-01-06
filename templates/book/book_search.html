@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/change_account_info.css' %}">
+{% endblock %}
+{% block content %}
 <table id="book_table">
     <a href="{% url 'book:index' %}" class="back_to_post"><  리스트 목록으로</a>
     <tbody>
@@ -25,5 +24,4 @@
     </tbody>
     </div>
 </table>
-</body>
-</html>
+{% endblock %}}

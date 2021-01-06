@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/change_account_info.css' %}">
+{% endblock %}
+{% block content %}
 <div class="book_delete" role="alert">
   [제목: {{object.title}} 게시물] 을 삭제하시겠습니까?
 </div>
@@ -15,5 +14,4 @@
   <button type="button" onclick="location.href='{% url 'book:index' %}'" class="btn_delete_cancel" >취소</button>
 </form>
 
-</body>
-</html>
+{% endblock %}

@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/change_account_info.css' %}">
+{% endblock %}
+{% block content %}
 <div class="col-12 col-xl-8 col-md-8">
     <form class="form_update" id="form_update" action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
@@ -151,5 +150,4 @@
         </div>
     </form>
   </div>
-</body>
-</html>
+{% endblock %}
