@@ -28,6 +28,8 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import views as auth_views
 
 
+from book.models import Book
+
 def index(request):
     return render(request,"index.html")
 
@@ -213,3 +215,16 @@ def change_username(request):
     else:
         form = ChangeUsernameForm(instance = request.user)
     return render(request, 'user/change_username.html', {'form': form})
+
+
+@login_required(login_url='user:login')
+def my_posts(request):
+    """
+    내 게시물 관리
+    """
+    books = Book.objects.filter(author = request.user)
+    if request.method == 'POST':
+        pass
+    else:
+        pass
+    return render(request, 'user/my_posts.html',{'books':books})

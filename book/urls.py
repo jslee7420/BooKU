@@ -10,7 +10,7 @@ app_name = "book"
 
 urlpatterns = [
     path("create/", BookCreate.as_view(), name='create'),
-    #path("create/", book_new, name='create'),
+    # path("create/", book_new, name='create'),
     path("delete/<int:pk>/", BookDelete.as_view(), name='delete'),
     path("update/<int:pk>/", BookUpdate.as_view(), name='update'),
     path("detail/<int:pk>/", BookDetail.as_view(), name='detail'),

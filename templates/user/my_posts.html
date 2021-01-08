@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/my_posts.css' %}">
+{% endblock %}
+{% block content %}
+
+<div class="content">
+    {% include 'user/my_page_header.html'%}
+</div>
+<div class="posts">
+    {% if books %}
+    {% for book in books%}
+    
+    {% endfor %}
+    {% endif%}
+</div>
+{% endblock %}

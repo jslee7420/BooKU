@@ -31,6 +31,7 @@ class BookCreate(CreateView):
         else:
             return self.render_to_response({'form': form})
 
+@login_required(login_url='user:login')
 def book_new(request):
     MAJOR_CHOICES = (
         ('all', '전체'),
@@ -47,8 +48,8 @@ def book_new(request):
     else:
         form = BookForm()
         return render(request, 'book/book_create.html',{
-		    'form': form,
-	    })
+            'form': form,
+        })
 
 class BookList(ListView):
     model = Book
