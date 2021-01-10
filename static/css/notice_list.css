@@ -1,0 +1,40 @@
+h1{
+    margin-left:3em;
+    font-family: Inter;
+    font-weight: 600;
+    font-size: 2.25rem;
+    color: #4A4A4A;
+}
+
+h1>hr{
+    margin-left:0;
+    width: 2.5rem;
+    height: 0.15625rem;
+    background: #4A4A4A;
+    border-radius: 4px;
+}
+
+.header{
+    margin-bottom:2em;
+}
+
+.page-link{
+    border:none;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #484848;
+}
+
+.pagination{
+    margin-top:2.1875em;
+}
+
+.content_font{
+    font-weight: 500;
+    font-size: 1.25rem;
+    color: #484848;
+}
+
+.active{
+    color:#FB8F1D;
+}

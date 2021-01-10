@@ -6,7 +6,7 @@ from .views import Activate, Change_pwd
 app_name = 'user'
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    
     path('login/', views.login, name='login'),
     path('signup/', views.signup, name = 'signup'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
