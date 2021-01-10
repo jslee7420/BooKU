@@ -1,5 +1,5 @@
 <nav>
-    <a class="logo" href="{% url 'user:index' %}">
+    <a class="logo" href="{% url 'index' %}">
         <!-- BooKU Image and Logo -->
         <svg width="82" height="61" viewBox="0 0 82 61" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="38.4733" height="60.458" rx="2" fill="#EA9241" />
@@ -24,7 +24,7 @@
                 <a class="nav-link" href="{% url 'book:index' %}">전공책 거래하기</a>
             </li>
             <li class="nav-item not_btn">
-                <a class="nav-link" href="">공지사항</a>
+                <a class="nav-link" href="{% url 'notice:notice_list' %}">공지사항</a>
             </li>
             <li class="nav-item not_btn">
                 <a class="nav-link" href="">사용 가이드</a>

@@ -1,0 +1,52 @@
+.to_notice_list{
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: #EA9241;
+}
+
+.heading{
+    margin-top:2em;
+    position:relative;
+    height:3em;
+    border:
+}
+
+.title{
+    display:inline-block;
+    font-size: 2rem;
+    font-weight: 500;
+    letter-spacing: 0em;
+    position:absolute;
+    bottom:0;
+    left:0;
+}
+
+
+.info{
+    display:inline-block;
+    position:absolute;
+    bottom:0;
+    right:0;
+}
+
+.info>p{
+    vertical-align: bottom;
+}
+
+.content>p{
+    font-weight: 500;
+    letter-spacing: 0em;
+    line-height: 2em;
+}
+
+.info{
+    font-weight: 300;
+}
+
+.line1{
+    border: 2px solid #767676
+}
+
+.line2{
+    border: 2px solid #E0E0E0;
+}

@@ -1,0 +1,23 @@
+/* 기본 글꼴, 기본 글자색 */
+*{
+    font-family: Inter;
+    color: #484848;
+}
+/* ------------------------------------------- */
+
+/* 제목: 공지사항, 마이페이지, 로그인, 로그아웃 */
+h1{
+    font-weight: 600;
+    font-size: 2.25rem;
+    color: #4A4A4A;
+}
+
+h1>hr{
+    margin-left:0;
+    width: 2.5rem;
+    height: 0.15625rem;
+    background: #4A4A4A;
+    border-radius: 4px;
+}
+
+/* ------------------------------------------- */

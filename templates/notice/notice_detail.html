@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/notice_detail.css' %}">
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div>
+        <a href="{% url 'notice:notice_list' %}" class="to_notice_list"><공지사항 목록</a>
+    </div>
+    <div class="heading">
+        <div class="title">
+            <p>{{notice.title}}</p>
+        </div>
+        <div class="info">
+            <p>{{notice.create_date|date:"Y.m.d"}}&nbsp | &nbsp조회수 {{notice.views}}</p>
+        </div>
+    </div>
+    <hr class="line1">
+    <div class="content">
+        <p>{{notice.content}}</p>
+    </div>
+    <hr class="line2">
+</div>
+
+{% endblock %}
