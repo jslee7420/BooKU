@@ -1,39 +1,17 @@
-*{
-    font-family: Inter;
-}
-
-header{
-    height: 160px;
-    display: flex;
-    /*위에서 아래로 수직 배치*/
-    flex-direction: column;
-    /*중앙정렬*/
-    justify-content: center;
-    /*background-color: palegoldenrod;*/
-}
-
 nav{
-    height: 80px;
-    width:1500px;
+    height: 5rem;
+    width:94rem;
     margin:auto;
-    /*background-color:orange;*/
+    margin-bottom: 2rem;
 }
 
 .logo{
     float:left;
     width: 20%;
     height:100%;
-    
-
-    font-family: Russo One;
-    font-style: normal;
     font-weight: bold;
-    font-size: 48px;
+    font-size: 3rem;
     color: #767676;
-
-    
-
-    /*background-color: paleturquoise;*/
 }
 
 .logo:hover{
@@ -58,25 +36,20 @@ nav{
     height: 100%;
     list-style:none;
     float:left;
-    margin: 0px 10px;
-    
-    
-
-   /* background-color: chartreuse;*/
+    margin: 0px 1em;
 }
 
 .login_logout{
     display: inline-block;
-    height: 55px;
-    width: 165px;
+    height: 3em;
+    width: 10em;
 
     border: 1px solid #FB8F1D;
     box-sizing: border-box;
     border-radius: 8px;
 
     font-weight: 500;
-    font-size: 16px;
-    line-height: 50px;
+    line-height: 3em;
 
     text-align: center;
     background-color: white;
@@ -86,43 +59,38 @@ nav{
 
 .signup_mypage{
     display: inline-block;
-    height: 55px;
-    width: 165px;
+    height: 3em;
+    width: 10em;
 
     border: 1px solid #FB8F1D;
     box-sizing: border-box;
     border-radius: 8px;
 
-    
     font-weight: 500;
-    font-size: 16px;
-    line-height: 50px;
+    line-height: 3em;
+
     text-align: center;
-    background-color:#FB8F1D;
+    background-color: #FB8F1D;
     color: white;
 }
 
 .login_logout:hover{
     color: #FB8F1D;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 800;
 }
+
 .signup_mypage:hover{
     color: white;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 800;
 }
 
 .not_btn{
-    line-height: 40px;
+    line-height: 3em;
 }
 
 .nav-link{
-    font-family: Inter;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 30px;
-    text-align: center;
+    line-height: 2rem;
     color: #B8BECD;
 }

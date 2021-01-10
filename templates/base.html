@@ -15,6 +15,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
     <!-- custom CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
     {% block styles %}
     {% endblock %}
@@ -23,7 +24,6 @@
 <body>
     <header>
         {% include "navbar.html" %}
-        
     </header>
     <main>
         {% block content %}

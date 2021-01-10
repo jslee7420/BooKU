@@ -18,15 +18,15 @@
             <input type="password" placeholder=" 비밀번호" name="password" id="password"  value="{{form.password.value|default_if_none:''}}">
         </div>
         <div class="button">
-            <button class="submit" type="submit">로그인</button>
+            <button class="submit_btn" type="submit">로그인</button>
         </div>
     </form>
-    <div class="small_description">
+    <div class="if">
         <span>아직 회원이 아니라면? <a class="signup" href="{% url 'user:signup' %}">가입하기</a><br>
         비밀번호가 기억나지 않는다면? <a  href="{% url 'password_reset' %}">비밀번호 찾기</a></span>
     </div>
 </div>
-<div class="modal_wrap hidden">
+<!-- <div class="modal_wrap hidden">  지우지 마세요
     <div class="modal_overlay"></div>
     <div class="modal_content">
         <button class="close_btn">X</button>
@@ -47,5 +47,5 @@
         </form>
     </div>
 </div>
-<script type="text/javascript" src="{% static 'js/forgot_password.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/forgot_password.js' %}"></script> -->
 {% endblock %}
