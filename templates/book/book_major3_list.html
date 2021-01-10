@@ -31,6 +31,9 @@ function changeMajorSelect(){
         window.location.href = url3;
     }
 }
+function changeFilter(){
+    document.getElementById("hidden-form-submit").click();
+}
 </script>
 
 <div class="container">
@@ -53,7 +56,23 @@ function changeMajorSelect(){
     </select>
     </form>
     <hr id="line_major_bar">
-    <div class="filtering-box"> 필터링</div>
+    <form action="{% url 'book:major3' %}" method="get" id="filter-form">
+        <div class="filtering-box">
+            {% if "free" in search_type %}
+            <input class="form-check-input" type="checkbox" checked value="free" name="search-type" onchange="changeFilter()"> 무료나눔
+            {% endif %}
+            {% if "free" not in search_type %}
+            <input class="form-check-input" type="checkbox" value="free" name="search-type" onchange="changeFilter()"> 무료나눔
+            {% endif %}
+            {% if "deal" in search_type %}
+            <input class="form-check-input" type="checkbox"  checked value="deal" name="search-type"  onchange="changeFilter()">거래중
+            {% endif %}
+            {% if "deal" not in search_type %}
+             <input class="form-check-input" type="checkbox"  value="deal" name="search-type"  onchange="changeFilter()">거래중
+            {% endif %}
+        </div>
+        <button id="hidden-form-submit" type="submit" hidden>제출</button>
+    </form>
 
 <table id="book_table">
     <thead>
@@ -77,7 +96,13 @@ function changeMajorSelect(){
                     <td><div style="font-size: 22px;">{{ object.title|truncatechars:30 }}</div> <br> <div style="font-weight: normal;"> 저자: {{ object.writer }}</div> </td>
                     <td> <div style="font-weight: normal;">{{ object.major_category }}</div> <br> <div style="font-size: 21px;"> {{ object.lecture }}</div> </td>
                     <td> {{ object.state }}  </td>
-                    <td>{{ object.price }}₩  </td>
+                    <td>
+                        {% if object.price == 0 %}
+                            무료나눔
+                        {% else %}
+                            {{ object.price }}₩
+                        {% endif %}
+                    </td>
                     <td>
                         {% if object.deal_flag == 1 %} 거래중 {% endif %}
                         <div style="color:#ADADAD;">{% if object.deal_flag == 0 %} 거래완료 {% endif %}</div>

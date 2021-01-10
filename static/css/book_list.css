@@ -21,23 +21,23 @@
     width: 750px;
     height: 0px;
     left: 585px;
-    top: 195px;
+    top: 190px;
     border: 2px solid #E0E0E0;
     transform: rotate(-0.07deg);
 }
 .search_input{
     position: absolute;
     width: 1134px;
-    height: 60px;
+    height: 55px;
     left: 362px;
-    top: 240px;
+    top: 235px;
     border: 1px solid #8B8B8B;
     box-sizing: border-box;
     border-radius: 100px;
     font-family: Sacramento;
     font-style: normal;
     font-weight: normal;
-    font-size: 22px;
+    font-size: 20px;
     line-height: 0px;
     display: flex;
     align-items: center;
@@ -137,4 +137,9 @@ td:nth-child(5){
 td:nth-child(6){
     width:200px;
 }
-
+input:focus {
+    outline: none;
+}
+.form-check-input{
+margin-left:10px;
+}

@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
 from book.models import Book
 from .forms import BookForm
@@ -17,6 +17,7 @@ def update_deal(request,pk):
     context = {'object': book1}
     return render(request,'book/book_detail.html', context)
 
+
 class BookCreate(CreateView):
     model = Book
     fields = ['title', 'text', 'image','lecture', 'state', 'price', 'kakaoUrl','major_category','writer']
@@ -30,26 +31,6 @@ class BookCreate(CreateView):
             return redirect('/book')
         else:
             return self.render_to_response({'form': form})
-
-@login_required(login_url='user:login')
-def book_new(request):
-    MAJOR_CHOICES = (
-        ('all', '전체'),
-        ('first_major', str(request.user.first_major)),
-        ('second_major', str(request.user.second_major)),
-        ('third_major', str(request.user.third_major)),
-    )
-
-    if request.method == 'POST':
-        form = BookForm(request.POST, request.FILES, tuple=MAJOR_CHOICES)
-        book = form.save()
-        return redirect(book)
-
-    else:
-        form = BookForm()
-        return render(request, 'book/book_create.html',{
-            'form': form,
-        })
 
 class BookList(ListView):
     model = Book
@@ -79,19 +60,110 @@ class BookList(ListView):
 
         return context
 
+def update_list(request):
+    first_books = Book.objects.all().order_by('-id')
+    old_list = request.GET.getlist('object_list', None)
+    search_type = request.GET.getlist('search-type', None)
+
+    if 'deal' not in search_type:
+        if 'free' not in search_type:
+            return render(request, 'book/book_list.html', {'object_list': first_books, 'search_type': search_type})
+        elif 'free' in search_type:
+            return render(request, 'book/book_list.html', {'object_list': first_books.filter(price = 0), 'search_type': search_type})
+
+    elif 'deal' in search_type:
+        if 'free' not in search_type:
+            return render(request, 'book/book_list.html', {'object_list': first_books.filter(deal_flag = 1), 'search_type': search_type})
+        elif 'free' in search_type:
+            return render(request, 'book/book_list.html', {'object_list': first_books.filter(deal_flag = 1 , price = 0), 'search_type': search_type})
+
+"""
+    if 'free' in search_type:
+        temp_q = Q(price = 0)
+        search_q = search_q | temp_q if search_q else temp_q
+
+    if 'include-deal-complete' in search_type:
+        temp_q = Q(deal_flag = 1) | Q(deal_flag = 0)
+        search_q = search_q | temp_q if search_q else temp_q
+
+    elif 'include-deal-complete' not in search_type:
+        temp_q = Q(deal_flag=1)
+        search_q = search_q | temp_q if search_q else temp_q
+
+    book_list = first_books.filter(search_q).distinct()
+    return render(request, 'book/book_list.html', {'object_list': book_list, 'search_type': search_type})
+"""
+
+
 def get_first_major_list(request):
     book_list = Book.objects.all().filter(major_category=request.user.first_major)
-    return render(request, 'book/book_major1_list.html', {'object_list': book_list})
+    search_type = request.GET.getlist('search-type', None)
+
+    if 'deal' not in search_type:
+        if 'free' not in search_type:
+            return render(request, 'book/book_major1_list.html', {'object_list': book_list, 'search_type': search_type})
+        elif 'free' in search_type:
+            return render(request, 'book/book_major1_list.html',
+                          {'object_list': Book.objects.all().filter(major_category=request.user.first_major, price = 0), 'search_type': search_type})
+
+    elif 'deal' in search_type:
+        if 'free' not in search_type:
+            return render(request, 'book/book_major1_list.html',
+                          {'object_list': Book.objects.all().filter(major_category=request.user.first_major,deal_flag=1), 'search_type': search_type})
+        elif 'free' in search_type:
+            return render(request, 'book/book_major1_list.html',
+                          {'object_list': Book.objects.all().filter(major_category=request.user.first_major,deal_flag=1, price = 0), 'search_type': search_type})
+
 
 def get_second_major_list(request):
     if request.user.second_major != "":
         book_list = Book.objects.all().filter(major_category=request.user.second_major)
-        return render(request, 'book/book_major2_list.html', {'object_list': book_list})
+        search_type = request.GET.getlist('search-type', None)
+        if 'deal' not in search_type:
+            if 'free' not in search_type:
+                return render(request, 'book/book_major2_list.html',
+                              {'object_list': book_list, 'search_type': search_type})
+            elif 'free' in search_type:
+                return render(request, 'book/book_major2_list.html',
+                              {'object_list': Book.objects.all().filter(major_category=request.user.second_major,
+                                                                        price=0), 'search_type': search_type})
+
+        elif 'deal' in search_type:
+            if 'free' not in search_type:
+                return render(request, 'book/book_major2_list.html',
+                              {'object_list': Book.objects.all().filter(major_category=request.user.second_major,
+                                                                        deal_flag=1), 'search_type': search_type})
+            elif 'free' in search_type:
+                return render(request, 'book/book_major2_list.html',
+                              {'object_list': Book.objects.all().filter(major_category=request.user.second_major,
+                                                                        deal_flag=1, price=0),
+                               'search_type': search_type})
+
 
 def get_third_major_list(request):
     if request.user.third_major != "":
         book_list = Book.objects.all().filter(major_category=request.user.third_major)
-        return render(request, 'book/book_major3_list.html', {'object_list': book_list})
+        search_type = request.GET.getlist('search-type', None)
+
+        if 'deal' not in search_type:
+            if 'free' not in search_type:
+                return render(request, 'book/book_major3_list.html',
+                              {'object_list': book_list, 'search_type': search_type})
+            elif 'free' in search_type:
+                return render(request, 'book/book_major3_list.html',
+                              {'object_list': Book.objects.all().filter(major_category=request.user.third_major,
+                                                                        price=0), 'search_type': search_type})
+
+        elif 'deal' in search_type:
+            if 'free' not in search_type:
+                return render(request, 'book/book_major3_list.html',
+                              {'object_list': Book.objects.all().filter(major_category=request.user.third_major,
+                                                                        deal_flag=1), 'search_type': search_type})
+            elif 'free' in search_type:
+                return render(request, 'book/book_major3_list.html',
+                              {'object_list': Book.objects.all().filter(major_category=request.user.third_major,
+                                                                        deal_flag=1, price=0),
+                               'search_type': search_type})
 
 
 class BookDetail(DetailView):
@@ -125,3 +197,25 @@ def search(request):
     #필터 넣기 제목, 제목+작성자, 글내용
     else:
         return render(request, 'book/book_search.html')
+
+def filter(request):
+    first_books = Book.objects.all().order_by('-id')
+    old_list = request.GET.getlist('object_list',None)
+    search_type= request.GET.getlist('search-type',None)
+    search_q = None
+
+    if 'free' in search_type:
+        temp_q = Q(price = 0)
+        search_q = search_q | temp_q if search_q else temp_q
+
+    if 'include-deal-complete' in search_type:
+        temp_q = Q(deal_flag = 1) | Q(deal_flag = 0)
+        search_q = search_q | temp_q if search_q else temp_q
+
+    elif 'include-deal-complete' not in search_type:
+        temp_q = Q(deal_flag = 1)
+        search_q = search_q | temp_q if search_q else temp_q
+
+    book_list = first_books.filter(search_q).distinct()
+    return render(request, 'book/book_list.html', {'object_list': book_list, 'search_type': search_type})
+

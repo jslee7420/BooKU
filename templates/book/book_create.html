@@ -5,10 +5,20 @@
 {% endblock %}
 {% block content %}
 <script language="JavaScript">
-    function getSelectValue(frm) {
-        frm.textValue.value = frm.selectBox.options[frm.selectBox.selectedIndex].text;
-        frm.optionValue.value = frm.selectBox.options[frm.selectBox.selectedIndex].value;
+function free(){
+    var chk = document.getElementById("free_btn").checked;
+    var form = document.getElementById("form_book");
+    if(chk){
+        document.getElementById("id_price").value = 0;
+        form.price.value = 0;
+        form.price.focus();
+        document.getElementById("id_price").readOnly = true;
     }
+    if(!chk){
+        document.getElementById("id_price").value = "";
+        document.getElementById("id_price").readOnly = false;
+    }
+}
 </script>
 
 <div class="content">
@@ -65,7 +75,7 @@
                     하
                 </label>
                 <label class="state_btn">
-                    <input type="radio" name="state" value="중">
+                    <input type="radio" name="state" value="보통">
                     <span class="checkmark gradation2"></span>
                     보통
                 </label>
@@ -88,7 +98,7 @@
                 <input type="number" class="book_price_input text_input" autocomplete="off" name="price" min="0"
                     required id="id_price">
                 <label class="free_btn">
-                    <input class="book_price_input freebox" name="freebox" onchange="" type="checkbox">
+                    <input class="book_price_input freebox" id="free_btn" name="freebox" onchange="free()" type="checkbox" >
                     <span class="checkmark2"></span>무료나눔
                 </label>
             </div>

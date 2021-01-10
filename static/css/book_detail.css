@@ -1,0 +1,182 @@
+.medium-box{
+    position: absolute;
+    width: 1920px;
+    height: 60px;
+    left: 0px;
+    top: 310px;
+    border:1px solid #FF9F46;
+    background: #FF9F46;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 29px;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 60px;
+}
+.book_detail_image{
+    position: absolute;
+    width: 490px;
+    height: 490px;
+    left: 383px;
+    top: 440px;
+}
+.book_detail_line{
+width: 550px;
+height: 0px;
+border: 1px solid #A8A8A8;
+}
+.all_detail{
+    position: absolute;
+    left: 1006px;
+    top: 440px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+}
+.book_writer_date{
+    position: absolute;
+    width: 206px;
+    height: 65px;
+    left: 330px;
+    top: 40px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: right;
+    color: #484848;
+}
+input[type='radio'],
+input[type='radio']:checked {
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 100%;
+  margin-right: 50px;
+}
+input[type='radio'] {
+  background-color: #FFFFFF;
+  border: 3px solid #FF8301;
+}
+input[type='radio']:checked {
+  background-color:  #FF8301;
+  border:none
+}
+.radio_label{
+    position: absolute;
+    left: 19px;
+    top: 310px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    text-align: center;
+    color: #7A7A7A;
+    word-spacing: 56px;
+}
+.radio_label.indent{
+    padding-right:100px;
+}
+.all_radio{
+    padding-left:15px;
+    padding-top:20px;
+}
+.btn_state{
+    border: 0;
+    outline:0;
+    background-color: #FFFFFF;
+}
+.btn_close_state{
+    border: 0;
+    outline:0;
+    background-color: #FFFFFF;
+}
+button:focus {
+    outline: none;
+}
+input:focus {
+    outline: none;
+}
+.black_overlay{
+    display: none;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index:1001;
+    -moz-opacity: 0.8;
+    opacity:.80;
+    filter: alpha(opacity=80);
+}
+.white_content {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    width: 299px;
+    height: 115px;
+    padding: 16px;
+    border: 0px solid black;
+    box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.25);
+    background-color: white;
+    z-index:1002;
+    overflow: auto;
+}
+.state_box_txt{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+}
+.deal_text{
+    position: absolute;
+    width: 377.71px;
+    height: 35px;
+    left: 535px;
+    top: 950px;
+    font-family: NanumGothic;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 35px;
+    /* identical to box height, or 146% */
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #FB8F1D;
+}
+.btn_deal{
+    position: absolute;
+    width: 490px;
+    height: 45px;
+    left: 383px;
+    top: 1000px;
+    background: #FF8C38;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    font-family: NanumGothic;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 35px;
+    /* identical to box height, or 146% */
+    text-align: center;
+    color: #FFFFFF;
+    border: 0;
+    outline:0;
+}
+.btn_update_delete{
+    position: absolute;
+    left: 1000px;
+    top: 1000px;
+
+}
+
+
+
+
+
