@@ -11,9 +11,7 @@
 <div>
     {% include 'book/major_navbar.html'%}
     <div class="medium-box"> 도서 상세 페이지</div>
-
     <!--<div><button onclick ="location.href='{% url 'book:index' %}'" class="btn_book_delete">이전</button></div>-->
-
     <img src=" {{ object.image.url }}" class="book_detail_image" alt="..." height="130" width="100">
       <div class="all_detail">
           <div class="book_detail_title"> <span style="font-weight: 600;font-size: 38px;"> {{ object.title }} </span> <br> <span style="font-weight: 600;font-size: 20px;"> {{ object.writer }}</span> <span style="font-size: 20px;"> 지음 </span></div>
@@ -26,7 +24,15 @@
           </div>
           <hr class="book_detail_line">
           <div class="book_medium_detail">
-              <div class="book_price">가격: <span style="font-weight: 600;font-size: 20px;"> {{ object.price }}₩ </span></div>
+              <div class="book_price">가격:
+                  <span style="font-weight: 600;font-size: 20px;">
+                      {% if object.price == 0  %}
+                        무료나눔
+                      {% else %}
+                        {{ object.price }}₩
+                      {% endif %}
+                  </span>
+              </div>
           <div class="book_major">학과: {{ object.major_category }} </div>
           <div class="book_lecture">수업: {{ object.lecture }} </div>
           </div>
@@ -49,45 +55,116 @@
 
                 {% if object.state == '하' %}
               <div class="all_radio">
-                <input type="radio" name="state" value="하" checked >
-                <input type="radio" name="state" value="보통" disabled>
-                <input type="radio" name="state" value="상" disabled>
-                <input type="radio" name="state" value="최상" disabled>
-              <br> <br>  <div class="radio_label"> 하 보통 상 최상 </div>
+                <div class="state">
+                <hr class="gradation_line">
+                <label class="state_btn">
+                    <input type="radio" name="state" value="하" checked>
+                    <span class="checkmark gradation1"></span>
+                    하
+                </label>
+                <label class="state_btn">
+                    <input type="radio" name="state" value="보통" disabled>
+                    <span class="checkmark gradation2"></span>
+                    보통
+                </label>
+                <label class="state_btn">
+                    <input type="radio" name="state" value="상" disabled>
+                    <span class="checkmark gradation3"></span>
+                    상
+                </label>
+                <label class="state_btn">
+                    <input type="radio" name="state" value="최상" disabled>
+                    <span class="checkmark gradation4"></span>
+                    최상
+                </label>
+                </div>
               </div>
                {% endif %}
                 {% if object.state == '보통' %}
               <div class="all_radio">
-                <input type="radio" name="state" value="하" disabled>
-                <input type="radio" name="state" value="보통" checked>
-                <input type="radio" name="state" value="상" disabled>
-                <input type="radio" name="state" value="최상" disabled>
-              <br> <br>  <div class="radio_label"> 하 보통 상 최상 </div>
+                <div class="state">
+                <hr class="gradation_line">
+                <label class="state_btn">
+                    <input type="radio" name="state" value="하" disabled>
+                    <span class="checkmark gradation1"></span>
+                    하
+                </label>
+                <label class="state_btn">
+                    <input type="radio" name="state" value="보통" checked>
+                    <span class="checkmark gradation2"></span>
+                    보통
+                </label>
+                <label class="state_btn">
+                    <input type="radio" name="state" value="상" disabled>
+                    <span class="checkmark gradation3"></span>
+                    상
+                </label>
+                <label class="state_btn">
+                    <input type="radio" name="state" value="최상" disabled>
+                    <span class="checkmark gradation4"></span>
+                    최상
+                </label>
+                </div>
               </div>
                 {% endif %}
-                {% if object.state == '상' %}
+                    {% if object.state == '상' %}
               <div class="all_radio">
-                <input type="radio" name="state" value="하" disabled>
-                <input type="radio" name="state" value="보통" disabled>
-                <input type="radio" name="state" value="상" checked>
-                <input type="radio" name="state" value="최상" disabled>
-              <br> <br>  <div class="radio_label"> 하 보통 상 최상 </div>
+                <div class="state">
+                <hr class="gradation_line">
+                <label class="state_btn">
+                    <input type="radio" name="state" value="하" disabled>
+                    <span class="checkmark gradation1"></span>
+                    하
+                </label>
+                <label class="state_btn">
+                    <input type="radio" name="state" value="보통" disabled>
+                    <span class="checkmark gradation2"></span>
+                    보통
+                </label>
+                <label class="state_btn">
+                    <input type="radio" name="state" value="상" checked>
+                    <span class="checkmark gradation3"></span>
+                    상
+                </label>
+                <label class="state_btn">
+                    <input type="radio" name="state" value="최상" disabled>
+                    <span class="checkmark gradation4"></span>
+                    최상
+                </label>
+                </div>
               </div>
                 {% endif %}
-                {% if object.state == '최상' %}
+                    {% if object.state == '최상' %}
               <div class="all_radio">
-                <input type="radio" name="state" value="하" disabled>
-                <input type="radio" name="state" value="보통" disabled>
-                <input type="radio" name="state" value="상" disabled>
-                <input type="radio" name="state" value="최상" checked>
-              <br> <br>  <div class="radio_label"> 하 보통 상 최상 </div>
+                <div class="state">
+                <hr class="gradation_line">
+                <label class="state_btn">
+                    <input type="radio" name="state" value="하" disabled>
+                    <span class="checkmark gradation1"></span>
+                    하
+                </label>
+                <label class="state_btn">
+                    <input type="radio" name="state" value="보통" disabled>
+                    <span class="checkmark gradation2"></span>
+                    보통
+                </label>
+                <label class="state_btn">
+                    <input type="radio" name="state" value="상" disabled>
+                    <span class="checkmark gradation3"></span>
+                    상
+                </label>
+                <label class="state_btn">
+                    <input type="radio" name="state" value="최상" checked>
+                    <span class="checkmark gradation4"></span>
+                    최상
+                </label>
+                </div>
               </div>
                 {% endif %}
-          </div>
           <br>
           <div class="book_text">설명: <br> {{ object.text }} </div>
           <br>
-          <div class="book_kakaoUrl">오픈채팅 링크: {{ object.kakaoUrl }} </div>
+          <div class="book_kakaoUrl">오픈채팅 링크: <a href="{{ object.kakaoUrl }}"> {{ object.kakaoUrl }} </a> </div>
       </div>
 
      {% if user == object.author %}

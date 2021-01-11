@@ -1,75 +1,35 @@
 {% extends "base.html" %}
 {% load static %}
 {% block styles %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/change_account_info.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/book_update.css' %}">
 {% endblock %}
 {% block content %}
-<div class="col-12 col-xl-8 col-md-8">
+<div class="content">
+    <h2>
+        도서 정보 수정
+        <hr>
+    </h2>
     <form class="form_update" id="form_update" action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <!--{{form.as_p}}-->
         {% for field in form %}
-        <div class="form-group row ">
+        {% include "form_errors.html" %}
+        <div class="rows">
             {% if field == form.title %}
-                <p>
-                <label for="id_title" id="book_title">제목</label><br><br>
-                <input type="text" class="book_title_input" name="title" value="{{ update_book.title }}" required id ="id_title">
-                </p>
+                <div class="col1">
+                    <input type="text" class="book_title_input text_input" name="title" value="{{ update_book.title }}" required id ="id_title">
+                </div>
             {% endif %}
             {% if field == form.writer %}
-                <label for="id_writer" id="book_writer">{{ field.label_tag }}</label><br><br>
-                <input type="text" class="book_writer_input" name="writer" value="{{ update_book.writer }}" required id ="id_writer">
+                <div class="col2">
+                    <input type="text" class="book_writer_input text_input" name="writer" value="{{ update_book.writer }}" required id ="id_writer">
+                </div>
             {% endif %}
-            {% if field == form.text %}
-                <label for="id_text" id="book_text">{{ field.label_tag }}</label>
-                <textarea name="text" class="book_text_input" form="form_update" cols="40" rows="5" required id="id_text">{{ update_book.text }}</textarea>
-                <!-- <input type="text" class="post_text_input" name="text" value="{{ update_post.text }}" required id ="id_text">-->
-            {% endif %}
-            {% if field == form.image %}
-                <label id="book_image">{{ field.label_tag }}</label>
-                <div class="book_image_input">{{ field }}</div>
-            {% endif %}
-            {% if field == form.lecture %}
-                <label for="id_lecture" id="book_lecture">{{ field.label_tag }}</label><br><br>
-                <input type="text" class="book_lecture_input" name="lecture" value="{{ update_book.lecture }}" required id ="id_lecture">
-            {% endif %}
-            {% if field == form.state %}
-                <label id="book_state">{{ field.label_tag }}</label><br><br>
-                {% if update_book.state == '하' %}
-                <input type="radio" name="state" value="하" checked >하
-                <input type="radio" name="state" value="보통" >보통
-                <input type="radio" name="state" value="상">상
-                <input type="radio" name="state" value="최상">최상
-                {% endif %}
-                {% if update_book.state == '보통' %}
-                <input type="radio" name="state" value="하">하
-                <input type="radio" name="state" value="보통" checked>보통
-                <input type="radio" name="state" value="상">상
-                <input type="radio" name="state" value="최상">최상
-                {% endif %}
-                {% if update_book.state == '상' %}
-                <input type="radio" name="state" value="하">하
-                <input type="radio" name="state" value="보통">보통
-                <input type="radio" name="state" value="상" checked>상
-                <input type="radio" name="state" value="최상">최상
-                {% endif %}
-                {% if update_book.state == '최상' %}
-                <input type="radio" name="state" value="하">하
-                <input type="radio" name="state" value="보통">보통
-                <input type="radio" name="state" value="상">상
-                <input type="radio" name="state" value="최상" checked>최상
-                {% endif %}
-            {% endif %}
-            {% if field == form.price %}
-                <label for="id_price" id="book_price">{{ field.label_tag }}</label><br><br>
-                <input type="number" min="0" class="book_price_input" name="price" value="{{ update_book.price }}" required id ="id_price">
-            {% endif %}
-            {% if field == form.kakaoUrl %}
-                <label for="id_lecture" id="book_kakaoUrl">{{ field.label_tag }}</label><br><br>
-                <input type="url" class="book_kakaoUrl_input" name="kakaoUrl" value="{{ update_book.kakaoUrl }}" required id ="id_kakaoUrl">
-            {% endif %}
+        </div>
 
-            {% if field == form.major_category %}
+        <div class="rows">
+            <div class="col1">
+                {% if field == form.major_category %}
                 {% if update_book.major_category == '전체' %}
                     <label for="id_major1" >{{ field.label_tag }}</label>
                     <select name="major_category" form="form_update" id="id_major1">
@@ -139,6 +99,65 @@
                     </select>
                 {% endif %}
             {% endif %}
+            </div>
+            <div class="col2">
+                {% if field == form.lecture %}
+                    <label for="id_lecture" id="book_lecture">{{ field.label_tag }}</label><br><br>
+                    <input type="text" class="book_lecture_input text_input" name="lecture" value="{{ update_book.lecture }}" required id ="id_lecture">
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="rows">
+            {% if field == form.state %}
+                <label id="book_state">{{ field.label_tag }}</label><br><br>
+                {% if update_book.state == '하' %}
+                <input type="radio" name="state" value="하" checked >하
+                <input type="radio" name="state" value="보통" >보통
+                <input type="radio" name="state" value="상">상
+                <input type="radio" name="state" value="최상">최상
+                {% endif %}
+                {% if update_book.state == '보통' %}
+                <input type="radio" name="state" value="하">하
+                <input type="radio" name="state" value="보통" checked>보통
+                <input type="radio" name="state" value="상">상
+                <input type="radio" name="state" value="최상">최상
+                {% endif %}
+                {% if update_book.state == '상' %}
+                <input type="radio" name="state" value="하">하
+                <input type="radio" name="state" value="보통">보통
+                <input type="radio" name="state" value="상" checked>상
+                <input type="radio" name="state" value="최상">최상
+                {% endif %}
+                {% if update_book.state == '최상' %}
+                <input type="radio" name="state" value="하">하
+                <input type="radio" name="state" value="보통">보통
+                <input type="radio" name="state" value="상">상
+                <input type="radio" name="state" value="최상" checked>최상
+                {% endif %}
+            {% endif %}
+
+
+            {% if field == form.text %}
+                <textarea name="text" class="book_text_input" form="form_update" cols="40" rows="5" required id="id_text">{{ update_book.text }}</textarea>
+                <!-- <input type="text" class="post_text_input" name="text" value="{{ update_post.text }}" required id ="id_text">-->
+            {% endif %}
+            {% if field == form.image %}
+                <label id="book_image">{{ field.label_tag }}</label>
+                <div class="book_image_input">{{ field }}</div>
+            {% endif %}
+
+
+            {% if field == form.price %}
+                <label for="id_price" id="book_price">{{ field.label_tag }}</label><br><br>
+                <input type="number" min="0" class="book_price_input" name="price" value="{{ update_book.price }}" required id ="id_price">
+            {% endif %}
+            {% if field == form.kakaoUrl %}
+                <label for="id_lecture" id="book_kakaoUrl">{{ field.label_tag }}</label><br><br>
+                <input type="url" class="book_kakaoUrl_input" name="kakaoUrl" value="{{ update_book.kakaoUrl }}" required id ="id_kakaoUrl">
+            {% endif %}
+
+
             {% if field.errors %}
                 {% for e in field.errors %}
                     <p style="color:palevioletred;">{{ e | escape }}</p>

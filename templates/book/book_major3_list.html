@@ -56,19 +56,32 @@ function changeFilter(){
     </select>
     </form>
     <hr id="line_major_bar">
+
     <form action="{% url 'book:major3' %}" method="get" id="filter-form">
         <div class="filtering-box">
             {% if "free" in search_type %}
-            <input class="form-check-input" type="checkbox" checked value="free" name="search-type" onchange="changeFilter()"> 무료나눔
+            <span class="free_filter">
+                <input class="form-check-input" type="checkbox" checked value="free" name="search-type" onchange="changeFilter()" id="free1">
+                <label for="free1">무료나눔</label>
+            </span>
             {% endif %}
             {% if "free" not in search_type %}
-            <input class="form-check-input" type="checkbox" value="free" name="search-type" onchange="changeFilter()"> 무료나눔
+            <span class="free_filter">
+                <input class="form-check-input" type="checkbox" value="free" name="search-type" onchange="changeFilter()" id="free2">
+                <label for="free2">무료나눔</label>
+            </span>
             {% endif %}
             {% if "deal" in search_type %}
-            <input class="form-check-input" type="checkbox"  checked value="deal" name="search-type"  onchange="changeFilter()">거래중
+            <span class="deal_filter">
+                <input class="form-check-input" type="checkbox"  checked value="deal" name="search-type"  onchange="changeFilter()" id="deal1">
+                <label for="deal1"> 거래중 </label>
+            </span>
             {% endif %}
             {% if "deal" not in search_type %}
-             <input class="form-check-input" type="checkbox"  value="deal" name="search-type"  onchange="changeFilter()">거래중
+             <span class="deal_filter">
+                <input class="form-check-input" type="checkbox"  value="deal" name="search-type"  onchange="changeFilter()" id="deal2">
+                <label for="deal2"> 거래중 </label>
+            </span>
             {% endif %}
         </div>
         <button id="hidden-form-submit" type="submit" hidden>제출</button>
@@ -120,7 +133,7 @@ function changeFilter(){
     </tbody>
     </table>
 </div>
-
+<!--
     {% if is_paginated %}
     <div class="wrap_pagination">
 <ul class="pagination">
@@ -152,6 +165,6 @@ function changeFilter(){
     </li>
     {% endif %}
 </ul>
-    </div>
+    </div> -->
 {% endif %}
 {% endblock %}
