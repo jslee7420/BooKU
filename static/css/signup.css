@@ -1,26 +1,124 @@
-.content{
-    width:46rem;
-    margin:0 auto;
+.content {
+    width: 46rem;
+    margin: 0 auto 3rem;
 }
 
-.university{
-    overflow:hidden;
+.form-group {
+    overflow: hidden;
+    position: relative;
+
 }
 
-.major_col1{
+.username {
+    width: 70%;
+    float: left;
+}
+
+.gender {
+    width: 30%;
+    position: absolute;
+    bottom: 0;
+    right: 1rem;
+    text-align: right;
+}
+
+/* -------------custom gender radio button ----------------*/
+
+.radio_container {
     display: inline-block;
-    float:left;
-    width:23rem;
+    position: relative;
+    padding-left: 2rem;
+    cursor: pointer;
+    font-size: 1.25rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-weight: 600;
+    color: #9C9C9C;
+    margin-left:1em;
 }
 
-.major_col2{
-    display: inline-block;
-    float:right;
-    width:23rem;
+/* Hide the browser's default radio button */
+.radio_container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
 }
 
-.university select{
+/* Create a custom radio button */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 1.5rem;
+    width: 1.5rem;
+    background-color: white;
+    border-radius: 50%;
+    border:solid 2px  #FC8C15;
+}
+
+/* On mouse-over, add a grey background color */
+.radio_container:hover input~.checkmark {
+    background-color: #ccc;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.radio_container input:checked~.checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.radio_container .checkmark:after {
+    top: 0.15rem;
+    left: 0.15rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: #FC8C15;
+}
+
+/* --------------------------------------------------------- */
+
+input[type="date"]{
     width: 22.5rem;
+    height: 3.5rem;
+    border: 0.06px solid #AFB0B9;
+    box-sizing: border-box;
+    border-radius: 6px;
+    padding-left:1rem;
+}
+
+
+.university {
+    overflow: hidden;
+}
+
+.major_col1 {
+    display: inline-block;
+    float: left;
+    width: 23rem;
+}
+
+.major_col2 {
+    display: inline-block;
+    float: right;
+    width: 23rem;
+}
+
+.major_row{
+    float:right;
+}
+
+.university select {
+    width: 22rem;
     height: 3.125rem;
     box-sizing: border-box;
     border-radius: 6px;
@@ -29,65 +127,110 @@
     color: #4A4C53;
 }
 
-.gender>p{
-    margin-bottom:7px;
-}
-.gender>div{
-    width: 100px;
-    height: 50px;
-    background: #F2F2F2;
-    border-radius: 10px;
-    line-height: 50px;
-}
-.date_of_birth input{
-    width: 100%;
-    height: 50px;
-    background: #F2F2F2;
-    border-radius: 10px;
-    line-height: 50px;
-}
 
-.gender{
-    width:300px;
-    float: left;
-    font-weight: 600;
-    font-size: 22px;
-    color: #5C5C5C;
-}
-
-.date_of_birth{
-    width:300px;
-    float:right;
-}
-
-.g_dob{
-    overflow: hidden;
-}
-
-label{
+label {
     font-weight: 600;
     font-size: 1.37rem;
     color: #5C5C5C;
 }
 
 
-.first_major{
+.first_major {
     border: 1px solid #FC8C15;
 }
 
-.major_col1>p{
-    margin:0.1em;
+.major_col1>p {
+    margin: 0.1em;
     color: #FC8C15;
 }
 
-.email_description{
+.email_description {
     font-weight: 600;
     font-size: 1em;
 }
 
-.major{
+.major {
     font-weight: 600;
     font-size: 1.37rem;
     color: #5C5C5C;
 }
 
+.terms_of_service{
+    position: relative;
+}
+
+.terms_of_service>p{
+    text-align: center;
+}
+
+/* ---------------Custom checkbox ---------------*/
+/* The checkbox_container */
+.checkbox_container {
+    display: inline-block;
+    position: relative;
+    padding-left: 2rem;
+    cursor: pointer;
+    font-weight: normal;
+    font-size: 1.25rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .checkbox_container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark2 {
+    position: absolute;
+    top:0;
+    left:0;
+    height: 1.6rem;
+    width: 1.6rem;
+    border: 2px solid #FB8F1D;
+    box-sizing: border-box;
+    border-radius: 1px;
+    background-color: white;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .checkbox_container:hover input ~ .checkmark2 {
+    background-color: #ccc;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark2:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .checkbox_container input:checked ~ .checkmark2:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .checkbox_container .checkmark2:after {
+    top:0.1rem;
+    left:0.1rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    border: solid white 1px;
+    background-color:  #FC8C15;
+  }
+
+/* --------------------------------------------- */
+
+
+.button{
+    width:fit-content;
+    margin:0 auto;
+}
