@@ -45,7 +45,7 @@ class Activate(View):
             if user.id == user_dic["user"]:
                 user.is_active = True
                 user.save()
-                return redirect("user:email_auth_confirm")
+                return render(request, 'user/email_auth_confirm.html')
 
             return JsonResponse({'message':'auth fail'}, status=400)    #추후 수정
         except ValidationError:
@@ -67,7 +67,7 @@ def login(request):
                 user = authenticate(request, username = user.username, password = password)
                 if user is not None:
                     auth_login(request, user)
-                    return redirect('user:index')
+                    return redirect('index')
                 else:
                     form.add_error('password',"비밀번호가 일치하지 않습니다.")
             else:
@@ -76,9 +76,6 @@ def login(request):
         form = LoginForm()
     return render(request, 'user/login.html', {'form':form})
 
-class PasswordRestView(auth_views.PasswordResetView):
-    success_url= ('user/')
-
 
 
 def signup(request):
@@ -86,10 +83,11 @@ def signup(request):
     계정생성
     """
     if request.method == "POST":
-        form = UserForm(request.POST)
+        updated_request = request.POST.copy()
+        updated_request['email'] +='@konkuk.ac.kr'
+        form = UserForm(updated_request)
         if form.is_valid():
             form.save()
-            
             user = User.objects.get(username=form.cleaned_data.get('username')) # 유저객체 받아오기
             current_site = get_current_site(request)
             domain = current_site.domain
@@ -101,23 +99,12 @@ def signup(request):
             mail_to = user.email
             email = EmailMessage(mail_title, message_data, from_email='booku@BooKU.com',to=[mail_to])
             email.send()
-            return redirect('user:email_auth_notice')
+            return render(request, 'user/email_auth_notice.html')
     else:
         form = UserForm()
     return render(request, 'user/signup.html', {'form': form})
 
 
-def email_auth_notice(request):
-    """
-    이메일 인증 요구
-    """
-    return render(request, 'user/email_auth_notice.html')
-
-def email_auth_confirm(request):
-    """
-    이메일 인증 완료
-    """
-    return render(request, 'user/email_auth_confirm.html')
 
 
 def find_pwd(request):

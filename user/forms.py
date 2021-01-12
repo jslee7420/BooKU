@@ -6,13 +6,6 @@ from django.contrib.auth import get_user_model
 
 
 class UserForm(UserCreationForm):
-    # email = forms.EmailField()
-    # first_major = forms.Select()
-    # second_major = forms.Select()
-    # third_major = forms.Select()
-    # date_of_birth = forms.DateField()
-    # gender = forms.Select()
-    
     class Meta:
         model = User
         fields = ("username", "email","first_major","second_major","third_major", "date_of_birth", "gender","password1","password2")

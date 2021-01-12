@@ -22,10 +22,16 @@
             <div class="gender">
                 <div>
                     <label class="radio_container">남자
+                        {% if form.gender.value == 'male' %}
+                        <input type="radio" name="gender" id="male" value="male" checked="checked">
+                        {% endif %}
                         <input type="radio" name="gender" id="male" value="male">
                         <span class="checkmark"></span>
                     </label>
                     <label class="radio_container">여자
+                        {% if form.gender.value == 'female' %}
+                        <input type="radio" name="gender" id="female" value="female" checked="checked">
+                        {% endif %}
                         <input type="radio" name="gender" id="female" value="female">
                         <span class="checkmark"></span>
                     </label>
@@ -47,13 +53,15 @@
 
         <div class="form-group">
             <label for="password2">비밀번호 확인</label><br>
-            <input type="password" name="password2" id="password2"
-                value="{{ form.password2.value|default_if_none:'' }}">
+            <input type="password" name="password2" id="password2">
         </div>
 
         <div class="form-group">
             <label for="email">이메일</label><br>
-            <input type="text" name="email" id="email" value="{{ form.email.value|default_if_none:'' }}">
+            <div id="email_field">
+                <input type="text" name="email" id="email" value="">
+                <input type="text" id="domain" value="@konkuk.ac.kr" readonly="readonly">
+            </div>
             <p class="email_description">건국대학교 이메일을 입력해주세요. 인증메일이 발송됩니다.</p>
         </div>
 
@@ -61,8 +69,12 @@
             <div class="major">학과선택</div>
             <hr>
             <div class="major_col1 form-group">
-                <select class="first_major" name="first_major" id="first_major">
+                <select class="first_major" name="first_major" id="first_major"
+                    value="{{ form.first_major.value|default_if_none:'' }}">
                     <option value="" disabled selected hidden>원전공</option>
+                    {% if form.first_major.value %}
+                    <option value="{{form.first_major.value}}" selected hidden>{{form.first_major.value}}</option>
+                    {% endif %}
                     <optgroup label="문과대학">
                         <option value="영어영문학과">영어영문학과</option>
                         <option value="국어국문학과">국어국문학과</option>
@@ -150,14 +162,15 @@
                     </optgroup>
                 </select>
                 <p> 필수 입력사항입니다.</p>
-                <!-- <input list="majors" class="" name="first_major" id="first_major" placeholder="원전공"
-                    value="{{ form.first_major.value|default_if_none:'' }}"> -->
             </div>
             <div class="major_col2">
                 <div class="major_row form-group">
                     <select name="second_major" id="second_major">
                         <option value="" disabled selected hidden>다/부전공1</option>
                         <option value="">해당사항 없음</option>
+                        {% if form.second_major.value %}
+                        <option value="{{form.second_major.value}}" selected hidden>{{form.second_major.value}}</option>
+                        {% endif %}
                         <optgroup label="문과대학">
                             <option value="영어영문학과">영어영문학과</option>
                             <option value="국어국문학과">국어국문학과</option>
@@ -249,6 +262,9 @@
                     <select name="third_major" id="third_major">
                         <option value="" disabled selected hidden>다/부전공2</option>
                         <option value="">해당사항 없음</option>
+                        {% if form.third_major.value %}
+                        <option value="{{form.third_major.value}}" selected hidden>{{form.third_major.value}}</option>
+                        {% endif %}
                         <optgroup label="문과대학">
                             <option value="영어영문학과">영어영문학과</option>
                             <option value="국어국문학과">국어국문학과</option>
@@ -508,10 +524,10 @@
 
             </textarea>
             <p>
-                <label for="agree"class="checkbox_container">모든 약관을 확인했으며, 이에 동의합니다.
+                <label for="agree" class="checkbox_container">모든 약관을 확인했으며, 이에 동의합니다.
                     <input type="checkbox" id="agree" name="agree" required="required">
                     <span class="checkmark2"></span>
-                  </label>
+                </label>
             </p>
         </div>
         <div class="button">
@@ -521,15 +537,13 @@
 </div>
 
 <script>
-
     const cb = document.querySelector('#agree');
     const btn = document.querySelector('.submit_btn');
 
     btn.onclick = () => {
-       if (cb.checked==false){
-           alert("이용약관에 동의해주세요.")
-       }
+        if (cb.checked == false) {
+            alert("이용약관에 동의해주세요.")
+        }
     }
-    
 </script>
 {% endblock %}
