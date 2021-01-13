@@ -1,17 +1,26 @@
 {% extends "base.html" %}
 {% load static %}
 {% block styles %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/change_account_info.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/book_delete.css' %}">
 {% endblock %}
 {% block content %}
-<div class="book_delete" role="alert">
-  [제목: {{object.title}} 게시물] 을 삭제하시겠습니까?
+{% include 'book/major_navbar.html'%}
+<div class="container">
+
+  <div class="filtering-box"> <span class="filter-txt" style="left:43%;"> 도서 삭제 페이지 </span> </div>
+
+  <div class="delete_all_contents">
+    <div class="book_delete" role="alert">
+      {{object.title}} 도서를 목록에서 삭제하시겠습니까?
+    </div>
+    <form action="" method="post">
+      {% csrf_token %}
+      <div class="btns">
+        <input type="submit" class="btn delete" value="삭제">
+        <button type="button" onclick="location.href='{% url 'book:index' %}'" class="btn cancel" >취소</button>
+      </div>
+    </form>
+
+    </div>
 </div>
-
-<form action="" method="post">
-  {% csrf_token %}
-  <input type="submit" class="btn_book_delete" value="삭제">
-  <button type="button" onclick="location.href='{% url 'book:index' %}'" class="btn_delete_cancel" >취소</button>
-</form>
-
 {% endblock %}

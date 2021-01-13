@@ -33,7 +33,7 @@ function changeMajorSelect(){
 
 <div class="container">
     <form action="{% url 'book:search' %}" method="post"> {% csrf_token %}
-        <input class="search_input" type="search" placeholder="     도서 검색 (수업, 책제목, 저자 등)" name="q" value="{{q}}">
+        <input class="search_input" type="search" placeholder="     도서 검색 (수업, 책제목, 저자 등)" name="q"  style="padding-left:20px;">
         <button type="submit" class="btn_search" > <img src="{% static 'img/search_btn.png' %}" alt="" height="45" width="43"> </button>
     </form>
     <button type="button" id="btn_create" onclick="location.href='{% url 'book:create' %}'" >전공책 등록하기</button>
