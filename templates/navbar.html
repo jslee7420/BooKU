@@ -26,12 +26,12 @@
             <li class="nav-item not_btn">
                 <a class="nav-link" href="{% url 'notice:notice_list' %}">공지사항</a>
             </li>
-            <li class="nav-item not_btn">
+            <!-- <li class="nav-item not_btn">
                 <a class="nav-link" href="">사용 가이드</a>
             </li>
             <li class="nav-item not_btn">
                 <a class="nav-link" href="">채팅</a>
-            </li>
+            </li> -->
             <li class="nav-item">
                 {% if user.is_authenticated %}
                 <a class="login_logout" href="{% url 'user:logout' %}">Logout</a>

@@ -22,20 +22,17 @@ function free(){
 </script>
 
 <div class="content">
-    <h2>
-        도서 등록하기
-        <hr>
-    </h2>
+    <h1>도서 등록하기<hr></h1>
     <form id="form_book" class="form_book" action=" " method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {% include "form_errors.html" %}
         <div class="rows">
             <div class="col1">
-                <input type="text" class="book_title_input text_input" name="title" placeholder="제목" maxlength="50"
+                <input type="text" class="book_title_input" name="title" placeholder="제목" maxlength="50"
                     required id="id_title" autocomplete="off">
             </div>
             <div class="col2">
-                <input type="text" class="book_writer_input text_input " autocomplete="off" maxlength="50"
+                <input type="text" class="book_writer_input " autocomplete="off" maxlength="50"
                     placeholder="저자" name="writer" required id="id_writer">
             </div>
         </div>
@@ -60,7 +57,7 @@ function free(){
             </div>
             <div class="col2">
                 <label for="id_lecture" id="book_lecture">수업</label>
-                <input type="text" class="book_lecture_input text_input" autocomplete="off" name="lecture"
+                <input type="text" class="book_lecture_input" autocomplete="off" name="lecture"
                     maxlength="100" required id="id_lecture">
             </div>
         </div>
@@ -95,7 +92,7 @@ function free(){
         <div class="rows">
             <label for="id_price" id="book_price">가격</label>
             <div>
-                <input type="number" class="book_price_input text_input" autocomplete="off" name="price" min="0"
+                <input type="number" class="book_price_input" autocomplete="off" name="price" min="0"
                     required id="id_price">
                 <label class="free_btn">
                     <input class="book_price_input freebox" id="free_btn" name="freebox" onchange="free()" type="checkbox" >
@@ -118,13 +115,13 @@ function free(){
 
         <div class="rows">
             <label for="id_chatting" id="book_chatting">오픈채팅 주소</label>
-            <input type="url" class="book_chatting_input text_input" autocomplete="off" name="kakaoUrl" required
+            <input type="url" class="book_chatting_input" autocomplete="off" name="kakaoUrl" required
                 id="id_chatting">
         </div>
         <div class="btns">
-            <input type="submit" value="등록하기" class="btn_book_upload btn">
+            <input type="submit" value="등록하기" class="submit_btn">
             <button type="button" onclick="location.href='{% url 'book:index' %}'"
-                class="btn_book_unload btn">취소</button>
+                class="submit_btn">취소</button>
         </div>
     </form>
 </div>

@@ -20,5 +20,7 @@ def notice_detail(request, notice_id):
     공지사항 내용 출력
     """
     notice = get_object_or_404(Notice, pk = notice_id)
+    notice.views += 1
+    notice.save()
     context = {'notice': notice}
     return render(request, 'notice/notice_detail.html', context)

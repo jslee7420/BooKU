@@ -29,7 +29,7 @@ h1>hr{
 
 /* input type:text */
 
-input[type=text],input[type=password]{
+input[type=text],input[type=password],input[type=number],input[type=url]{
     font-weight: 600;
     font-size: 1.25rem;
     padding:0.5em 0.5em;
