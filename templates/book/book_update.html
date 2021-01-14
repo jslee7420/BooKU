@@ -42,6 +42,15 @@
             document.getElementById("id_price").readOnly = true;
         }
     }
+    function show_box(){
+        document.getElementById('state_detail2').style.display='block';
+        document.getElementById('fade').style.display='block';
+    }
+
+    function close_box(){
+        document.getElementById('state_detail2').style.display='none';
+        document.getElementById('fade').style.display='none';
+    }
 </script>
 <div class="content">
     <h2>
@@ -298,5 +307,18 @@
                 class="btn_book_unload btn">취소</button>
         </div>
     </form>
+    <button class="btn_state" onclick="show_box()"> <img src="{% static 'img/state_standard.png' %}" alt="" height="19" width="19"> </button>
+        <div class="state_box">
+            <div id="state_detail2" class="white_content">
+                <span style="font-weight: bold;"> BooKU 도서 상태 기준 안내</span> <button class="btn_close_state" onclick="close_box()"><img src="{% static 'img/state_standard.png' %}" alt="" height="19" width="19"></button>
+                <br>
+                <div class="state_box_txt">
+                    <span style="font-weight: bold;"> 최상:</span> 새것과 같은 상태 <br>
+                    <span style="font-weight: bold;"> 상:</span> 약간의 필기감 <br>
+                    <span style="font-weight: bold;"> 보통:</span> 헌 부분 있음, 필기감, 사용감 있음 <br>
+                    <span style="font-weight: bold;"> 하:</span> 찢김, 심한 낙서, 페이지 유실
+                </div>
+            </div>
+        </div>
 </div>
 {% endblock %}
