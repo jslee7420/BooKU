@@ -90,6 +90,17 @@ input:focus {
 #book_price {
     display: block;
 }
+.book_price{
+    overflow:hidden;
+    vertical-align: baseline;
+}
+
+#unit{
+    display:inline-block;
+    width:10%;
+    float:left;
+    border-radius:0 10px 10px 0;
+}
 
 
 /* -------------------------------------------- */
@@ -192,6 +203,8 @@ input:focus {
 /* The free_btn */
 .free_btn {
     display: inline-block;
+    width:40%;
+    float:left;
     position: relative;
     padding-left: 35px;
     cursor: pointer;
@@ -275,10 +288,11 @@ form textarea {
     padding-left:20px;
 }
 
-.book_price_input {
+#id_price {
     display: inline-block;
-    border-radius:10px;
-    widows: 339px;
+    border-radius:10px 0 0 10px;
+    width:40%;
+    float:left;
 }
 
 #free_label {

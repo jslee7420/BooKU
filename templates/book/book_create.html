@@ -5,44 +5,47 @@
 {% endblock %}
 {% block content %}
 <script language="JavaScript">
-function free(){
-    var chk = document.getElementById("free_btn").checked;
-    var form = document.getElementById("form_book");
-    if(chk){
-        document.getElementById("id_price").value = 0;
-        form.price.value = 0;
-        form.price.focus();
-        document.getElementById("id_price").readOnly = true;
+    function free() {
+        var chk = document.getElementById("free_btn").checked;
+        var form = document.getElementById("form_book");
+        if (chk) {
+            document.getElementById("id_price").value = 0;
+            form.price.value = 0;
+            form.price.focus();
+            document.getElementById("id_price").readOnly = true;
+        }
+        if (!chk) {
+            document.getElementById("id_price").value = "";
+            document.getElementById("id_price").readOnly = false;
+        }
     }
-    if(!chk){
-        document.getElementById("id_price").value = "";
-        document.getElementById("id_price").readOnly = false;
-    }
-}
-function show_box(){
-    document.getElementById('state_detail').style.display='block';
-    document.getElementById('fade').style.display='block';
-}
 
-function close_box(){
-    document.getElementById('state_detail').style.display='none';
-    document.getElementById('fade').style.display='none';
-}
+    function show_box() {
+        document.getElementById('state_detail').style.display = 'block';
+        document.getElementById('fade').style.display = 'block';
+    }
+
+    function close_box() {
+        document.getElementById('state_detail').style.display = 'none';
+        document.getElementById('fade').style.display = 'none';
+    }
 </script>
 
 <div class="content">
-    <h1>도서 등록하기<hr></h1>
+    <h1>도서 등록하기
+        <hr>
+    </h1>
     <form id="form_book" class="form_book" action=" " method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {% include "form_errors.html" %}
         <div class="rows">
             <div class="col1">
-                <input type="text" class="book_title_input" name="title" placeholder="제목" maxlength="50"
-                    required id="id_title" autocomplete="off">
+                <input type="text" class="book_title_input" name="title" placeholder="제목" maxlength="50" required
+                    id="id_title" autocomplete="off">
             </div>
             <div class="col2">
-                <input type="text" class="book_writer_input " autocomplete="off" maxlength="50"
-                    placeholder="저자" name="writer" required id="id_writer">
+                <input type="text" class="book_writer_input " autocomplete="off" maxlength="50" placeholder="저자"
+                    name="writer" required id="id_writer">
             </div>
         </div>
 
@@ -66,26 +69,29 @@ function close_box(){
             </div>
             <div class="col2">
                 <label for="id_lecture" id="book_lecture">수업</label>
-                <input type="text" class="book_lecture_input" autocomplete="off" name="lecture"
-                    maxlength="100" required id="id_lecture">
+                <input type="text" class="book_lecture_input" autocomplete="off" name="lecture" maxlength="100" required
+                    id="id_lecture">
             </div>
         </div>
 
         <div class="rows">
             <label>도서 상태</label>
-            <button class="btn_state" onclick="show_box()"> <img src="{% static 'img/state_standard.png' %}" alt="" height="19" width="19"> </button>
+            <button class="btn_state" onclick="show_box()"> <img src="{% static 'img/state_standard.png' %}" alt=""
+                    height="19" width="19"> </button>
             <div class="state_box">
-              <div id="state_detail" class="white_content">
-                  <span style="font-weight: bold;"> BooKU 도서 상태 기준 안내</span> <button class="btn_close_state" onclick="close_box()"><img src="{% static 'img/state_standard.png' %}" alt="" height="19" width="19"></button>
-                  <br>
-                  <div class="state_box_txt">
-                      <span style="font-weight: bold;"> 최상:</span> 새것과 같은 상태 <br>
-                      <span style="font-weight: bold;"> 상:</span> 약간의 필기감 <br>
-                      <span style="font-weight: bold;"> 보통:</span> 헌 부분 있음, 필기감, 사용감 있음 <br>
-                      <span style="font-weight: bold;"> 하:</span> 찢김, 심한 낙서, 페이지 유실
-                  </div>
-              </div>
-              </div>
+                <div id="state_detail" class="white_content">
+                    <span style="font-weight: bold;"> BooKU 도서 상태 기준 안내</span> <button class="btn_close_state"
+                        onclick="close_box()"><img src="{% static 'img/state_standard.png' %}" alt="" height="19"
+                            width="19"></button>
+                    <br>
+                    <div class="state_box_txt">
+                        <span style="font-weight: bold;"> 최상:</span> 새것과 같은 상태 <br>
+                        <span style="font-weight: bold;"> 상:</span> 약간의 필기감 <br>
+                        <span style="font-weight: bold;"> 보통:</span> 헌 부분 있음, 필기감, 사용감 있음 <br>
+                        <span style="font-weight: bold;"> 하:</span> 찢김, 심한 낙서, 페이지 유실
+                    </div>
+                </div>
+            </div>
             <div class="state">
                 <hr class="gradation_line">
                 <label class="state_btn">
@@ -111,19 +117,22 @@ function close_box(){
             </div>
         </div>
 
-        <div class="rows">
+        <div class="rows book_price">
             <label for="id_price" id="book_price">가격</label>
             <div>
-                <input type="number" class="book_price_input" autocomplete="off" name="price" min="0"
-                    required id="id_price">
+                <input type="number" class="book_price_input" autocomplete="off" name="price" min="0" required
+                    id="id_price">
+                <input type="text" id="unit" readonly value="&#8361;">
                 <label class="free_btn">
-                    <input class="book_price_input freebox" id="free_btn" name="freebox" onchange="free()" type="checkbox" >
+                    <input class="book_price_input freebox" id="free_btn" name="freebox" onchange="free()"
+                        type="checkbox">
                     <span class="checkmark2"></span>무료나눔
                 </label>
             </div>
         </div>
 
         <div class="rows">
+
             <label>사진 및 게시글(선택)</label>
             <div class="book_image">
                 <label class="book_image_input" for="id_image">+</label>
@@ -137,13 +146,11 @@ function close_box(){
 
         <div class="rows">
             <label for="id_chatting" id="book_chatting">오픈채팅 주소</label>
-            <input type="url" class="book_chatting_input" autocomplete="off" name="kakaoUrl" required
-                id="id_chatting">
+            <input type="url" class="book_chatting_input" autocomplete="off" name="kakaoUrl" required id="id_chatting">
         </div>
         <div class="btns">
             <input type="submit" value="등록하기" class="submit_btn">
-            <button type="button" onclick="location.href='{% url 'book:index' %}'"
-                class="submit_btn">취소</button>
+            <button type="button" onclick="location.href='{% url 'book:index' %}'" class="submit_btn">취소</button>
         </div>
     </form>
 </div>
