@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 
 class User(AbstractUser):
@@ -116,7 +116,42 @@ class User(AbstractUser):
         )
         return major_choices
 
-
-
-
     
+# class UserManager(BaseUserManager):    
+    
+#     use_in_migrations = True   
+    
+#     def create_user(self, email, username, password, first_major, second_major, third_major, date_of_birth, gender):        
+        
+#         if not email :            
+#             raise ValueError('must have user email')
+#         if not username:
+#             raise ValueError('must have username')
+#         user = self.model(            
+#             email = self.normalize_email(email),            
+#             username = username,
+#             first_major = first_major,
+#             second_major = second_major, 
+#             third_major = third_major,
+#             date_of_birth = date_of_birth,
+#             gender = gender,       
+#         )        
+#         user.set_password(password)        
+#         user.save(using=self._db)        
+#         return user     
+#     def create_superuser(self, email, nickname,password, first_major, second_major, third_major, date_of_birth, gender ):        
+       
+#         user = self.create_user(            
+#             email = self.normalize_email(email),            
+#             username = username,
+#             first_major = '',
+#             second_major = '', 
+#             third_major = '',
+#             date_of_birth = '',
+#             gender = '',             
+#         )        
+#         user.is_admin = True        
+#         user.is_superuser = True        
+#         user.is_staff = True        
+#         user.save(using=self._db)        
+#         return user 
