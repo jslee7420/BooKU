@@ -168,10 +168,10 @@
       </div>
 
      {% if user == object.author %}
-       <div class="btn_update_delete">
-        <button onclick ="location.href='{% url 'book:update' object.id %}'" class="btn_book_update">수정</button>
-        <button onclick ="location.href='{% url 'book:delete' object.id %}'" class="btn_book_delete">삭제</button>
-      </div>
+        <div class="btn_update_delete">
+            <button onclick ="location.href='{% url 'book:update' object.id %}'" class="btn update">수정</button>
+            <button onclick ="location.href='{% url 'book:delete' object.id %}'" class="btn delete">삭제</button>
+        </div>
 
         {% if object.deal_flag == 1 %} <!-- 거래중 -->
             <div class="deal_text"> 거래중인 도서입니다. </div>
@@ -184,5 +184,6 @@
         {% endif %}
 
      {% endif %}
+</div>
 </div>
 {% endblock %}

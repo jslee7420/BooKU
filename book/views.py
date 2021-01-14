@@ -77,24 +77,6 @@ def update_list(request):
         elif 'free' in search_type:
             return render(request, 'book/book_list.html', {'object_list': first_books.filter(deal_flag = 1 , price = 0), 'search_type': search_type})
 
-"""
-    if 'free' in search_type:
-        temp_q = Q(price = 0)
-        search_q = search_q | temp_q if search_q else temp_q
-
-    if 'include-deal-complete' in search_type:
-        temp_q = Q(deal_flag = 1) | Q(deal_flag = 0)
-        search_q = search_q | temp_q if search_q else temp_q
-
-    elif 'include-deal-complete' not in search_type:
-        temp_q = Q(deal_flag=1)
-        search_q = search_q | temp_q if search_q else temp_q
-
-    book_list = first_books.filter(search_q).distinct()
-    return render(request, 'book/book_list.html', {'object_list': book_list, 'search_type': search_type})
-"""
-
-
 def get_first_major_list(request):
     book_list = Book.objects.all().filter(major_category=request.user.first_major)
     search_type = request.GET.getlist('search-type', None)
@@ -173,7 +155,7 @@ class BookDetail(DetailView):
 class BookUpdate(UpdateView):
     model = Book
     context_object_name = 'update_book'
-    fields = ['title', 'writer', 'text', 'image','lecture', 'state', 'price', 'kakaoUrl','major_category']
+    fields = ['title', 'writer', 'major_category','lecture','state','price','image','text','kakaoUrl']
     template_name_suffix = '_update'
     success_url = '/book'
 
@@ -186,17 +168,20 @@ class BookDelete(DeleteView):
     template_name_suffix = '_delete'
     success_url = '/book'
 
+
 def search(request):
     books = Book.objects.all().order_by('-id')
-    template_name_suffix = '_search'
     q = request.POST.get('q', "")
 
     if q:
-        books = books.filter(Q(title__icontains=q) or Q(lecture__icontains=q) or Q(writer__icontains=q)).distinct() #검색조건
+        books = books.filter(
+            Q(title__icontains=q) or Q(lecture__icontains=q) or Q(writer__icontains=q)).distinct()  # 검색조건
+
         return render(request, 'book/book_search.html', {'books': books, 'q': q})
-    #필터 넣기 제목, 제목+작성자, 글내용
+    # 필터 넣기 제목, 제목+작성자, 글내용
     else:
         return render(request, 'book/book_search.html')
+
 
 def filter(request):
     first_books = Book.objects.all().order_by('-id')

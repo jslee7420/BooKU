@@ -1,0 +1,101 @@
+.search_input{
+    position: absolute;
+    width: 1134px;
+    height: 55px;
+    left: 362px;
+    top: 235px;
+    border: 1px solid #8B8B8B;
+    box-sizing: border-box;
+    border-radius: 100px;
+    font-family: Sacramento;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 0px;
+    display: flex;
+    align-items: center;
+    color: #7B7B7B;
+}
+form input{
+    padding-left:20px;
+}
+#btn_create{
+    position: absolute;
+    width: 203px;
+    height: 40px;
+    left: 1380px;
+    top: 150px;
+    border: 0;
+    outline:0;
+    background: #FF8300;
+    box-shadow: 5px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
+    text-align: center;
+    color: #FFFFFF;
+}
+.btn_search{
+      position: absolute;
+      width: 42.11px;
+      height: 44.11px;
+      left: 1513px;
+      top: 250px;
+      border: 0;
+      outline:0;
+      background-color: #FFFFFF;
+}
+.filtering-box{
+    position: absolute;
+    display: inline-block;
+    width: 100%;
+    height: 60px;
+    left: 0px;
+    top: 310px;
+    border:1px solid #FF9F46;
+    background: #FF9F46;
+}
+button:focus {
+    outline: none;
+}
+
+.delete_all_contents{
+    position: absolute;
+    margin: auto;
+    width:1100px;
+    top:50%;
+}
+.book_delete{
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    text-align-last: center;
+    color: #757575;
+}
+.btns{
+    position: absolute;
+    width:1100px;
+    left:43%;
+    top:130%;
+}
+.btn{
+    background: #FF8C38;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    font-family: NanumGothic;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 35px;
+    /* identical to box height, or 146% */
+    text-align: center;
+    color: #FFFFFF;
+    border: 0;
+    outline:0;
+
+}
+
+

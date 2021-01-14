@@ -1,0 +1,379 @@
+.content {
+    width: 750px;
+    margin: 20px auto  50px;
+}
+
+h2 {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    color: #4A4A4A;
+    margin-bottom: 30px;
+}
+
+h2>hr {
+    margin-left: 0;
+    width: 40px;
+    height: 2.5px;
+    background: #4A4A4A;
+    border-radius: 4px;
+}
+
+.rows {
+    overflow: hidden;
+    width:100%;
+    margin: 20px 0 0 0;
+}
+
+.col1 {
+    float: left;
+    width: 50%;
+}
+
+.col2 {
+    float: right;
+    width: fit-content;
+}
+.col3{
+    display:inline-block;
+    float: left;
+    width: 100%;
+    display: inline-block;
+
+}
+.book_image {
+
+
+}
+.col4{
+    float: left;
+    width: 100%;
+
+}/*
+.book_image {
+    float: left;
+    width: fit-content;
+}
+
+.book_text {
+    float: right;
+    width: fit-content;
+}
+*/
+.text_input {
+    width: 369px;
+    height: 50px;
+    background: #F2F2F2;
+    border-radius: 10px;
+    border: none;
+}
+
+label {
+    display: block;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    color: #5C5C5C;
+}
+
+
+
+.cr_major {
+    width: 369px;
+    height: 50px;
+    border: 1px solid #AFB0B9;
+    box-sizing: border-box;
+    border-radius: 6px;
+}
+
+.btns {
+    width: fit-content;
+    margin:50px auto;
+}
+
+.btn {
+    width: 250px;
+    height: 55px;
+    background: #FB8F1D;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 27px;
+    text-align: center;
+    margin: 0 10px;
+    color: #FFFFFF;
+}
+/*
+.book_image_input {
+    display: block;
+    width: 145px;
+    height: 145px;
+    background-color: #F2F2F2;
+    border-radius: 10px;
+    font-size: 100px;
+    font-weight: 100;
+    text-align: center;
+    line-height: 130px;
+}
+*/
+
+.book_image_input:hover{
+    cursor:pointer;
+}
+
+.book_text_input {
+    width: 590px;
+    height: 145px;
+    border: none;
+    background: #F2F2F2;
+    border-radius: 10px;
+}
+
+input {
+    display: block;
+}
+
+textarea:focus {
+    outline: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+
+#book_price {
+    display: block;
+}
+
+
+form input::placeholder {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    /* identical to box height */
+    color: #9C9C9C;
+}
+
+form input {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    padding-left: 20px;
+}
+
+/* -------------------------------------------- */
+/* radio button customizing */
+
+/* The free_btn */
+.state_btn {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    text-align: center;
+    color: #7A7A7A;
+}
+
+/* Hide the browser's default radio button */
+.state_btn input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+    display: block;
+    background-color: white;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+/* On mouse-over, add a grey background color */
+.state_btn:hover input~.checkmark {
+    background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.state_btn input:checked + .gradation1 {
+    background-color: #945AA9;
+}
+.state_btn input:checked +.gradation2 {
+    background-color: #AA6287;
+}
+.state_btn input:checked +.gradation3 {
+    background-color: #CC6F51;
+}
+.state_btn input:checked +.gradation4 {
+    background-color: #FF8301;
+}
+
+
+.gradation1 {
+    border:solid #945AA9 6px;
+}
+
+.gradation2 {
+    border:solid #AA6287 6px;
+}
+
+.gradation3 {
+    border:solid #CC6F51 6px;
+}
+
+.gradation4 {
+    border:solid #FF8301 6px;
+}
+
+.gradation_line{
+    background: linear-gradient(to right, #945AA9, #AA6287, #CC6F51, #FF8301);
+    height:6px;
+    width:99%;
+    position:absolute;
+    z-index: 0;
+}
+
+.state{
+    margin-left: 10px;
+    width:369px;
+    display:flex;
+    justify-content: space-between;
+    position:relative;
+}
+
+/* -------------------------------------------- */
+
+
+/* -------------------------------------------- */
+/* checkbox customizing */
+
+/* The free_btn */
+.free_btn {
+    display: inline-block;
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    font-size: 20px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color:#FB8F1D;
+    margin-left: 10px;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .free_btn input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 30px;
+    width: 30px;
+    background-color:white;
+    border: 2px solid #FF8C38;
+    box-sizing: border-box;
+    border-radius: 5px;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .free_btn:hover input ~ .checkmark2 {
+    background-color: #ccc;
+  }
+  
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark2:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .free_btn input:checked ~ .checkmark2:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .free_btn .checkmark2:after {
+    left: 8px;
+    top: 2px;
+    width: 10px;
+    height: 20px;
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+/* -------------------------------------------- */
+
+
+.book_chatting_input {
+    width: 100%;
+}
+
+form textarea::placeholder {
+    color: #9C9C9C;
+}
+
+form textarea {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    padding-top:12px;
+    padding-left:20px;
+}
+
+.book_price_input {
+    display: inline-block;
+    border-radius:10px;
+    widows: 339px;
+}
+
+#free_label {
+    display: inline-block;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+
+    color: #FB8F1D;
+}
+
+.freebox {
+    width: 30px;
+    height: 30px;
+    border: 2px solid #FF8C38;
+    border-radius: 5px;
+}
