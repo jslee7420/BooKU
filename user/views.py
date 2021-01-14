@@ -11,7 +11,7 @@ import jwt
 import json
 from .text import signup_message, change_pwd_message
 from config.my_settings import EMAIL
-from config.settings import SECRET_KEY
+from config.settings.base import SECRET_KEY
 
 from django.http import HttpResponse, JsonResponse
 from django.contrib.sites.shortcuts import get_current_site

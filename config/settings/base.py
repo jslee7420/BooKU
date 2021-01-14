@@ -12,12 +12,12 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os, json
-from . import my_settings
+from .. import my_settings
 from django.core.exceptions import ImproperlyConfigured
 #from . import my_settings
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -139,6 +139,10 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = 'user:login'
 
 ########이메일 정보 가져오기########
+
+
+
+
 SITE_ID = 1
 
 EMAIL_BACKEND = my_settings.EMAIL['EMAIL_BACKEND']
@@ -163,3 +167,5 @@ def get_secret(setting, secrets=secrets):
         raise ImproperlyConfigured(error_msg)
 
 SECRET_KEY = get_secret("SECRET_KEY")
+
+
