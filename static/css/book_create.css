@@ -299,7 +299,6 @@ form textarea {
     display: inline-block;
     font-weight: 500;
     font-size: 20px;
-
     color: #FB8F1D;
 }
 
@@ -307,9 +306,7 @@ form textarea {
     width: 30px;
     height: 30px;
     border: 2px solid #FF8C38;
-
-
-    border-radius: 5px;
+   border-radius: 5px;
 }
 
 .white_content {
@@ -317,8 +314,8 @@ form textarea {
     position: absolute;
     top: 42%;
     left: 40%;
-    width: 299px;
-    height: 115px;
+    width: 20rem;
+    height: 7.188rem;
     padding: 16px;
     border: 0px solid black;
     box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.25);
@@ -329,7 +326,7 @@ form textarea {
 .state_box_txt{
     font-style: normal;
     font-weight: normal;
-    font-size: 12px;
+    font-size: 0.75rem;
 }
 .btn_state{
     position: absolute;

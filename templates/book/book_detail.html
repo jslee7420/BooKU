@@ -167,23 +167,29 @@
           <div class="book_kakaoUrl">오픈채팅 링크: <a href="{{ object.kakaoUrl }}"> {{ object.kakaoUrl }} </a> </div>
       </div>
 
-     {% if user == object.author %}
-        <div class="btn_update_delete">
-            <button onclick ="location.href='{% url 'book:update' object.id %}'" class="btn update">수정</button>
-            <button onclick ="location.href='{% url 'book:delete' object.id %}'" class="btn delete">삭제</button>
-        </div>
+          {% if user == object.author %}
+            <div class="btn_update_delete">
+                <button onclick ="location.href='{% url 'book:update' object.id %}'" class="btn update">수정</button>
+                <button onclick ="location.href='{% url 'book:delete' object.id %}'" class="btn delete">삭제</button>
+            </div>
+          {% endif %}
+
 
         {% if object.deal_flag == 1 %} <!-- 거래중 -->
             <div class="deal_text"> 거래중인 도서입니다. </div>
+            {% if user == object.author %}
             <button onclick ="location.href='{% url 'book:update_deal' object.id %}'" class="btn_deal">거래 완료</button>
+            {% endif %}
         {% endif %}
 
         {% if object.deal_flag == 0 %} <!-- 거래 중이 아닐때 -->
             <div class="deal_text"> 거래 완료된 도서입니다. </div>
+            {% if user == object.author %}
             <button onclick ="location.href='{% url 'book:update_deal' object.id %}'"  class="btn_deal">거래다시시작</button>
+            {% endif %}
         {% endif %}
 
-     {% endif %}
+
 </div>
 </div>
 {% endblock %}

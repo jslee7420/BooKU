@@ -1,46 +1,46 @@
 .search_input{
     position: absolute;
-    width: 1134px;
-    height: 55px;
+    width: 70.88rem;
+    height: 3.438rem;
     left: 362px;
     top: 235px;
-    border: 1px solid #8B8B8B;
+    border: 0.0625rem solid #8B8B8B;
     box-sizing: border-box;
-    border-radius: 100px;
+    border-radius: 6.25rem;
     font-family: Sacramento;
     font-style: normal;
     font-weight: normal;
-    font-size: 20px;
-    line-height: 0px;
+    font-size: 1.25rem;
+    line-height: 0rem;
     display: flex;
     align-items: center;
     color: #7B7B7B;
 }
 form input{
-    padding-left:20px;
+    padding-left:1.25rem;
 }
 #btn_create{
     position: absolute;
-    width: 203px;
-    height: 40px;
+    width: 12.69rem;
+    height: 2.5rem;
     left: 1380px;
     top: 150px;
     border: 0;
     outline:0;
     background: #FF8300;
-    box-shadow: 5px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow:  0.3125rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
     font-family: Inter;
     font-style: normal;
     font-weight: 500;
-    font-size: 18px;
-    line-height: 27px;
+    font-size: 1.125rem;
+    line-height: 1.688rem;
     text-align: center;
     color: #FFFFFF;
 }
 .btn_search{
       position: absolute;
-      width: 42.11px;
-      height: 44.11px;
+      width: 2.625rem;
+      height:  2.75rem;
       left: 1513px;
       top: 250px;
       border: 0;
@@ -51,10 +51,10 @@ form input{
     position: absolute;
     display: inline-block;
     width: 100%;
-    height: 60px;
+    height: 3.75rem;
     left: 0px;
     top: 310px;
-    border:1px solid #FF9F46;
+    border:0.0625rem solid #FF9F46;
     background: #FF9F46;
 }
 button:focus {
@@ -71,7 +71,7 @@ button:focus {
     font-family: Inter;
     font-style: normal;
     font-weight: 500;
-    font-size: 30px;
+    font-size: 1.875rem;
     text-align-last: center;
     color: #757575;
 }
@@ -83,19 +83,18 @@ button:focus {
 }
 .btn{
     background: #FF8C38;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 20px;
+    box-shadow: 0.3125rem  0.25rem  0.25rem rgba(0, 0, 0, 0.25);
+    border-radius: 1.25rem;
     font-family: NanumGothic;
     font-style: normal;
     font-weight: bold;
-    font-size: 20px;
-    line-height: 35px;
+    font-size: 1.25rem;
+    line-height: 2.188rem;
     /* identical to box height, or 146% */
     text-align: center;
     color: #FFFFFF;
     border: 0;
     outline:0;
-
 }
 
 

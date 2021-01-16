@@ -1,10 +1,13 @@
+.container{
+
+}
 #up_category_menu{
-    height: 50px;
+    height: 3.125rem;
     position: absolute;
-    width: 750px;
+    width: 46.88rem;
     left: 585px;
     top: 150px;
-    border: 2px solid #E0E0E0;
+    border: 0.125rem solid #E0E0E0;
     transform: rotate(-0.07deg);
     border-radius: nullpx;
     border:none;
@@ -12,44 +15,44 @@
     font-family: Inter;
     font-style: normal;
     font-weight: 500;
-    font-size: 30px;
+    font-size: 1.875rem;
     text-align-last: center;
     color: #757575;
 }
 #line_major_bar{
     position: absolute;
-    width: 750px;
-    height: 0px;
+    width: 46.88rem;
+    height: 0rem;
     left: 585px;
     top: 190px;
-    border: 2px solid #E0E0E0;
+    border: 0.125rem solid #E0E0E0;
     transform: rotate(-0.07deg);
 }
 .search_input{
     position: absolute;
-    width: 1134px;
-    height: 55px;
+    width: 70.88rem;
+    height: 3.438rem;
     left: 362px;
     top: 235px;
-    border: 1px solid #8B8B8B;
+    border:  0.0625rem solid #8B8B8B;
     box-sizing: border-box;
-    border-radius: 100px;
+    border-radius: 6.25rem;
     font-family: Sacramento;
     font-style: normal;
     font-weight: normal;
-    font-size: 20px;
-    line-height: 0px;
+    font-size: 1.25rem;
+    line-height: 0rem;
     display: flex;
     align-items: center;
     color: #7B7B7B;
 }
 form input{
-    padding-left:20px;
+    padding-left:1.25rem;
 }
 .btn_search{
       position: absolute;
-      width: 42.11px;
-      height: 44.11px;
+      width: 2.625rem;
+      height:  2.75rem;
       left: 1513px;
       top: 250px;
       border: 0;
@@ -58,19 +61,19 @@ form input{
 }
 #btn_create{
     position: absolute;
-    width: 203px;
-    height: 40px;
+    width: 12.69rem;
+    height: 2.5rem;
     left: 1380px;
     top: 150px;
     border: 0;
     outline:0;
     background: #FF8300;
-    box-shadow: 5px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0.3125rem  0.25rem  0.25rem rgba(0, 0, 0, 0.25);
     font-family: Inter;
     font-style: normal;
     font-weight: 500;
-    font-size: 18px;
-    line-height: 27px;
+    font-size: 1.125rem;
+    line-height: 1.688rem;
     text-align: center;
     color: #FFFFFF;
 }
@@ -78,20 +81,20 @@ form input{
     position: absolute;
     display: inline-block;
     width: 100%;
-    height: 60px;
+    height: 3.75rem;
     left: 0px;
     top: 310px;
-    border:1px solid #FF9F46;
+    border:0.0625rem solid #FF9F46;
     background: #FF9F46;
 }
 
 input[type="checkbox"]+label{
-    width: 200px;
-    height: 50px;
-    background: url('../img/not_check.png') no-repeat 0 0px / contain;
+    width:  12.5rem;
+    height: 3.125rem;
+    background: url('../img/not_check.png') no-repeat 0 0rem / contain;
 }
 input[type='checkbox']:checked+label{
-  background: url('../img/check.png') no-repeat 0 0px / contain;
+  background: url('../img/check.png') no-repeat 0 0rem / contain;
 }
 input[type="checkbox"] {
     display: none;
@@ -104,15 +107,15 @@ input[type="checkbox"] {
 }
 .deal_filter{
     display: inline-block;
-    width: 200px;
-    height: 60px;
+    width: 12.5rem;
+    height: 3.75rem;
 }
 .filter-txt{
     font-family: Inter;
     font-style: normal;
     font-weight: bold;
-    font-size: 30px;
-    line-height: 29px;
+    font-size:  1.875rem;
+    line-height:  1.813rem;
     color: #FFFFFF;
     position: absolute;
     left:20%;
@@ -122,27 +125,26 @@ input[type="checkbox"] {
     position: absolute;
     left:35%;
     top:5px;
-    padding-left:60px;
-    padding-top: 10px;
+    padding-left:3.75rem;
+    padding-top: 0.625rem;
     font-family: Inter;
     font-style: normal;
     font-weight: bold;
-    font-size: 24px;
-    line-height: 29px;
+    font-size: 1.5rem;
+    line-height: 1.813rem;
     color: #FFFFFF;
 }
-
 .deal-label{
     position: absolute;
     left:50%;
     top:5px;
-    padding-left:60px;
-    padding-top: 10px;
+    padding-left:3.75rem;
+    padding-top: 0.625rem;
     font-family: Inter;
     font-style: normal;
     font-weight: bold;
-    font-size: 24px;
-    line-height: 29px;
+    font-size: 1.5rem;
+    line-height: 1.813rem;
     color: #FFFFFF;
 }
 table{
@@ -155,51 +157,51 @@ th{
     font-family: Inter;
     font-style: normal;
     font-weight: 500;
-    font-size: 18px;
-    line-height: 35px;
+    font-size: 1.125rem;
+    line-height: 2.188rem;
     /* or 175% */
     align-items: center;
     color: #484848;
 }
 td{
-    padding: 10px;
-    border-bottom: 10px solid #FFFFFF;
+    padding: 0.625rem;
+    border-bottom: 0.625rem solid #FFFFFF;
     text-align:center;
     background: #EFEFEF;
 }
 
 .tabel_row{
-    border-radius: 10px;
+    border-radius: 0.625rem;
     font-family: Inter;
     font-style: normal;
     font-weight: bold;
     color: #484848;
-    font-size: 18px;
+    font-size: 1.125rem;
 }
 td:nth-child(1){
-    width:210px;
+    width: 13.13rem;
 }
 td:nth-child(2){
-    width:250px;
+    width:15.63rem;
     text-align:left;
 }
 td:nth-child(3){
-    width:290px;
+    width:18.13rem;
 }
 td:nth-child(4){
-    width:190px;
+    width:11.88rem;
 }
 td:nth-child(5){
-    width:200px;
+    width:12.5rem;
 }
 td:nth-child(6){
-    width:200px;
+    width: 12.5rem;
 }
 input:focus {
     outline: none;
 }
 .form-check-input{
-    margin-left:10px;
+    margin-left:0.625rem;
 }
 .btn_stated{
     border: 0;
@@ -216,11 +218,11 @@ input:focus {
     position: absolute;
     top: 0%;
     left: 64%;
-    padding: 5px;
-    width: 250px;
-    height: 111px;
-    border: 0px solid black;
-    box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.25);
+    padding: 0.3125rem;
+    width: 15.63rem;
+    height: 6.938rem;
+    border: 0rem solid black;
+    box-shadow: 0rem 0rem 1.25rem 0.125rem rgba(0, 0, 0, 0.25);
     background-color: white;
     z-index:1002;
     overflow: auto;
@@ -228,25 +230,24 @@ input:focus {
 .state_box_text2{
     font-style: normal;
     font-weight: normal;
-    font-size: 12px;
+    font-size: 0.75rem;
     float: left;
 }
 button:focus {
     outline: none;
 }
-
 .no_search{
     font-family: Inter;
     font-style: normal;
     font-weight: 500;
-    font-size: 36px;
-    line-height: 80px;
+    font-size: 2.25rem;
+    line-height: 5rem;
     /* or 222% */
     text-align: center;
     color: #757575;
-    height: 50px;
+    height:  3.125rem;
     position: absolute;
-    width: 750px;
+    width: 46.88rem;
     left: 30%;
     top: 50%;
     text-align-last: center;
@@ -256,8 +257,8 @@ button:focus {
     font-family: Inter;
     font-style: normal;
     font-weight: 500;
-    font-size: 36px;
-    line-height: 80px;
+    font-size: 2.25rem;
+    line-height: 5rem;
     /* or 222% */
     text-align: center;
     color: #757575;
