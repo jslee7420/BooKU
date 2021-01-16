@@ -1,17 +1,21 @@
 nav{
-    height: 5rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
     width:94rem;
-    margin:auto;
-    margin-bottom: 2rem;
+    height:9rem;
+    margin: 0 auto;
 }
 
 .logo{
-    float:left;
-    width: 20%;
-    height:100%;
-    font-weight: bold;
+    font-weight: 750;
     font-size: 3rem;
+    white-space:nowrap;
     color: #767676;
+}
+
+.logo_icon{
+    width:5.125rem;
 }
 
 .logo:hover{
@@ -19,25 +23,15 @@ nav{
     color:#767676;
 }
 
-.nav-items{
-    float:right;
-    height:100%;
-
-    display: flex;
-    /*위에서 아래로 수직 배치*/
-    flex-direction: column;
-    /*중앙정렬*/
-    justify-content: center;
-
+.nav__menu{
+    display:flex;
+    align-items:baseline;
 }
 
-.nav-item{
-    display:inline;
-    height: 100%;
-    list-style:none;
-    float:left;
-    margin: 0px 1em;
+.nav__menu li{
+    margin: auto 0.5em;
 }
+
 
 .login_logout{
     display: inline-block;
@@ -46,7 +40,7 @@ nav{
 
     border: 1px solid #FB8F1D;
     box-sizing: border-box;
-    border-radius: 8px;
+    border-radius: 0.5rem;
 
     font-weight: 500;
     line-height: 3em;
@@ -62,7 +56,7 @@ nav{
     height: 3em;
     width: 10em;
 
-    border: 1px solid #FB8F1D;
+    border: 0.06rem solid #FB8F1D;
     box-sizing: border-box;
     border-radius: 8px;
 
@@ -87,10 +81,10 @@ nav{
 }
 
 .not_btn{
-    line-height: 3em;
+    padding: 0 1.5em;
 }
 
-.nav-link{
+.nav__link{
     line-height: 2rem;
     color: #B8BECD;
 }

@@ -1,50 +1,40 @@
 main{
     width:94rem;
     margin:auto;
-    margin-top:50px;
-    overflow: hidden;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    
 }
 
 section{
     display:inline-block;
 }
 
-.section-a{
-    margin:2em 0;
-    float:left;
-}
-
-.section-b{
-    float:right;
-}
-
 .title{
     font-weight: 800;
     font-size: 4rem;
     color: black;
-}
-
-.heading{
-    height: 10em;
+    padding:0.25em 0;
 }
 
 .content{
     font-size: 1.5rem;
     width:25em;
-    margin: 2em 0;
+    margin: 1em 0;
 }
 
-.img{
-    /* display: inline-block; */
+.index_img{
+    width:46rem;
 }
 
 .explore{
-    margin-top: 2rem;
+    margin-top: 3rem;
 }
 
 button{
     padding:0.5em 2.6em; 
-    border-radius: 8px;
+    border-radius: 0.5rem;
     background-color: #FB8F1D;
     border:none;
 

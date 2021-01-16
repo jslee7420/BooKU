@@ -4,7 +4,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/change_pwd_username.css' %}">
 {% endblock %}
 {% block content %}
-<div class="content">
+<div class="mypage_content">
     {% include 'user/my_page_header.html'%}
     
     <form method="post" class="post-form" action="{% url 'user:change_pwd' %}">
@@ -16,7 +16,7 @@
         <input type="password" name="new_password1" id="new_password1">
         <label for="old_password">새 비밀번호 확인</label>
         <input type="password" name="new_password2" id="new_password2">
-        <button type="submit" class="">변경하기</button>
+        <button class="submit_btn" type="submit" class="">변경하기</button>
     </form>
 </div>
 {% if message %}

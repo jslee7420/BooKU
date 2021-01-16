@@ -1,58 +1,9 @@
-.content{
-    width:1011px;
-    margin: 50px auto;
-}
-
-h2{
-    margin-left:100px;
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 36px;
-    color: #4A4A4A;
-}
-h2>hr{
-    margin-left:0;
-    width: 40px;
-    height: 2.5px;
-    background: #4A4A4A;
-    border-radius: 4px;
-}
-
-.my_page_header{
-    margin: 50px 0;
-}
-.my_page_header a{
-    width:334px;
-    display: inline-block;
-    text-align: center;
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 30px;
-    text-decoration: none;
-    color: #757575;
-}
-
-
 #active1{
     font-weight:600;
 
 }
 #active1>hr{
-    height: 2.5px;
+    height: 0.08em;
     background-color: #757575;
 }
 
-.test{
-    display: inline-block;
-    width:100px;
-    height:20x;
-    background-color: yellowgreen;
-}
-
-.book_info{
-    width:200px;
-    height:100px;
-    background-color: violet;
-}

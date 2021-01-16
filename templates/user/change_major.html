@@ -5,14 +5,14 @@
 {% endblock %}
 {% block content %}
 
-<div class="content">
+<div class="mypage_content">
     {% include 'user/my_page_header.html'%}
     <form method="POST" action="{% url 'user:change_major' %}">
         {% csrf_token %}
         {% include "form_errors.html" %}
         <div class="major">
-            <p>※학과는 한번 선택 후 4개월 동안 변경 불가합니다.</p>
             <div class="major_col1 form-group">
+                <label for="first_major">원전공</label>
                 <select class="first_major" name="first_major" id="first_major">
                     <option value="" disabled selected hidden>원전공</option>
                     <option value="{{form.first_major.value}}" selected hidden>{{form.first_major.value}}</option>
@@ -106,6 +106,7 @@
             </div>
             <div class="major_col2">
                 <div class="major_row form-group">
+                    <label for="first_major">다/부전공1</label>
                     <select name="second_major" id="second_major">
                         <option value="" disabled selected hidden>다/부전공1</option>
                         <option value="">해당사항 없음</option>
@@ -200,6 +201,7 @@
                     </select>
                 </div>
                 <div class="major_row form-group">
+                    <label for="first_major">다/부전공2</label>
                     <select name="third_major" id="third_major">
                         <option value="" disabled selected hidden>다/부전공2</option>
                         <option value="">해당사항 없음</option>
@@ -295,7 +297,9 @@
                 </div>
             </div>
         </div>
-        <button type="submit">변경하기</button>
+        <div>
+            <button class="submit_btn" type="submit">변경하기</button>
+        </div>
     </form>
 </div>
 {% if message %}

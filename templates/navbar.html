@@ -1,53 +1,37 @@
+{% load static %}
 <nav>
     <a class="logo" href="{% url 'index' %}">
         <!-- BooKU Image and Logo -->
-        <svg width="82" height="61" viewBox="0 0 82 61" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="38.4733" height="60.458" rx="2" fill="#EA9241" />
-            <path
-                d="M82 58.458C82 59.5626 81.1046 60.458 80 60.458L45.5267 60.458C44.4221 60.458 43.5267 59.5626 43.5267 58.458L43.5267 1.99999C43.5267 0.895424 44.4221 -7.62939e-06 45.5267 -7.62939e-06L80 -7.62939e-06C81.1046 -7.62939e-06 82 0.895424 82 1.99999L82 58.458Z"
-                fill="#EA9241" />
-            <path
-                d="M64.3366 30.9716C63.5358 31.9922 61.9904 31.9922 61.1896 30.9716L51.2859 18.349C50.2561 17.0366 51.1911 15.1145 52.8594 15.1145L72.6668 15.1145C74.335 15.1145 75.2701 17.0366 74.2403 18.349L64.3366 30.9716Z"
-                fill="white" />
-            <rect x="67.3438" y="18.3208" width="8.54962" height="18.3206" transform="rotate(-180 67.3438 18.3208)"
-                fill="white" />
-            <path
-                d="M17.6625 31.3184C18.4632 30.2979 20.0087 30.2979 20.8094 31.3184L30.7132 43.941C31.7429 45.2535 30.8079 47.1756 29.1397 47.1756H9.33221C7.66398 47.1756 6.72896 45.2535 7.75872 43.941L17.6625 31.3184Z"
-                fill="white" />
-            <rect x="14.6562" y="42.1377" width="8.54962" height="18.3206" fill="white" />
-        </svg>
+        <img src="{% static 'img/logo_icon.svg' %}" class="logo_icon">
         BooKU
     </a>
-    <div class="nav-items">
-        <ul class="nav-ul">
-            <li class="nav-item not_btn">
-                <a class="nav-link" href="{% url 'book:index' %}">전공책 거래하기</a>
-            </li>
-            <li class="nav-item not_btn">
-                <a class="nav-link" href="{% url 'notice:notice_list' %}">공지사항</a>
-            </li>
-            <!-- <li class="nav-item not_btn">
-                <a class="nav-link" href="">사용 가이드</a>
-            </li>
-            <li class="nav-item not_btn">
-                <a class="nav-link" href="">채팅</a>
-            </li> -->
-            <li class="nav-item">
-                {% if user.is_authenticated %}
-                <a class="login_logout" href="{% url 'user:logout' %}">Logout</a>
-                {% else %}
-                <a class="login_logout" href="{% url 'user:login' %}">Login</a>
-                {% endif %}
-            </li>
-            <li class="nav-item">
-                {% if user.is_authenticated %}
-                <a class="signup_mypage" href="{% url 'user:change_major' %}">My Page</a>
-                {% else %}
-                <a class="signup_mypage" href="{% url 'user:signup' %}">Sign Up</a>
-                {% endif %}
-            </li>
-        </ul>
-    </div>
 
-
+    <ul class="nav__menu">
+        <li class="not_btn">
+            <a class="nav__link" href="{% url 'index' %}">홈화면</a>
+        </li>
+        <li class="not_btn">
+            <a class="nav__link" href="{% url 'book:index' %}">전공책 거래하기</a>
+        </li>
+        <li class="not_btn">
+            <a class="nav__link" href="{% url 'notice:notice_list' %}">공지사항</a>
+        </li>
+        <!-- <li class="nav-item not_btn">
+            <a class="nav-link" href="">쪽지</a>
+        </li> -->
+        <li>
+            {% if user.is_authenticated %}
+            <a class="login_logout" href="{% url 'user:logout' %}">Logout</a>
+            {% else %}
+            <a class="login_logout" href="{% url 'user:login' %}">Login</a>
+            {% endif %}
+        </li>
+        <li>
+            {% if user.is_authenticated %}
+            <a class="signup_mypage" href="{% url 'user:change_major' %}">My Page</a>
+            {% else %}
+            <a class="signup_mypage" href="{% url 'user:signup' %}">Sign Up</a>
+            {% endif %}
+        </li>
+    </ul>
 </nav>
