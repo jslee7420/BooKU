@@ -6,20 +6,17 @@
 {% block content %}
 <div class="container">
     <div>
-        <a href="{% url 'notice:notice_list' %}" class="to_notice_list"><공지사항 목록</a>
-    </div>
-    <div class="heading">
-        <div class="title">
-            <p>{{notice.title}}</p>
-        </div>
-        <div class="info">
-            <p>{{notice.create_date|date:"Y.m.d"}}&nbsp | &nbsp조회수 {{notice.views}}</p>
-        </div>
+        <a href="{% url 'notice:notice_list' %}" class="to_notice_list">
+            <공지사항 목록</a> </div> <div class="header">
+                <div class="title">
+                    <p>{{notice.title}}</p>
+                </div>
+                <div class="info">
+                    <p>{{notice.create_date|date:"Y.m.d"}}&nbsp | &nbsp조회수 {{notice.views}}</p>
+                </div>
     </div>
     <hr class="line1">
-    <div class="content">
-        <p>{{notice.content}}Duis esse et aliquip sit magna non veniam consectetur id ad deserunt exercitation. Nostrud eu ad magna in reprehenderit reprehenderit aute pariatur officia sint. Id sunt consequat pariatur tempor in anim excepteur nostrud. Culpa aliqua ex duis ipsum consequat officia quis ut reprehenderit voluptate aliquip velit fugiat eiusmod. Nulla irure dolor laboris Lorem quis ea ad. Proident incididunt deserunt ad et sunt excepteur nostrud ut anim fugiat. Adipisicing dolore duis Lorem eu duis adipisicing deserunt reprehenderit qui.In esse minim excepteur aliqua exercitation Lorem id anim eu cillum do cillum minim. Esse sint fugiat eu elit ea dolor dolore ex reprehenderit occaecat quis do. Excepteur esse Lorem pariatur mollit minim deserunt sunt dolore commodo est non Lorem do. Ipsum proident cupidatat nostrud veniam excepteur pariatur amet. Ut consectetur proident tempor exercitation ea sint eiusmod est commodo labore culpa ut velit anim.Ea eu culpa laboris culpa. Nulla Lorem non enim quis et ad cillum ullamco occaecat ut excepteur fugiat magna. Laborum adipisicing consectetur sint sint enim velit nostrud in reprehenderit eiusmod nulla ad dolor nisi. Dolor labore voluptate et incididunt. Laboris occaecat aute occaecat sint ut laborum quis.Voluptate ex deserunt eiusmod duis eu eu elit tempor dolor adipisicing fugiat eu esse. Exercitation aliqua velit ea ipsum labore esse nisi et. Consequat adipisicing aliqua qui ex nulla fugiat. Cillum aliquip nulla aliqua voluptate reprehenderit consectetur aute anim dolor esse in occaecat voluptate. Officia duis esse consequat esse consequat cillum sint ullamco incididunt do. In ea ad eiusmod et do minim. Cupidatat qui labore incididunt fugiat qui exercitation voluptate dolore qui dolore est.Ullamco non est ut quis tempor veniam reprehenderit non excepteur aute Lorem. Fugiat sunt tempor aute consequat aliqua culpa incididunt excepteur deserunt eu labore consectetur id. Sint ipsum aliqua non eiusmod adipisicing exercitation.Elit consectetur dolor veniam id occaecat dolor sit aliquip eiusmod ut commodo. Irure tempor duis irure quis velit sunt nostrud ad pariatur do velit occaecat cillum nostrud. Pariatur velit Lorem id commodo duis voluptate officia eu excepteur anim.</p>
-    </div>
+    <p class="content">{{notice.content}}</p>
     <hr class="line2">
 </div>
 
