@@ -68,6 +68,7 @@ function close_box(){
 
     <form action="{% url 'book:major3' %}" method="get" id="filter-form">
         <div class="filtering-box"> <span class="filter-txt"> 필터링 </span>
+            <div class="filter-checkbox">
             {% if "free" in search_type %}
             <span class="free_filter">
                 <input class="form-check-input" type="checkbox" checked value="free" name="search-type" onchange="changeFilter()" id="free1">
@@ -83,17 +84,18 @@ function close_box(){
             {% if "deal" in search_type %}
             <span class="deal_filter">
                 <input class="form-check-input" type="checkbox"  checked value="deal" name="search-type"  onchange="changeFilter()" id="deal1">
-                <label for="deal1"> 거래중 </label>
+                <label for="deal1" class="deal-label"> 거래중 </label>
             </span>
             {% endif %}
             {% if "deal" not in search_type %}
-             <span class="deal_filter">
+            <span class="deal_filter">
                 <input class="form-check-input" type="checkbox"  value="deal" name="search-type"  onchange="changeFilter()" id="deal2">
-                <label for="deal2"> 거래중 </label>
+                <label for="deal2" class="deal-label"> 거래중 </label>
             </span>
             {% endif %}
+            <button id="hidden-form-submit" type="submit" hidden>제출</button>
+            </div>
         </div>
-        <button id="hidden-form-submit" type="submit" hidden>제출</button>
     </form>
 
     {% if object_list %}
