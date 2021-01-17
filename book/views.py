@@ -60,6 +60,7 @@ class BookList(ListView):
 
         return context
 
+@login_required(login_url='user:login')
 def update_list(request):
     first_books = Book.objects.all().order_by('-id')
     old_list = request.GET.getlist('object_list', None)
