@@ -180,3 +180,11 @@ def my_posts(request):
     else:
         pass
     return render(request, 'user/my_posts.html', {'books': books})
+
+
+def terms_of_service(request):
+    return render(request, 'user/terms_of_service.html')
+
+
+def privacy_policy(request):
+    return render(request, 'user/privacy_policy.html')

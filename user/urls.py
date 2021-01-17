@@ -20,4 +20,7 @@ urlpatterns = [
     path('change_username/', views.change_username, name='change_username'),
 
     path('my_posts/', views.my_posts, name='my_posts'),
+
+    path('terms_of_service/', views.terms_of_service, name='terms_of_service'),
+    path('privacy_policy/', views.privacy_policy, name='privacy_policy'),
 ]
