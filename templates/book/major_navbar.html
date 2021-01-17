@@ -1,6 +1,6 @@
 {% load static %}
 {% block styles %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/book_list.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/book_list2.css' %}">
 {% endblock %}
 
 <script type="text/javascript">
@@ -32,57 +32,63 @@ function changeMajorSelect(){
 </script>
 
 <div class="container">
-    <form action="{% url 'book:search' %}" method="post"> {% csrf_token %}
-        <input class="search_input" type="search" placeholder="     도서 검색 (수업, 책제목, 저자 등)" name="q"  style="padding-left:20px;">
-        <button type="submit" class="btn_search" > <img src="{% static 'img/search_btn.png' %}" alt="" height="45" width="43"> </button>
+    <div class="wrapper">
+        <form method="post">
+        <select id="up_category_menu" name="up_category_menu" onchange="changeMajorSelect()">
+            {% if object.major_category == '전체' %}
+                <option value="all" selected> 전체 </option>
+                <option value="major1"  > {{user.first_major}} </option>
+                {% if user.second_major != "" %}
+                    <option value="major2"> {{user.second_major}} </option>
+                {% endif %}
+                {% if user.third_major != "" %}
+                    <option value="major3"> {{user.third_major}} </option>
+                {% endif %}
+            {% endif %}
+
+            {% if object.major_category == user.first_major %}
+                <option value="all" > 전체 </option>
+                <option value="major1" selected > {{user.first_major}} </option>
+                {% if user.second_major != "" %}
+                    <option value="major2"> {{user.second_major}} </option>
+                {% endif %}
+                {% if user.third_major != "" %}
+                    <option value="major3"> {{user.third_major}} </option>
+                {% endif %}
+            {% endif %}
+
+            {% if object.major_category == user.second_major %}
+                <option value="all" > 전체 </option>
+                <option value="major1"  > {{user.first_major}} </option>
+                {% if user.second_major != "" %}
+                    <option value="major2" selected> {{user.second_major}} </option>
+                {% endif %}
+                {% if user.third_major != "" %}
+                    <option value="major3"> {{user.third_major}} </option>
+                {% endif %}
+            {% endif %}
+
+            {% if object.major_category == user.third_major %}
+                <option value="all"> 전체 </option>
+                <option value="major1" > {{user.first_major}} </option>
+                {% if user.second_major != "" %}
+                    <option value="major2"> {{user.second_major}} </option>
+                {% endif %}
+                {% if user.third_major != "" %}
+                    <option value="major3" selected> {{user.third_major}} </option>
+                {% endif %}
+            {% endif %}
+        </select>
+        <hr id="line_major_bar">
     </form>
-    <button type="button" id="btn_create" onclick="location.href='{% url 'book:create' %}'" >전공책 등록하기</button>
-    <form method="post">
-    <select id="up_category_menu" name="up_category_menu" onchange="changeMajorSelect()">
-        {% if object.major_category == '전체' %}
-            <option value="all" selected> 전체 </option>
-            <option value="major1"  > {{user.first_major}} </option>
-            {% if user.second_major != "" %}
-                <option value="major2"> {{user.second_major}} </option>
-            {% endif %}
-            {% if user.third_major != "" %}
-                <option value="major3"> {{user.third_major}} </option>
-            {% endif %}
-        {% endif %}
+            <button type="button" id="btn_create" onclick="location.href='{% url 'book:create' %}'" >전공책 등록하기</button>
+    </div>
 
-        {% if object.major_category == user.first_major %}
-            <option value="all" > 전체 </option>
-            <option value="major1" selected > {{user.first_major}} </option>
-            {% if user.second_major != "" %}
-                <option value="major2"> {{user.second_major}} </option>
-            {% endif %}
-            {% if user.third_major != "" %}
-                <option value="major3"> {{user.third_major}} </option>
-            {% endif %}
-        {% endif %}
+    <div class="wrapper">
+        <form action="{% url 'book:search' %}" method="post" id="search_form"> {% csrf_token %}
+            <input class="search_input" type="search" placeholder="     도서 검색 (수업, 책제목, 저자 등)" name="q" value="{{q}}">
+            <button type="submit" class="btn_search" > <img src="{% static 'img/search_btn.png' %}" alt="" height="45" width="43"> </button>
+        </form>
+    </div>
 
-        {% if object.major_category == user.second_major %}
-            <option value="all" > 전체 </option>
-            <option value="major1"  > {{user.first_major}} </option>
-            {% if user.second_major != "" %}
-                <option value="major2" selected> {{user.second_major}} </option>
-            {% endif %}
-            {% if user.third_major != "" %}
-                <option value="major3"> {{user.third_major}} </option>
-            {% endif %}
-        {% endif %}
-
-        {% if object.major_category == user.third_major %}
-            <option value="all"> 전체 </option>
-            <option value="major1" > {{user.first_major}} </option>
-            {% if user.second_major != "" %}
-                <option value="major2"> {{user.second_major}} </option>
-            {% endif %}
-            {% if user.third_major != "" %}
-                <option value="major3" selected> {{user.third_major}} </option>
-            {% endif %}
-        {% endif %}
-    </select>
-    </form>
-    <hr id="line_major_bar">
 </div>

@@ -24,6 +24,14 @@
     border: 0.125rem solid #E0E0E0;
     transform: rotate(-0.07deg);
 }
+
+#search_bar{
+    width: 46.88rem;
+    height: 0rem;
+    border: 0.125rem solid #E0E0E0;
+    transform: rotate(-0.07deg);
+    margin-bottom: 1rem;
+}
 #search_form{
     display:flex;
     justify-content:center;
@@ -79,17 +87,10 @@ form input{
     background: #FF9F46;
     display:flex;
     justify-content:center;
+    align-items: center;
     margin-bottom: 1rem;
 }
 
-.free_filter{
-    width: 200px;
-    height: 60px;
-}
-.deal_filter{
-    width: 12.5rem;
-    height: 3.75rem;
-}
 .filter-txt{
     font-family: Inter;
     font-style: normal;
@@ -99,6 +100,15 @@ form input{
     color: #FFFFFF;
     margin-right: 8rem;
 }
+.free_filter{
+    width: 200px;
+    height: 60px;
+}
+.deal_filter{
+    width: 12.5rem;
+    height: 3.75rem;
+}
+
 .free-label{
     padding-left:3.75rem;
     padding-top: 0.625rem;
@@ -135,7 +145,6 @@ input[type="checkbox"] {
 
 
 table{
-
 /*
     display: flex;
     align-items: center;
@@ -235,7 +244,10 @@ button:focus {
     color: #757575;
     height:  3.125rem;
     width: 46.88rem;
-    margin: 15rem 25rem;
+    display:flex;
+    justify-content:center;
+    margin: auto;
+    margin-top: 5rem
 
 }
 .search_word{
@@ -247,6 +259,8 @@ button:focus {
     /* or 222% */
     text-align: center;
     color: #757575;
+        height: 3.125rem;
+    width: 46.88rem;
 }
 
 

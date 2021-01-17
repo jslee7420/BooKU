@@ -1,14 +1,16 @@
 {% extends "base.html" %}
 {% load static %}
 {% block styles %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/book_delete.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/book_delete2.css' %}">
 {% endblock %}
 {% block content %}
+
 {% include 'book/major_navbar.html'%}
+<div class="wrapper">
+  <div class="filtering-box"> <span class="filter-txt"> 도서 삭제 페이지 </span> </div>
+</div>
+
 <div class="container">
-
-  <div class="filtering-box"> <span class="filter-txt" style="left:43%;"> 도서 삭제 페이지 </span> </div>
-
   <div class="delete_all_contents">
     <div class="book_delete" role="alert">
       {{object.title}} 도서를 목록에서 삭제하시겠습니까?

@@ -2,30 +2,63 @@
 {% load static %}
 
 {% block styles %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/book_detail.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/book_detail2.css' %}">
 {% endblock %}
 
 {% block content %}
 <script type="text/javascript" src="{% static 'js/show_state_box.js' %}"></script>
 
-<div>
-    {% include 'book/major_navbar.html'%}
-    <div class="medium-box"> 도서 상세 페이지</div>
-    <!--<div><button onclick ="location.href='{% url 'book:index' %}'" class="btn_book_delete">이전</button></div>-->
+
+
+{% include 'book/major_navbar.html'%}
+
+<div class="wrapper filter">
+    <div class="filtering-box"> <span class="filter-txt"> 도서 상세 페이지 </span></div>
+</div>
+
+<div class="container">
+    <div class="all">
+    <div class="left">
     <img src=" {{ object.image.url }}" class="book_detail_image" alt="..." height="130" width="100">
-      <div class="all_detail">
-          <div class="book_detail_title"> <span style="font-weight: 600;font-size: 38px;"> {{ object.title }} </span> <br> <span style="font-weight: 600;font-size: 20px;"> {{ object.writer }}</span> <span style="font-size: 20px;"> 지음 </span></div>
-          <div class="book_writer_date"> 판매자: <span style="font-weight: 600;"> {{ object.author }}</span> <br>
-              {% if object.created == object.updated %}
-                <p class="book_detail_date">{{ object.updated }} </p>
-              {% else %}
-              <p class="book_detail_date">{{ object.created }} </p>
-              {% endif %}
-          </div>
+            {% if object.deal_flag == 1 %} <!-- 거래중 -->
+            <div class="deal_text"> 거래중인 도서입니다. </div>
+            {% if user == object.author %}
+            <button onclick ="location.href='{% url 'book:update_deal' object.id %}'" class="btn_deal">거래 완료</button>
+            {% endif %}
+        {% endif %}
+
+        {% if object.deal_flag == 0 %} <!-- 거래 중이 아닐때 -->
+            <div class="deal_text"> 거래 완료된 도서입니다. </div>
+            {% if user == object.author %}
+            <button onclick ="location.href='{% url 'book:update_deal' object.id %}'"  class="btn_deal">거래다시시작</button>
+            {% endif %}
+        {% endif %}
+    </div>
+
+      <div class="right">
+          <div class="row first">
+              <div class="left">
+                <div class="book_detail_title">
+                  <span style="font-weight: 600;font-size:  2.375rem;"> {{ object.title }} </span> <br>
+                  <span style="font-weight: 600;font-size: 1.25rem;"> {{ object.writer }}</span>
+                  <span style="font-size: 1.25rem;"> 지음 </span>
+                </div>
+              </div>
+
+              <div class="right">
+              <div class="book_writer_date"> 판매자: <span style="font-weight: 600;"> {{ object.author }}</span> <br>
+                  {% if object.created == object.updated %}
+                    <p class="book_detail_date">{{ object.updated }} </p>
+                  {% else %}
+                  <p class="book_detail_date">{{ object.created }} </p>
+                  {% endif %}
+              </div>
+              </div>
           <hr class="book_detail_line">
+          </div>
           <div class="book_medium_detail">
               <div class="book_price">가격:
-                  <span style="font-weight: 600;font-size: 20px;">
+                  <span style="font-weight: 600;font-size: 1.25rem;">
                       {% if object.price == 0  %}
                         무료나눔
                       {% else %}
@@ -51,7 +84,6 @@
                   </div>
               </div>
               </div>
-              <!-- <div id="fade" class="black_overlay"></div> -->
 
                 {% if object.state == '하' %}
               <div class="all_radio">
@@ -173,23 +205,7 @@
                 <button onclick ="location.href='{% url 'book:delete' object.id %}'" class="btn delete">삭제</button>
             </div>
           {% endif %}
-
-
-        {% if object.deal_flag == 1 %} <!-- 거래중 -->
-            <div class="deal_text"> 거래중인 도서입니다. </div>
-            {% if user == object.author %}
-            <button onclick ="location.href='{% url 'book:update_deal' object.id %}'" class="btn_deal">거래 완료</button>
-            {% endif %}
-        {% endif %}
-
-        {% if object.deal_flag == 0 %} <!-- 거래 중이 아닐때 -->
-            <div class="deal_text"> 거래 완료된 도서입니다. </div>
-            {% if user == object.author %}
-            <button onclick ="location.href='{% url 'book:update_deal' object.id %}'"  class="btn_deal">거래다시시작</button>
-            {% endif %}
-        {% endif %}
-
-
+      </div>
 </div>
 </div>
 {% endblock %}

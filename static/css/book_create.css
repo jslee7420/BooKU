@@ -311,9 +311,7 @@ form textarea {
 
 .white_content {
     display: none;
-    position: absolute;
-    top: 42%;
-    left: 40%;
+
     width: 20rem;
     height: 7.188rem;
     padding: 16px;
@@ -329,9 +327,6 @@ form textarea {
     font-size: 0.75rem;
 }
 .btn_state{
-    position: absolute;
-    top: 42%;
-    left: 36%;
     border: 0;
     outline:0;
     background-color: #FFFFFF;

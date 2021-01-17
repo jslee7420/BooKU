@@ -20,72 +20,81 @@ function close_box(){
 </script>
 
 <div class="container">
-    <form action="{% url 'book:search' %}" method="post"> {% csrf_token %}
-        <input class="search_input" type="search" placeholder="     도서 검색 (수업, 책제목, 저자 등)" name="q" >
-        <button type="submit" class="btn_search" > <img src="{% static 'img/search_btn.png' %}" alt="" height="45" width="43"> </button>
-    </form>
-    <button type="button" id="btn_create" onclick="location.href='{% url 'book:create' %}'" >전공책 등록하기</button>
-    <div class="search_word"> "{{ q }}" 검색 결과</div>
-    <hr id="line_major_bar">
+    <div class="wrapper">
+        <div class="search_word"> "{{ q }}" 검색 결과 <hr id="line_major_bar"> </div>
+
+        <button type="button" id="btn_create" onclick="location.href='{% url 'book:create' %}'" >전공책 등록하기</button>
+    </div>
+
+    <div class="wrapper">
+        <form action="{% url 'book:search' %}" method="post" id="search_form"> {% csrf_token %}
+            <input class="search_input" type="search" placeholder="     도서 검색 (수업, 책제목, 저자 등)" name="q" >
+            <button type="submit" class="btn_search" > <img src="{% static 'img/search_btn.png' %}" alt="" height="45" width="43"> </button>
+        </form>
+    </div>
+
+    <div class="wrapper filter">
     <div class="filtering-box"> <span class="filter-txt" style="left:45%;"> 도서 검색 페이지 </span> </div>
+    </div>
 
     {% if not books %}
         <div class="no_search">검색 결과가 없습니다</div>
     {% else %}
 
-<table id="book_table">
-    <thead>
-        <th>사진</th>
-        <th>제목(저자)</th>
-        <th>학과+수업</th>
-        <th>
-            상태
-            <button class="btn_stated" onclick="show_box()"> <img src="{% static 'img/state_standard.png' %}" alt="" height="19" width="19"> </button>
-            <div class="state_box">
-              <div id="state_detail2" class="list_state_content">
-                  <span style="font-weight: bold; font-size: 14px;"> BooKU 도서 상태 기준 안내</span><button class="btn_closed_state" onclick="close_box()"><img src="{% static 'img/state_standard.png' %}" alt="" height="19" width="19"></button>
-                  <div class="state_box_text2" align="left">
-                      <span style="font-weight: bold;"> 최상:</span> 새것과 같은 상태 <br>
-                      <span style="font-weight: bold;"> 상:</span> 약간의 필기감 <br>
-                      <span style="font-weight: bold;"> 보통:</span> 헌 부분 있음, 필기감, 사용감 있음 <br>
-                      <span style="font-weight: bold;"> 하:</span> 찢김, 심한 낙서, 페이지 유실
-                  </div>
-              </div>
-            </div>
-        </th>
+    <table id="book_table">
+            <thead>
+                <th>사진</th>
+                <th>제목(저자)</th>
+                <th>학과+수업</th>
+                <th>
+                    상태
+                    <button class="btn_stated" onclick="show_box()"> <img src="{% static 'img/state_standard.png' %}" alt="" height="19" width="19"> </button>
+                    <div class="state_box">
+                      <div id="state_detail2" class="list_state_content">
+                          <span style="font-weight: bold; font-size: 14px;"> BooKU 도서 상태 기준 안내</span><button class="btn_closed_state" onclick="close_box()"><img src="{% static 'img/state_standard.png' %}" alt="" height="19" width="19"></button>
+                          <div class="state_box_text2" align="left">
+                              <span style="font-weight: bold;"> 최상:</span> 새것과 같은 상태 <br>
+                              <span style="font-weight: bold;"> 상:</span> 약간의 필기감 <br>
+                              <span style="font-weight: bold;"> 보통:</span> 헌 부분 있음, 필기감, 사용감 있음 <br>
+                              <span style="font-weight: bold;"> 하:</span> 찢김, 심한 낙서, 페이지 유실
+                          </div>
+                      </div>
+                    </div>
+                </th>
 
-        <th>가격</th>
-        <th>거래가능</th>
-    </thead>
+                <th>가격</th>
+                <th>거래가능</th>
+            </thead>
 
-    <tbody>
-    {% for book in books.all %}
-        <tr class="tabel_row" onclick="location.href='{% url 'book:detail' book.id %}'">
-                    <td><a href="{% url 'book:detail' book.id %}">
-                        {% if book.image.url != "" %}
-                            <img src=" {{ book.image.url }}" class="book_list_img" alt="..." height="94px" width="99px">
-                        {% endif %}
-                        </a>
-                    </td>
-                    <td><div style="font-size: 22px;">{{ book.title|truncatechars:30 }}</div> <br> <div style="font-weight: normal;"> 저자: {{ book.writer }}</div> </td>
-                    <td> <div style="font-weight: normal;">{{ book.major_category }}</div> <br> <div style="font-size: 21px;"> {{ book.lecture }}</div> </td>
-                    <td> {{ book.state }}  </td>
-                    <td>
-                        {% if book.price == 0 %}
-                            무료나눔
-                        {% else %}
-                            {{ book.price }}₩
-                        {% endif %}
-                    </td>
-                    <td>
-                        {% if book.deal_flag == 1 %} 거래중 {% endif %}
-                        <div style="color:#ADADAD;">{% if book.deal_flag == 0 %} 거래완료 {% endif %}</div>
-                    </td>
-                </tr>
-    {% endfor %}
-    {% endif %}
+            <tbody>
+                {% for book in books.all %}
+                        <tr class="tabel_row" onclick="location.href='{% url 'book:detail' book.id %}'">
+                            <td><a href="{% url 'book:detail' book.id %}">
+                                {% if object.image.url != "" %}
+                                    <img src=" {{ book.image.url }}" class="book_list_img" alt="..." height="94px" width="99px">
+                                {% endif %}
+                                </a>
+                            </td>
+                            <td><div style="font-size: 22px;">{{ book.title|truncatechars:30 }}</div> <br> <div style="font-weight: normal;"> 저자: {{ book.writer }}</div> </td>
+                            <td> <div style="font-weight: normal;">{{ book.major_category }}</div> <br> <div style="font-size: 21px;"> {{ book.lecture }}</div> </td>
+                            <td> {{ book.state }}  </td>
+                            <td>
+                                {% if book.price == 0 %}
+                                    무료나눔
+                                {% else %}
+                                    {{ book.price }}₩
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if book.deal_flag == 1 %} 거래중 {% endif %}
+                                <div style="color:#ADADAD;">{% if book.deal_flag == 0 %} 거래완료 {% endif %}</div>
+
+                            </td>
+                        </tr>
+            {% endfor %}
     </tbody>
 </table>
+        {% endif %}
 </div>
 
 {% endblock %}
