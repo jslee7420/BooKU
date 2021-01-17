@@ -9,7 +9,7 @@ from django.urls import reverse
 from .models import User
 import jwt
 import json
-from .text import signup_message, change_pwd_message
+from .text import signup_message
 from config.my_settings import EMAIL
 from config.settings.base import SECRET_KEY
 

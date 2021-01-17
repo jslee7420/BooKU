@@ -23,6 +23,9 @@ li{
     list-style:none;
 }
 
+.header_main{
+    min-height: 100vh;
+}
 /* ------------------------------------------- */
 
 /* 제목: 공지사항, 마이페이지, 로그인, 로그아웃 */
@@ -120,3 +123,42 @@ header{
         font-size:0.8em;
     }
 }
+
+/* ------------------footer ------------------- */
+.footer {
+    background-color: rgba(0, 0.2, 0, 0.2);
+    height: 8rem;
+    width: 100%;
+    text-align: center;
+    padding: 0.8rem;
+  }
+  
+  .gray{
+    color: gray;
+  }
+  
+  
+  a.terms_of:link {
+    color: gray;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  
+  a.terms_of:visited {
+    color: gray;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  
+  a.terms_of:hover {
+    color: white;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  
+  a.terms_of:active {
+    color: white;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+/* -------------------------------------------- */

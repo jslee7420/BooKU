@@ -14,23 +14,43 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
-    <!-- custom CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
+    
+    
     {% block styles %}
     {% endblock %}
 </head>
 
 <body>
-    <header>
-        {% include "navbar.html" %}
-    </header>
-    <main>
-        {% block content %}
-        {% endblock %}
-    </main>
-    <!--footer 추가-->
+    <div class="header_main">
+        <header>
+            {% include "navbar.html" %}
+        </header>
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+    </div>
     
+    <!--footer 추가-->
+    <div class="footer">
+        <div>
+          <h4>BooKU</h4>
+          Contact Us | booku@outlook.kr
+          <div class="">
+            <a class="terms_of" href="">서비스이용약관</a>
+           <span class="gray">및</span>
+            <a class="terms_of" href="">개인정보처리방침</a>
+          </div>
+          <div>
+            © 2020 Copyright:
+            <a class="text-dark" href="https://booku.club/">BooKU.club</a>
+          </div>
+
+        </div>
+
+</div>
 </body>
 
 </html>
