@@ -9,7 +9,7 @@ from django.urls import reverse
 from .models import User
 import jwt
 import json
-from .text import signup_message, change_pwd_message
+from .text import signup_message
 from config.my_settings import EMAIL
 from config.settings.base import SECRET_KEY
 
@@ -180,3 +180,11 @@ def my_posts(request):
     else:
         pass
     return render(request, 'user/my_posts.html', {'books': books})
+
+
+def terms_of_service(request):
+    return render(request, 'user/terms_of_service.html')
+
+
+def privacy_policy(request):
+    return render(request, 'user/privacy_policy.html')

@@ -4,7 +4,6 @@ main{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    
 }
 
 section{
@@ -22,6 +21,7 @@ section{
     font-size: 1.5rem;
     width:25em;
     margin: 1em 0;
+    padding-left:0.5rem;
 }
 
 .index_img{
