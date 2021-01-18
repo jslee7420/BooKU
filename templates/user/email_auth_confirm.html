@@ -6,11 +6,11 @@
 {% block content %}
 
 <div class="content">
-    <h2>회원가입</h2>
-    <p>인증에 성공했습니다!</p>
+    <h1>회원가입<hr></h1>
+    <p class="quote">인증에 성공했습니다!</p>
     <div>
-        <img src="static/img/auth_confirm.svg" class="auth_confirm">
+        <img src="{% static 'img/auth_confirm.svg' %}" class="auth_confirm">
     </div>
-    <a href="{% url 'user:login' %}">로그인 하러가기</a>
+    <a class="submit_btn" href="{% url 'user:login' %}">로그인 하러가기</a>
 </div>
 {% endblock %}

@@ -14,8 +14,6 @@
     border-radius: nullpx;
     border:none;
     outline: none;
-    font-family: Inter;
-    font-style: normal;
     font-weight: 500;
     font-size: 1.875rem;
     text-align-last: center;
@@ -71,8 +69,6 @@ form input{
     outline:0;
     background: #FF8300;
     box-shadow: 0.3125rem  0.25rem  0.25rem rgba(0, 0, 0, 0.25);
-    font-family: Inter;
-    font-style: normal;
     font-weight: 500;
     font-size: 1.125rem;
     line-height: 1.688rem;
@@ -113,8 +109,6 @@ input[type="checkbox"] {
     height: 3.75rem;
 }
 .filter-txt{
-    font-family: Inter;
-    font-style: normal;
     font-weight: bold;
     font-size:  1.875rem;
     line-height:  1.813rem;
@@ -129,8 +123,6 @@ input[type="checkbox"] {
     top:5px;
     padding-left:3.75rem;
     padding-top: 0.625rem;
-    font-family: Inter;
-    font-style: normal;
     font-weight: bold;
     font-size: 1.5rem;
     line-height: 1.813rem;
@@ -142,8 +134,6 @@ input[type="checkbox"] {
     top:5px;
     padding-left:3.75rem;
     padding-top: 0.625rem;
-    font-family: Inter;
-    font-style: normal;
     font-weight: bold;
     font-size: 1.5rem;
     line-height: 1.813rem;
@@ -156,8 +146,6 @@ table{
 }
 th{
     text-align:center;
-    font-family: Inter;
-    font-style: normal;
     font-weight: 500;
     font-size: 1.125rem;
     line-height: 2.188rem;
@@ -174,8 +162,6 @@ td{
 
 .tabel_row{
     border-radius: 0.625rem;
-    font-family: Inter;
-    font-style: normal;
     font-weight: bold;
     color: #484848;
     font-size: 1.125rem;
@@ -239,8 +225,6 @@ button:focus {
     outline: none;
 }
 .no_search{
-    font-family: Inter;
-    font-style: normal;
     font-weight: 500;
     font-size: 2.25rem;
     line-height: 5rem;
@@ -256,8 +240,6 @@ button:focus {
 
 }
 .search_word{
-    font-family: Inter;
-    font-style: normal;
     font-weight: 500;
     font-size: 2.25rem;
     line-height: 5rem;
