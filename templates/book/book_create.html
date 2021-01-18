@@ -38,20 +38,21 @@
     <form id="form_book" class="form_book" action=" " method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {% include "form_errors.html" %}
-        <div class="rows">
+
+        <div class="rows two_columns">
             <div class="col1">
                 <input type="text" class="book_title_input" name="title" placeholder="제목" maxlength="50" required
-                    id="id_title" autocomplete="off">
+                    id="id_title" autocomplete="off" value="{{form.title.value|default_if_none:''}}">
             </div>
             <div class="col2">
                 <input type="text" class="book_writer_input " autocomplete="off" maxlength="50" placeholder="저자"
-                    name="writer" required id="id_writer">
+                    name="writer" required id="id_writer" value="{{form.writer.value|default_if_none:''}}">
             </div>
         </div>
 
-        <div class="rows">
+        <div class="rows two_columns">
             <div class="col1">
-                <label for="id_major">전공 카테고리</label>
+                <label class="form_label" for="id_major">전공 카테고리</label>
                 <select name="major_category" form="form_book" id="id_major">
                     <option value="전체" selected>전체</option>
                     <optgroup label="원전공">
@@ -68,18 +69,17 @@
                 </select>
             </div>
             <div class="col2">
-                <label for="id_lecture" id="book_lecture">수업</label>
+                <label class="form_label" for="id_lecture" id="book_lecture">수업</label>
                 <input type="text" class="book_lecture_input" autocomplete="off" name="lecture" maxlength="100" required
-                    id="id_lecture">
+                    id="id_lecture" value="{{form.lecture.value|default_if_none:''}}">
             </div>
         </div>
-
         <div class="rows">
-            <div>
-            <label>도서 상태</label>
-            <button class="btn_state" onclick="show_box()"> <img src="{% static 'img/state_standard.png' %}" alt=""
-                    height="19" width="19"> </button>
-               </div>
+            <div class="book_state">
+                <span class="book_state_label">도서 상태</span>
+                <button class="btn_state" onclick="show_box()"> <img src="{% static 'img/state_standard.png' %}" alt=""
+                        height="19" width="19"> </button>
+            </div>
             <div class="state_box">
                 <div id="state_detail" class="white_content">
                     <span style="font-weight: bold;"> BooKU 도서 상태 기준 안내</span> <button class="btn_close_state"
@@ -118,41 +118,42 @@
                 </label>
             </div>
         </div>
-
-        <div class="rows book_price">
-            <label for="id_price" id="book_price">가격</label>
-            <div>
-                <input type="number" class="book_price_input" autocomplete="off" name="price" min="0" required
-                    id="id_price">
-                <input type="text" id="unit" readonly value="&#8361;">
-                <label class="free_btn">
-                    <input class="book_price_input freebox" id="free_btn" name="freebox" onchange="free()"
-                        type="checkbox">
-                    <span class="checkmark2"></span>무료나눔
-                </label>
+        <div class="rows">
+            <div class="book_price">
+                <label class="form_label" for="id_price" id="book_price">가격</label>
+                <div class="price">
+                    <input type="number" class="book_price_input" autocomplete="off" name="price" min="0"
+                        id="id_price" value="{{form.price.value|default_if_none:''}}">
+                    <input type="text" id="unit" readonly value="&#8361;">
+                    <label class="free_btn">
+                        <input class="book_price_input freebox" id="free_btn" name="freebox" onchange="free()"
+                            type="checkbox">
+                        <span class="checkmark2"></span>무료나눔
+                    </label>
+                </div>
             </div>
         </div>
-
         <div class="rows">
+            <label class="form_label">사진 및 게시글(선택)</label>
+            <div class="two_columns">
+                <div class="book_image">
+                    <label class="book_image_input" for="id_image">+</label>
+                    <input type="file" class="" name="image" id="id_image" hidden="true" accept="image/*">
+                </div>
+                <div class="book_text">
+                    <textarea name="text" class="book_text_input" form="form_book" cols="40" two_columns="5"
+                        placeholder="여기에 입력해 주세요." id="id_text" value="{{form.text.value|default_if_none:''}}"></textarea>
+                </div>
+            </div>
 
-            <label>사진 및 게시글(선택)</label>
-            <div class="book_image">
-                <label class="book_image_input" for="id_image">+</label>
-                <input type="file" class="" name="image" required id="id_image" hidden="true" accept="image/*">
-            </div>
-            <div class="book_text">
-                <textarea name="text" class="book_text_input" form="form_book" cols="40" rows="5"
-                    placeholder="여기에 입력해 주세요." required id="id_text"></textarea>
-            </div>
         </div>
-
         <div class="rows">
-            <label for="id_chatting" id="book_chatting">오픈채팅 주소</label>
-            <input type="url" class="book_chatting_input" autocomplete="off" name="kakaoUrl" required id="id_chatting">
+            <label class="form_label" for="id_chatting" id="book_chatting">오픈채팅 주소</label>
+            <input type="url" class="book_chatting_input" autocomplete="off" name="kakaoUrl" id="id_chatting">
         </div>
         <div class="btns">
             <input type="submit" value="등록하기" class="submit_btn">
-            <button type="button" onclick="location.href='{% url 'book:index' %}'" class="submit_btn">취소</button>
+            <button class="submit_btn" type="button" onclick="location.href='{% url 'book:index' %}'">취소</button>
         </div>
     </form>
 </div>

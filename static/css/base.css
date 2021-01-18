@@ -55,7 +55,7 @@ input[type=text],input[type=password],input[type=number],input[type=url]{
     font-weight: 600;
     font-size: 1.25rem;
     padding:0.5em 0.5em;
-    border-radius: 10px;
+    border-radius: 0.625rem;
     border:none;
     background: #F2F2F2;
     width: 100%;
@@ -67,6 +67,12 @@ input[type=text]::placeholder,input[type=password]::placeholder {
 
 input:focus{
     outline: none;
+}
+
+.form_label {
+    font-weight: 600;
+    font-size: 1.4rem;
+    color: #5C5C5C;
 }
 
 .submit_btn{

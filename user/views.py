@@ -174,12 +174,12 @@ def my_posts(request):
     """
     내 게시물 관리
     """
-    books = Book.objects.filter(author=request.user)
+    object_list = Book.objects.filter(author=request.user)
     if request.method == 'POST':
         pass
     else:
         pass
-    return render(request, 'user/my_posts.html', {'books': books})
+    return render(request, 'user/my_posts.html', {'object_list': object_list})
 
 
 def terms_of_service(request):
