@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block styles %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/book_detail2.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/book_detail.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -10,202 +10,160 @@
 
 
 
-{% include 'book/major_navbar.html'%}
-
-<div class="wrapper filter">
-    <div class="filtering-box"> <span class="filter-txt"> 도서 상세 페이지 </span></div>
+<div class="cross_bar text-center">
+    <p class="page_description py-2"> 도서 상세 페이지 </p>
 </div>
 
-<div class="container">
-    <div class="all">
-    <div class="left">
-    <img src=" {{ object.image.url }}" class="book_detail_image" alt="..." height="130" width="100">
-            {% if object.deal_flag == 1 %} <!-- 거래중 -->
-            <div class="deal_text"> 거래중인 도서입니다. </div>
-            {% if user == object.author %}
-            <button onclick ="location.href='{% url 'book:update_deal' object.id %}'" class="btn_deal">거래 완료</button>
-            {% endif %}
-        {% endif %}
+<div class="container my-5">
+    <div class="content_width">
+        <div class="row justify-content-between">
+            <div class="col-md-5 my-3 pe-0">
+                <div class="img_box mb-3">
+                    <img src=" {{ object.image.url }}" class="book_detail_image" alt="...">
+                </div>
+                {% if object.deal_flag == 1 %}
+                <!-- 거래중 -->
+                {% if user == object.author %}
+                <button onclick="location.href='{% url 'book:update_deal' object.id %}'" class="submit_btn w-100">거래
+                    완료</button>
+                {% endif %}
+                {% endif %}
 
-        {% if object.deal_flag == 0 %} <!-- 거래 중이 아닐때 -->
-            <div class="deal_text"> 거래 완료된 도서입니다. </div>
-            {% if user == object.author %}
-            <button onclick ="location.href='{% url 'book:update_deal' object.id %}'"  class="btn_deal">거래다시시작</button>
-            {% endif %}
-        {% endif %}
+                {% if object.deal_flag == 0 %}
+                <!-- 거래 중이 아닐때 -->
+                <div class="deal_text"> 거래 완료된 도서입니다. </div>
+                {% if user == object.author %}
+                <button onclick="location.href='{% url 'book:update_deal' object.id %}'"
+                    class="submit_btn w-100">거래다시시작</button>
+                {% endif %}
+                {% endif %}
+            </div>
+            <div class="col-md-6 my-3">
+                <div class="row">
+                    <div class="col">
+                        <p class="title mb-1">{{ object.title }}</p>
+                        <p class="writer mb-1"><span>{{ object.writer }}</span> 지음</p>
+                    </div>
+                    <div class="col text-end">
+                        {% if user == object.author %}
+                        <div class="btn_update_delete text-end">
+                            <a href="{% url 'book:update' object.id %}">수정</a>|<a class="delete_btn"
+                                data-bs-toggle="modal" data-bs-target="#exampleModal">삭제</a>
+                        </div>
+                        {% endif %}
+                        <p class="author mb-1">판매자:<span>{{ object.author }}</span></p>
+                        <p class="upload_date mb-1">
+                            {% if object.created == object.updated %}
+                            {{ object.updated.date }}
+                            {% else %}
+                            {{ object.created.date }}
+                            {% endif %}
+                        </p>
+                    </div>
+                    <hr>
+                </div>
+                <div class="row">
+                    <p class="price mb-1">
+                        가격:
+                        <span>
+                            {% if object.price == 0  %}
+                            무료나눔
+                            {% else %}
+                            {{ object.price }}₩
+                            {% endif %}
+                        </span>
+                    </p>
+                    <p class="m-0">학과: {{ object.major_category }}</p>
+                    <p class="m-0">수업: {{ object.lecture }}</p>
+                    <div class="book_state my-3">
+                        상태
+                        <!-- <button class="btn_state" onclick="show_box()"> <img src="{% static 'img/state_standard.png' %}" alt="" height="19" width="19"> </button> :
+                        <div class="state_box">
+                        <div id="state_detail" class="white_content">
+                            <span style="font-weight: bold;"> BooKU 도서 상태 기준 안내</span> <button class="btn_close_state" onclick="close_box()"><img src="{% static 'img/state_standard.png' %}" alt="" height="19" width="19"></button>
+                            <br>
+                            <div class="state_box_txt">
+                                <span style="font-weight: bold;"> 최상:</span> 새것과 같은 상태 <br>
+                                <span style="font-weight: bold;"> 상:</span> 약간의 필기감 <br>
+                                <span style="font-weight: bold;"> 보통:</span> 헌 부분 있음, 필기감, 사용감 있음 <br>
+                                <span style="font-weight: bold;"> 하:</span> 찢김, 심한 낙서, 페이지 유실
+                            </div>
+                        </div> -->
+                        <div class="book_state_graphic d-flex justify-content-between">
+                            <hr class="gradation_line m-0">
+                            <div class="perfect d-flex flex-column align-items-center">
+                                {% if object.state == '최상' %}
+                                <div class="active_circle">
+                                </div>
+                                {% else %}
+                                <div class="circle">
+                                </div>
+                                {% endif %}
+                                최상
+                            </div>
+                            <div class="good  d-flex flex-column align-items-center">
+                                {% if object.state == '상' %}
+                                <div class="active_circle">
+                                </div>
+                                {% else %}
+                                <div class="circle">
+                                </div>
+                                {% endif %}
+                                상
+                            </div>
+                            <div class="ok  d-flex flex-column align-items-center">
+                                {% if object.state == '보통' %}
+                                <div class="active_circle">
+                                </div>
+                                {% else %}
+                                <div class="circle">
+                                </div>
+                                {% endif %}
+                                보통
+                            </div>
+                            <div class="bad  d-flex flex-column align-items-center">
+                                {% if object.state == '하' %}
+                                <div class="active_circle">
+                                </div>
+                                {% else %}
+                                <div class="circle">
+                                </div>
+                                {% endif %}
+                                하
+                            </div>
+                        </div>
+                        <div class="card my-3">
+                            <div class="card-body">
+                                {{ object.text }}
+                            </div>
+                        </div>
+                        <div class="my-3">오픈채팅 링크: <a href="{{ object.kakaoUrl }}"> {{ object.kakaoUrl }} </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-      <div class="right">
-          <div class="row first">
-              <div class="left">
-                <div class="book_detail_title">
-                  <span style="font-weight: 600;font-size:  2.375rem;"> {{ object.title }} </span> <br>
-                  <span style="font-weight: 600;font-size: 1.25rem;"> {{ object.writer }}</span>
-                  <span style="font-size: 1.25rem;"> 지음 </span>
-                </div>
-              </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center">
+                <button type="button" class="btn-close align-self-end mt-3 me-3" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+                <div class="modal-body d-flex flex-column justify-content-between">
+                    <h5 class="modal-title text-center mb-2" id="exampleModalLabel">해당 도서를 삭제하시겠습니까?</h5>
+                    <p class="text-center descript">삭제한 도서는 복구가 불가능합니다.</p>
+                    <div>
+                        <form method="post" action="{% url 'book:delete' object.id %}">
+                            {% csrf_token %}
+                            <button class="submit_btn my-3 me-3" type="submit">삭제</a>
+                            <button type="button" class="submit_btn cancel_btn" data-bs-dismiss="modal" aria-label="Close">취소</button>
+                        </form>
 
-              <div class="right">
-              <div class="book_writer_date"> 판매자: <span style="font-weight: 600;"> {{ object.author }}</span> <br>
-                  {% if object.created == object.updated %}
-                    <p class="book_detail_date">{{ object.updated }} </p>
-                  {% else %}
-                  <p class="book_detail_date">{{ object.created }} </p>
-                  {% endif %}
-              </div>
-              </div>
-          <hr class="book_detail_line">
-          </div>
-          <div class="book_medium_detail">
-              <div class="book_price">가격:
-                  <span style="font-weight: 600;font-size: 1.25rem;">
-                      {% if object.price == 0  %}
-                        무료나눔
-                      {% else %}
-                        {{ object.price }}₩
-                      {% endif %}
-                  </span>
-              </div>
-          <div class="book_major">학과: {{ object.major_category }} </div>
-          <div class="book_lecture">수업: {{ object.lecture }} </div>
-          </div>
-            <br>
-          <div class="book_state"> 상태
-              <button class="btn_state" onclick="show_box()"> <img src="{% static 'img/state_standard.png' %}" alt="" height="19" width="19"> </button> :
-              <div class="state_box">
-              <div id="state_detail" class="white_content">
-                  <span style="font-weight: bold;"> BooKU 도서 상태 기준 안내</span> <button class="btn_close_state" onclick="close_box()"><img src="{% static 'img/state_standard.png' %}" alt="" height="19" width="19"></button>
-                  <br>
-                  <div class="state_box_txt">
-                      <span style="font-weight: bold;"> 최상:</span> 새것과 같은 상태 <br>
-                      <span style="font-weight: bold;"> 상:</span> 약간의 필기감 <br>
-                      <span style="font-weight: bold;"> 보통:</span> 헌 부분 있음, 필기감, 사용감 있음 <br>
-                      <span style="font-weight: bold;"> 하:</span> 찢김, 심한 낙서, 페이지 유실
-                  </div>
-              </div>
-              </div>
-
-                {% if object.state == '하' %}
-              <div class="all_radio">
-                <div class="state">
-                <hr class="gradation_line">
-                <label class="state_btn">
-                    <input type="radio" name="state" value="하" checked>
-                    <span class="checkmark gradation1"></span>
-                    하
-                </label>
-                <label class="state_btn">
-                    <input type="radio" name="state" value="보통" disabled>
-                    <span class="checkmark gradation2"></span>
-                    보통
-                </label>
-                <label class="state_btn">
-                    <input type="radio" name="state" value="상" disabled>
-                    <span class="checkmark gradation3"></span>
-                    상
-                </label>
-                <label class="state_btn">
-                    <input type="radio" name="state" value="최상" disabled>
-                    <span class="checkmark gradation4"></span>
-                    최상
-                </label>
+                    </div>
                 </div>
-              </div>
-               {% endif %}
-                {% if object.state == '보통' %}
-              <div class="all_radio">
-                <div class="state">
-                <hr class="gradation_line">
-                <label class="state_btn">
-                    <input type="radio" name="state" value="하" disabled>
-                    <span class="checkmark gradation1"></span>
-                    하
-                </label>
-                <label class="state_btn">
-                    <input type="radio" name="state" value="보통" checked>
-                    <span class="checkmark gradation2"></span>
-                    보통
-                </label>
-                <label class="state_btn">
-                    <input type="radio" name="state" value="상" disabled>
-                    <span class="checkmark gradation3"></span>
-                    상
-                </label>
-                <label class="state_btn">
-                    <input type="radio" name="state" value="최상" disabled>
-                    <span class="checkmark gradation4"></span>
-                    최상
-                </label>
-                </div>
-              </div>
-                {% endif %}
-                    {% if object.state == '상' %}
-              <div class="all_radio">
-                <div class="state">
-                <hr class="gradation_line">
-                <label class="state_btn">
-                    <input type="radio" name="state" value="하" disabled>
-                    <span class="checkmark gradation1"></span>
-                    하
-                </label>
-                <label class="state_btn">
-                    <input type="radio" name="state" value="보통" disabled>
-                    <span class="checkmark gradation2"></span>
-                    보통
-                </label>
-                <label class="state_btn">
-                    <input type="radio" name="state" value="상" checked>
-                    <span class="checkmark gradation3"></span>
-                    상
-                </label>
-                <label class="state_btn">
-                    <input type="radio" name="state" value="최상" disabled>
-                    <span class="checkmark gradation4"></span>
-                    최상
-                </label>
-                </div>
-              </div>
-                {% endif %}
-                    {% if object.state == '최상' %}
-              <div class="all_radio">
-                <div class="state">
-                <hr class="gradation_line">
-                <label class="state_btn">
-                    <input type="radio" name="state" value="하" disabled>
-                    <span class="checkmark gradation1"></span>
-                    하
-                </label>
-                <label class="state_btn">
-                    <input type="radio" name="state" value="보통" disabled>
-                    <span class="checkmark gradation2"></span>
-                    보통
-                </label>
-                <label class="state_btn">
-                    <input type="radio" name="state" value="상" disabled>
-                    <span class="checkmark gradation3"></span>
-                    상
-                </label>
-                <label class="state_btn">
-                    <input type="radio" name="state" value="최상" checked>
-                    <span class="checkmark gradation4"></span>
-                    최상
-                </label>
-                </div>
-              </div>
-                {% endif %}
-          <br>
-          <div class="book_text">설명: <br> {{ object.text }} </div>
-          <br>
-          <div class="book_kakaoUrl">오픈채팅 링크: <a href="{{ object.kakaoUrl }}"> {{ object.kakaoUrl }} </a> </div>
-      </div>
-
-          {% if user == object.author %}
-            <div class="btn_update_delete">
-                <button onclick ="location.href='{% url 'book:update' object.id %}'" class="btn update">수정</button>
-                <button onclick ="location.href='{% url 'book:delete' object.id %}'" class="btn delete">삭제</button>
             </div>
-          {% endif %}
-      </div>
-</div>
-</div>
-{% endblock %}
+        </div>
+    </div>
+    {% endblock %}

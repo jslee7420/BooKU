@@ -1,53 +1,25 @@
+@import './constant.css';
 main{
-    width:94rem;
-    margin:auto;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-section{
-    display:inline-block;
+    
 }
 
 .title{
-    font-weight: 800;
-    font-size: 4rem;
-    color: black;
-    padding:0.25em 0;
+    font-weight: 900;
+    font-size: var(--font-xxl);
+    color: var(--black);
+    padding:0.5em 0;
 }
 
 .content{
-    font-size: 1.5rem;
-    width:25em;
-    margin: 1em 0;
-    padding-left:0.5rem;
+    color:var(--black);
+    font-size:var(--font-md-lg);
 }
 
 .index_img{
-    width:46rem;
+    width:100%;
+    margin-bottom:3rem;
 }
 
-.explore{
-    margin-top: 3rem;
-}
-
-button{
-    padding:0.5em 2.6em; 
-    border-radius: 0.5rem;
-    background-color: #FB8F1D;
-    border:none;
-
-    font-weight: bold;
-    font-size: 1.5rem;
-    text-align: center;
-    color:white;
-}
-
-button:focus{
-    outline: none;
-}
-
-button:hover{
-    font-weight: 900;
+.description{
+    padding-bottom:2rem;
 }

@@ -1,90 +1,70 @@
-nav{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    width:94rem;
-    height:9rem;
-    margin: 0 auto;
+@import "./constant.css";
+
+.logo_icon{
+    width:4rem;
 }
 
 .logo{
-    font-weight: 750;
-    font-size: 3rem;
-    white-space:nowrap;
-    color: #767676;
-}
-
-.logo_icon{
-    width:5.125rem;
+    font-size:var(--font-xl);
+    font-weight:900;
+    color:var(--text-color);
 }
 
 .logo:hover{
-    text-decoration: none;
-    color:#767676;
+    
+    color:var(--text-color);
 }
 
-.nav__menu{
+.nav-item{
+    margin:0.5rem;
+}
+
+.nav-item a{
+    font-size:var(--font-md-sm);
+    text-align: center;
+}
+
+.menu-item:hover{
+    font-weight: 700;
+    color:var(--text-color);
+}
+
+.menu-item{
+    color:var(--light-gray);
+}
+
+.box-item{
+    color:var(--orange);
+    border:1px solid var(--orange);
+    border-radius:0.5rem;
+    width:9rem;
+    text-align:center;
+}
+
+.box-item:hover{
+    font-weight:700;
+    color:var(--orange);
+}
+
+.orange{
+    background-color:var(--orange);
+    color:white;
+}
+
+.orange:hover{
+    font-weight:700;
+    color:white;
+}
+/* 
+.nav-items#navbarNav{
     display:flex;
-    align-items:baseline;
+    justify-content: flex-end;
 }
 
-.nav__menu li{
-    margin: auto 0.5em;
-}
-
-
-.login_logout{
-    display: inline-block;
-    height: 3em;
-    width: 10em;
-
-    border: 1px solid #FB8F1D;
-    box-sizing: border-box;
-    border-radius: 0.5rem;
-
-    font-weight: 500;
-    line-height: 3em;
-
-    text-align: center;
-    background-color: white;
-    color: #FB8F1D;
-}
-
-
-.signup_mypage{
-    display: inline-block;
-    height: 3em;
-    width: 10em;
-
-    border: 0.06rem solid #FB8F1D;
-    box-sizing: border-box;
-    border-radius: 8px;
-
-    font-weight: 500;
-    line-height: 3em;
-
-    text-align: center;
-    background-color: #FB8F1D;
-    color: white;
-}
-
-.login_logout:hover{
-    color: #FB8F1D;
-    text-decoration: none;
-    font-weight: 800;
-}
-
-.signup_mypage:hover{
-    color: white;
-    text-decoration: none;
-    font-weight: 800;
-}
-
-.not_btn{
-    padding: 0 1.5em;
-}
-
-.nav__link{
-    line-height: 2rem;
-    color: #B8BECD;
-}
+@media screen and(max-width:992px){
+    .nav-items{
+        display:flex;
+        flex-direction: column;
+        align-items:center;
+    }    
+} */

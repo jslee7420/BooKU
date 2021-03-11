@@ -4,27 +4,18 @@ from django.urls import path
 
 from config import settings
 from . import views
-from .views import BookList, BookCreate, BookDelete, BookDetail, BookUpdate, search, update_deal, get_first_major_list,get_second_major_list,get_third_major_list, update_list
+from .views import BookCreate, BookDelete, BookDetail, BookUpdate, update_deal, bookList
 
 app_name = "book"
 
 urlpatterns = [
-    path("create/", BookCreate.as_view(), name='create'),
-    # path("create/", book_new, name='create'),
-    path("delete/<int:pk>/", BookDelete.as_view(), name='delete'),
-    path("update/<int:pk>/", BookUpdate.as_view(), name='update'),
+    path("", bookList, name='index'),
     path("detail/<int:pk>/", BookDetail.as_view(), name='detail'),
 
-    path("", update_list, name='index'),
+    path("create/", BookCreate.as_view(), name='create'),
+    path("delete/<int:pk>/", BookDelete.as_view(), name='delete'),
+    path("update/<int:pk>/", BookUpdate.as_view(), name='update'),
 
-    path("major1/", get_first_major_list, name='major1'),
-    path("major2/", get_second_major_list, name='major2'),
-    path("major3/", get_third_major_list, name='major3'),
-
-    #path("filter/", filter, name='filter'),
-
-    path("search/", search, name='search'),
     path("detail/<int:pk>/update_deal/", update_deal, name='update_deal'),
 
 ] + static(settings.base.MEDIA_URL, document_root=settings.base.MEDIA_ROOT)
-

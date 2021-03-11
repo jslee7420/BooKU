@@ -29,6 +29,7 @@ from django.contrib.auth import views as auth_views
 
 
 from book.models import Book
+from django.contrib.auth.hashers import check_password
 
 
 def index(request):
@@ -116,11 +117,14 @@ def signup(request):
 
 
 @login_required(login_url='user:login')
-def change_account_info(request):
+def my_page(request):
     """
-    개인정보변경
+    마이페이지
     """
-    return render(request, 'user/change_account_info.html')
+    major_form = ChangeMajorForm(instance=request.user)
+    username_form = ChangeUsernameForm(instance=request.user)
+    object_list = Book.objects.filter(author=request.user)
+    return render(request, 'user/my_page.html', {'major_form': major_form, "username_form": username_form, "object_list": object_list})
 
 
 @login_required(login_url='user:login')
@@ -129,13 +133,12 @@ def change_major(request):
     학과변경
     """
     if request.method == "POST":
-        form = ChangeMajorForm(request.POST, instance=request.user)
-        if form.is_valid():
-            form.save()
-            return render(request, 'user/change_major.html', {'form': form, 'message': '학과정보 변경완료!'})
-    else:
-        form = ChangeMajorForm(instance=request.user)
-    return render(request, 'user/change_major.html', {'form': form})
+        major_form = ChangeMajorForm(request.POST, instance=request.user)
+        if major_form.is_valid():
+            major_form.save()
+            username_form = ChangeUsernameForm(instance=request.user)
+            object_list = Book.objects.filter(author=request.user)
+            return render(request, 'user/my_page.html', {'major_form': major_form, "username_form": username_form, "object_list": object_list, 'message': '학과정보 변경완료!'})
 
 
 @login_required(login_url='user:login')
@@ -144,14 +147,14 @@ def change_pwd(request):
     비밀번호 변경
     """
     if request.method == 'POST':
-        form = PasswordChangeForm(request.user, request.POST)
-        if form.is_valid():
-            user = form.save()
+        password_form = PasswordChangeForm(request.user, request.POST)
+        if password_form.is_valid():
+            user = password_form.save()
             update_session_auth_hash(request, user)
-            return render(request, 'user/change_pwd.html', {'message': '비밀번호 변경완료!'})
-    else:
-        form = PasswordChangeForm(request.user)
-    return render(request, 'user/change_pwd.html', {'form': form})
+            major_form = ChangeMajorForm(instance=request.user)
+            username_form = ChangeUsernameForm(instance=request.user)
+            object_list = Book.objects.filter(author=request.user)
+            return render(request, 'user/my_page.html', {'major_form': major_form, "username_form": username_form, "object_list": object_list, 'message': '비밀번호 변경완료!'})
 
 
 @login_required(login_url='user:login')
@@ -160,13 +163,12 @@ def change_username(request):
     닉네임 변경
     """
     if request.method == 'POST':
-        form = ChangeUsernameForm(request.POST, instance=request.user)
-        if form.is_valid():
-            user = form.save()
-            return render(request, 'user/change_username.html', {'message': '닉네임 변경완료!'})
-    else:
-        form = ChangeUsernameForm(instance=request.user)
-    return render(request, 'user/change_username.html', {'form': form})
+        username_form = ChangeUsernameForm(request.POST, instance=request.user)
+        if username_form.is_valid():
+            user = username_form.save()
+            major_form = ChangeMajorForm(instance=request.user)
+            object_list = Book.objects.filter(author=request.user)
+            return render(request, 'user/my_page.html', {'major_form': major_form, "username_form": username_form, "object_list": object_list, 'message': '닉네임 변경완료!'})
 
 
 @login_required(login_url='user:login')
@@ -188,3 +190,7 @@ def terms_of_service(request):
 
 def privacy_policy(request):
     return render(request, 'user/privacy_policy.html')
+
+
+def practice(request):
+    return render(request, 'user/email_auth_notice.html')

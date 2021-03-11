@@ -1,0 +1,70 @@
+@import "./constant.css";
+
+.my_page-width{
+    max-width:50rem;
+    margin:0 auto;
+}
+
+.majors-width{
+    width:40rem;
+}
+
+
+.content_width{
+    margin:0 auto;
+    max-width:70rem;
+    position:relative;
+}
+
+
+table {
+    border-collapse: separate;
+    border-spacing: 0 1rem;
+}
+
+td{
+    padding:0.75rem;
+}
+.book_item{
+    padding:1em 2em;
+    margin:1em 0;
+}
+
+.book_img{
+   width:100%;
+   height:100%;
+}
+
+.col_book_img{
+    width:7rem;
+    height:7rem;
+}
+
+.book_title{
+    font-size:var(--font-md-lg);
+    font-weight: 800;
+}
+
+.book_major{
+    
+}
+
+.book_lecture{
+    font-weight: 800;
+}
+
+.book_state{
+    font-weight: 800;
+}
+
+.book_price{
+    font-weight: 800;
+}
+
+.book_state{
+    
+}
+
+.book_item{
+    background-color:var(--book-row-color);
+}

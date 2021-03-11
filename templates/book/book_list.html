@@ -1,166 +1,260 @@
 {% extends "base.html" %}
 {% load static %}
+
 {% block styles %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/book_list2.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/book_list.css' %}">
 {% endblock %}
+
 {% block content %}
-<script type="text/javascript" >
-function changeMajorSelect(){
-    var selectBox = document.getElementById("up_category_menu");
-    var selectValue = selectBox.options[selectBox.selectedIndex].value;
-    var selectText = selectBox.options[selectBox.selectedIndex].text;
+<div class="container">
+    <div class="content_width d-flex justify-content-center my-4">
+        <select id="up_category_menu" name="up_category_menu" onchange="changeMajorSelect()">
+            {% if mc == '전체' %}
+            <option selected>전체</option>
+            <option>{{user.first_major}}</option>
+            {% if user.second_major %}
+            <option>{{user.second_major}}</option>
+            {% endif %}
+            {% if user.third_major %}
+            <option>{{user.third_major}}</option>
+            {% endif %}
 
-    var all = "all"
-    var major1 = "major1"
-    var major2 = "major2"
-    var major3 = "major3"
-    if (selectValue == all){
-        var url = '{% url 'book:index' %}';
-        window.location.href = url;
-    }else if(selectValue == major1){
-        var url1 = '{% url 'book:major1' %}';
-        window.location.href = url1;
+            {% elif mc == user.first_major %}
+            <option>전체</option>
+            <option selected>{{user.first_major}}</option>
+            {% if user.second_major %}
+            <option>{{user.second_major}}</option>
+            {% endif %}
+            {% if user.third_major %}
+            <option>{{user.third_major}}</option>
+            {% endif %}
 
-    }else if(selectValue == major2){
-        var url2 = '{% url 'book:major2' %}';
-        window.location.href = url2;
-    }else if(selectValue == major3){
-        var url3 = '{% url 'book:major3' %}';
-        window.location.href = url3;
-    }
-}
-function changeFilter(){
-    document.getElementById("hidden-form-submit").click();
-}
-function show_box(){
-    document.getElementById('state_detail2').style.display='block';
-    document.getElementById('fade').style.display='block';
-}
-function close_box(){
-    document.getElementById('state_detail2').style.display='none';
-    document.getElementById('fade').style.display='none';
-}
-</script>
+            {% elif mc == user.second_major %}
+            <option>전체</option>
+            <option>{{user.first_major}}</option>
+            <option selected>{{user.second_major}}</option>
+            {% if user.third_major %}
+            <option>{{user.third_major}}</option>
+            {% endif %}
+
+            {% elif mc == user.third_major %}
+            <option>전체</option>
+            <option>{{user.first_major}}</option>
+            <option>{{user.second_major}}</option>
+            <option selected>{{user.third_major}}</option>
+
+            {% else %}
+            <option selected>전체</option>
+            <option>{{user.first_major}}</option>
+            {% if user.second_major %}
+            <option>{{user.second_major}}</option>
+            {% endif %}
+            {% if user.third_major %}
+            <option>{{user.third_major}}</option>
+            {% endif %}
+            {% endif %}
+        </select>
+        <button class="mx-3" type="button" id="btn_create" onclick="location.href='{% url 'book:create' %}'">전공책
+            등록하기</button>
+    </div>
+    <div class="content_width d-flex justify-content-center my-4">
+        <div class="w-100 d-flex flex-nowrap" method="post" id="search_form"> {% csrf_token %}
+            <input class="w-100 mx-3 search_input kw" value="{{ kw|default_if_none:'' }}" type="search"
+                placeholder="도서 검색 (수업, 책제목, 저자 등)" name="q" value="{{q}}">
+            <button type="submit" class="search_btn" id="btn_search"><svg xmlns="http://www.w3.org/2000/svg" width="32"
+                    height="32" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path
+                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                </svg> </button>
+        </div>
+    </div>
+</div>
+
+<div class="cross_bar">
+    <div class="container">
+        <div class="content_width">
+            <div class="all_filter_contents py-2">
+                <span class="filter-txt"><i class="fas fa-filter"></i> 필터링 </span>
+                <span class="is_free mx-3">
+                    {% if is_free == '1' %}
+                    <input class="form-check-input is_free" type="checkbox" checked name="search-type">
+                    {% else %}
+                    <input class="form-check-input is_free" type="checkbox" name="search-type">
+                    {% endif %}
+                    <label for="is_free" class="free-label">무료나눔</label>
+                </span>
+                <span class="deal_filter mx-3">
+                    {% if on_deal_only == '1' %}
+                    <input class="form-check-input on_deal_only" type="checkbox" checked name="search-type">
+                    {% else %}
+                    <input class="form-check-input on_deal_only" type="checkbox" name="search-type">
+                    {% endif %}
+                    <label for="on_deal_only" class="deal-label"> 거래중 </label>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div class="container">
-    <div class="wrapper">
-        <form method="post">
-            <select id="up_category_menu" name="up_category_menu" onchange="changeMajorSelect()">
-                <option value="all" selected> 전체 </option>
-                <option value="major1"  > {{user.first_major}} </option>
-                {% if user.second_major != "" %}
-                    <option value="major2"> {{user.second_major}} </option>
-                {% endif %}
-                {% if user.third_major != "" %}
-                    <option value="major3"> {{user.third_major}} </option>
-                {% endif %}
-            </select>
-            <hr id="line_major_bar">
-        </form>
-        <button type="button" id="btn_create" onclick="location.href='{% url 'book:create' %}'" >전공책 등록하기</button>
-    </div>
-
-    <div class="wrapper">
-        <form action="{% url 'book:search' %}" method="post" id="search_form"> {% csrf_token %}
-            <input class="search_input" type="search" placeholder="     도서 검색 (수업, 책제목, 저자 등)" name="q" value="{{q}}">
-            <button type="submit" class="btn_search" > <img src="{% static 'img/search_btn.png' %}" alt="" height="45" width="43"> </button>
-        </form>
-    </div>
-
-    <div class="wrapper filter">
-    <form action="{% url 'book:index' %}" method="get" id="filter-form">
-        <div class="filtering-box">
-            <div class="all_filter_contents">
-            <span class="filter-txt"> 필터링 </span>
-            {% if "free" in search_type %}
-            <span class="free_filter">
-                <input class="form-check-input" type="checkbox" checked value="free" name="search-type" onchange="changeFilter()" id="free1">
-                <label for="free1" class="free-label">무료나눔</label>
-            </span>
-            {% endif %}
-            {% if "free" not in search_type %}
-            <span class="free_filter">
-                <input class="form-check-input" type="checkbox" value="free" name="search-type" onchange="changeFilter()" id="free2">
-                <label for="free2" class="free-label">무료나눔</label>
-            </span>
-            {% endif %}
-            {% if "deal" in search_type %}
-            <span class="deal_filter">
-                <input class="form-check-input" type="checkbox"  checked value="deal" name="search-type"  onchange="changeFilter()" id="deal1">
-                <label for="deal1" class="deal-label"> 거래중 </label>
-            </span>
-            {% endif %}
-            {% if "deal" not in search_type %}
-            <span class="deal_filter">
-                <input class="form-check-input" type="checkbox"  value="deal" name="search-type"  onchange="changeFilter()" id="deal2">
-                <label for="deal2" class="deal-label"> 거래중 </label>
-            </span>
-            {% endif %}
-            <button id="hidden-form-submit" type="submit" hidden>제출</button>
-        </div>
-        </div>
-    </form>
-    </div>
-
-    {% if object_list %}
-        <table id="book_table">
-            <thead>
+    <div class="content_width">
+        {% if object_list %}
+        <table class="w-100" id="book_table">
+            <thead class="text-center">
                 <th>사진</th>
                 <th>제목(저자)</th>
                 <th>학과+수업</th>
                 <th>
                     상태
-                    <button class="btn_stated" onclick="show_box()"> <img src="{% static 'img/state_standard.png' %}" alt="" height="19" width="19"> </button>
-                    <div class="state_box">
-                      <div id="state_detail2" class="list_state_content">
-                          <span style="font-weight: bold; font-size: 14px;"> BooKU 도서 상태 기준 안내</span><button class="btn_closed_state" onclick="close_box()"><img src="{% static 'img/state_standard.png' %}" alt="" height="19" width="19"></button>
-                          <div class="state_box_text2" align="left">
-                              <span style="font-weight: bold;"> 최상:</span> 새것과 같은 상태 <br>
-                              <span style="font-weight: bold;"> 상:</span> 약간의 필기감 <br>
-                              <span style="font-weight: bold;"> 보통:</span> 헌 부분 있음, 필기감, 사용감 있음 <br>
-                              <span style="font-weight: bold;"> 하:</span> 찢김, 심한 낙서, 페이지 유실
-                          </div>
-                      </div>
+                    <div class="tooltip1"><i class="fas fa-question-circle"></i>
+                        <p class="tooltiptext">
+                            최상: 새것과 같은 상태 <br>
+                            상: 약간의 필기감 <br>
+                            보통: 헌 부분 있음, 필기감, 사용감 있음 <br>
+                            하: 찢김, 심한 낙서, 페이지 유실
+                        </p>
                     </div>
                 </th>
-
                 <th>가격</th>
                 <th>거래가능</th>
             </thead>
 
             <tbody>
-                    {% for object in object_list %}
-                        <tr class="tabel_row" onclick="location.href='{% url 'book:detail' object.id %}'">
-                            <td><a href="{% url 'book:detail' object.id %}">
-                                {% if object.image.url != "" %}
-                                    <img src=" {{ object.image.url }}" class="book_list_img" alt="..." height="94px" width="99px">
-                                {% endif %}
-                                </a>
-                            </td>
-                            <td><div style="font-size: 22px;">{{ object.title|truncatechars:30 }}</div> <br> <div style="font-weight: normal;"> 저자: {{ object.writer }}</div> </td>
-                            <td> <div style="font-weight: normal;">{{ object.major_category }}</div> <br> <div style="font-size: 21px;"> {{ object.lecture }}</div> </td>
-                            <td> {{ object.state }}  </td>
-                            <td>
-                                {% if object.price == 0 %}
-                                    무료나눔
-                                {% else %}
-                                    {{ object.price }}₩
-                                {% endif %}
-                            </td>
-                            <td>
-                                {% if object.deal_flag == 1 %} 거래중 {% endif %}
-                                <div style="color:#ADADAD;">{% if object.deal_flag == 0 %} 거래완료 {% endif %}</div>
-
-                            </td>
-                        </tr>
-                    {% endfor %}
+                {% for object in object_list %}
+                <tr class="book_item" onclick="location.href='{% url 'book:detail' object.id %}'">
+                    <td class="col_book_img"><a href="{% url 'book:detail' object.id %}">
+                            {% if object.image.url %}
+                            <img src=" {{ object.image.url }}" class="book_img" alt="book image">
+                            {% endif %}
+                        </a>
+                    </td>
+                    <td>
+                        <div class="book_title">{{ object.title|truncatechars:30 }}</div>
+                        <div class="book_writter"> 저자: {{ object.writer }}</div>
+                    </td>
+                    <td class="text-center">
+                        <div class="book_major">{{ object.major_category }}</div>
+                        <div class="book_lecture"> {{ object.lecture }}</div>
+                    </td>
+                    <td class="book_state text-center"> {{ object.state }} </td>
+                    <td class="book_price text-center">
+                        {% if object.price == 0 %}
+                        무료나눔
+                        {% else %}
+                        {{ object.price }}₩
+                        {% endif %}
+                    </td>
+                    <td class="book_state text-center">
+                        {% if object.deal_flag == 1 %} 거래중 {% endif %}
+                        <div style="color:#ADADAD;">{% if object.deal_flag == 0 %} 거래완료 {% endif %}</div>
+                    </td>
+                </tr>
+                {% endfor %}
             </tbody>
         </table>
-    {% else %}
+        {% else %}
         <div class="no_search">
             작성된 글이 없습니다
         </div>
-    {% endif %}
+        {% endif %}
+        <ul class="pagination justify-content-center">
+            <!-- 이전페이지 -->
+            {% if object_list.has_previous %}
+            <li class="page-item">
+                <a class="page-link" data-page="{{ object_list.previous_page_number }}" href="#">
+                    <이전</a> </li> {% else %} <li class="page-item disabled">
+                        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">
+                            <이전</a> </li> {% endif %} <!-- 페이지리스트 -->
+                                {% for page_number in object_list.paginator.page_range %}
+                                {% if page_number >= object_list.number|add:-5 and page_number <= object_list.number|add:5 %}
+                                {% if page_number == object_list.number %}
+            <li class="page-item" aria-current="page">
+                <a class="page-link active" data-page="{{ page_number }}" href="#">{{ page_number }}</a>
+            </li>
+            {% else %}
+            <li class="page-item">
+                <a class="page-link" data-page="{{ page_number }}" href="#">{{ page_number }}</a>
+            </li>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            <!-- 다음페이지 -->
+            {% if object_list.has_next %}
+            <li class="page-item">
+                <a class="page-link" data-page="{{ object_list.next_page_number }}" href="#">다음></a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음></a>
+            </li>
+            {% endif %}
+        </ul>
+        <!-- 페이징처리 끝 -->
+    </div>
 </div>
+<form id="searchForm" method="get" action="{% url 'book:index' %}">
+    <input type="hidden" id="kw" name="kw" value="{{ kw|default_if_none:'' }}">
+    <input type="hidden" id="page" name="page" value="{{ page }}">
+    <input type="hidden" id="major_category" name="major_category" value="{{ mc|default_if_none:'' }}">
+    <input type="hidden" id="on_deal_only" name="on_deal_only" value="{{on_deal_only|default_if_none:0}}">
+    <input type="hidden" name="is_free" id="is_free" value="{{is_free|default_if_none:0}}">
+</form>
+{% endblock %}
+{% block script %}
+<script type='text/javascript'>
+    $(document).ready(function () {
+        // 페이지 번호 클릭시
+        $(".page-link").on('click', function () {
+            $("#page").val($(this).data("page"));
+            $("#kw").val($(".kw").val());
+            $("#searchForm").submit();
+        });
 
+        // 검색 버튼 클릭시
+        $("#btn_search").on('click', function () {
+            $("#kw").val($(".kw").val());
+            $("#page").val(1); // 검색버튼을 클릭할 경우 1페이지부터 조회한다.
+            $("#searchForm").submit();
+        });
+
+        // 검색어 입력후 엔터입력시
+        $(".kw").keydown(function (key) {
+            if (key.keyCode == 13) {
+                $("#kw").val($(".kw").val());
+                $("#page").val(1); // 엔터를 누를 경우 1페이지부터 조회한다.
+                $("#searchForm").submit();
+            }
+        });
+
+        // 학과 카테고리 변경시
+        $("#up_category_menu").on('change', function () {
+            $("#major_category").val($("#up_category_menu option:selected").text());
+            $("#page").val(1); // 검색버튼을 클릭할 경우 1페이지부터 조회한다.
+            $("#searchForm").submit();
+        });
+
+        // 무료나눔 체크시
+        $(".is_free").on('change', function () {
+            $("#page").val(1); // 무료나눔을 체크할 경우 1페이지부터 조회한다.
+            if ($(".is_free").is(":checked")) {
+                $("#is_free").val(1);
+            } else {
+                $("#is_free").val(0);
+            }
+            $("#searchForm").submit();
+        });
+
+        // 거래중 체크시
+        $(".on_deal_only").on('change', function () {
+            $("#page").val(1); // 거래중을 체크할 경우 1페이지부터 조회한다.
+            if ($(".on_deal_only").is(":checked")) {
+                $("#on_deal_only").val(1);
+            } else {
+                $("#on_deal_only").val(0);
+            }
+            $("#searchForm").submit();
+        });
+    });
+</script>
 {% endblock %}

@@ -1,6 +1,7 @@
-.container{
-    width:30rem;
-    margin:5rem auto;
+@import "./constant.css";
+
+.row .heading> h1{
+    margin-left:0;
 }
 
 .id, .pwd{
@@ -19,73 +20,39 @@
     text-align: center;
 }
 
-
-/* modal 지우지 마세요*/
-/* 
-.modal_wrap{
-    position:fixed;
-    width:100%;
-    height:100%;
-    top:0;
-    left:0;
-    display:flex;
-    justify-content: center;
-    align-items: center;
+.signup{
+    color:var(--orange);
 }
 
-.modal_content{
-    position: relative;
-    width: 852px;
-    height: 545px;
+.reset_pwd{
+    color:var(--orange);
+}
+
+
+.modal-content h5.modal-title{
+    font-size:var(--font-lg);
+    font-weight:900;
+}
+
+@media screen and (min-width: 676px) {
+    .modal-dialog {
+      max-width: 680px; /* New width for default modal */
+    }
+    .modal-content{
+        min-height:450px;
+    }
+
+    .input-width{
+        width:500px;
+    }
+}
+
+.modal-content{
     background: #FFFFFF;
     box-shadow: 8px 10px 100px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
 }
 
-.hidden{
-    display:none;
+.reset_pwd:hover{
+    cursor:pointer;
 }
-.modal_content >.heading{
-    width: 510px;
-    margin:100px auto 50px;
-}
-
-.center{
-    text-align: center;
-}
-
-
-
-.modal_content >form{
-    width: 490px;
-    margin:0 auto;
-}
-
-form label{
-    font-weight: 600;
-    font-size: 22px;
-
-    color: #5C5C5C;
-}
-
-.close_btn{
-    font-weight: 600;
-    font-size: 35px;
-    float:right;
-    color: #C6C6C6;
-    background-color: white;
-    border:none;
-    margin-top:20px;
-    margin-right:25px;
-}
-
-.close_btn:focus{
-    outline:none;
-}
-
-.modal_overlay{
-    width:100%;
-    height:100%;
-    background: rgba(196, 196, 196, 0.31);
-    position:absolute;
-} */

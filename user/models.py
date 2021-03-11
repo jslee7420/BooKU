@@ -35,11 +35,6 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractUser):
-    GENDER_CHOICES = [
-        ('female', '여'),
-        ('male', '남'),
-    ]
-
     MAJOR_CHOICES = [
         ('국어국문학과', '국어국문학과'),
         ('영어영문학과', '영어영문학과'),
@@ -104,8 +99,6 @@ class User(AbstractUser):
         ('교직과', '교직과'),
     ]
 
-    university = models.CharField(max_length=20, default="Konkuk")
-
     first_major = models.CharField(
         max_length=30,
         choices=MAJOR_CHOICES,
@@ -124,16 +117,6 @@ class User(AbstractUser):
         choices=MAJOR_CHOICES,
         default='',
         blank=True,
-    )
-
-    date_of_birth = models.DateField(
-        default=datetime.date.today,
-    )
-
-    gender = models.CharField(
-        max_length=6,
-        choices=GENDER_CHOICES,
-        default='',
     )
 
     is_active = models.BooleanField(default=False)

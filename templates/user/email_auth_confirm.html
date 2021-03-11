@@ -1,16 +1,21 @@
 {% extends "base.html" %}
 {% load static %}
-{% block styles %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/email_auth_confirm.css' %}">
-{% endblock %}
 {% block content %}
 
-<div class="content">
-    <h1>회원가입<hr></h1>
-    <p class="quote">인증에 성공했습니다!</p>
-    <div>
-        <img src="{% static 'img/auth_confirm.svg' %}" class="auth_confirm">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 heading">
+            <h1>회원가입
+                <hr>
+            </h1>
+        </div>
     </div>
-    <a class="submit_btn" href="{% url 'user:login' %}">로그인 하러가기</a>
+    <div class="row">
+        <p class="text-center fs-3 fw-bolder">인증에 성공했습니다!</p>
+        <div class="text-center">
+            <img src="{% static 'img/auth_confirm.svg' %}">
+        </div>
+        <a class="submit_btn mx-auto my-4" href="{% url 'user:login' %}">로그인 하러가기</a>
+    </div>
 </div>
 {% endblock %}

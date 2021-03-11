@@ -1,221 +1,166 @@
-.book_detail_image{
-    position: absolute;
-    width: 30.63rem;
-    height: 30.63rem;
-    left: 383px;
-    top: 440px;
-}
-.book_detail_line{
-    width: 34.38rem;
-    height: 0rem;
-    border: 0.0625rem solid #A8A8A8;
-}
-.all_detail{
-    position: absolute;
-    left: 1006px;
-    top: 440px;
-    font-family: Inter;
-    font-style: normal;
-    font-weight: normal;
-}
-.book_writer_date{
-    position: absolute;
-    width: 12.88rem;
-    height: 4.063rem;
-    left: 330px;
-    top: 40px;
-    font-family: Inter;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 0.875rem;
-    line-height: 1.5rem;
-    text-align: right;
-    color: #484848;
-}
-.all_radio{
-    padding-left: 0.9375rem;
-    padding-top:1.25rem;
-}
-.btn_state{
-    border: 0;
-    outline:0;
-    background-color: #FFFFFF;
-}
-.btn_close_state{
-    border: 0;
-    outline:0;
-    background-color: #FFFFFF;
-}
-button:focus {
-    outline: none;
-}
-input:focus {
-    outline: none;
-}
-.white_content {
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 15%;
-    width: 18.69rem;
-    height: 7.188rem;
-    padding: 1rem;
-    border: 0rem solid black;
-    box-shadow: 0rem 0rem  1.25rem 0.125rem rgba(0, 0, 0, 0.25);
-    background-color: white;
-    z-index:1002;
-    overflow: auto;
-}
-.state_box_txt{
-    font-style: normal;
-    font-weight: normal;
-    font-size: 0.75rem;
-}
-.deal_text{
-    position: absolute;
-    width: 23.56rem;
-    height: 2.188rem;
-    left: -480px;
-    top: 500px;
-    font-family: NanumGothic;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 1.25rem;
-    line-height: 2.188rem;
-    /* identical to box height, or 146% */
-    display: flex;
-    align-items: center;
-    text-align: center;
-    color: #FB8F1D;
-}
-.btn_deal{
-    position: absolute;
-    width: 30.63rem;
-    height: 2.813rem;
-    left: -620px;
-    top: 540px;
-    background: #FF8C38;
-    box-shadow: 0rem  0.25rem  0.25rem rgba(0, 0, 0, 0.25);
-    border-radius: 1.25rem;
-    font-family: NanumGothic;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 1.25rem;
-    line-height: 2.188rem;
-    /* identical to box height, or 146% */
-    text-align: center;
-    color: #FFFFFF;
-    border: 0;
-    outline:0;
-}
-.btn_update_delete{
-    position: absolute;
-    left: 30%;
-    top: 500px;
-
-}
-.btn{
-    background: #FF8C38;
-    box-shadow: 0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
-    border-radius: 20px;
-    font-family: NanumGothic;
-    font-style: normal;
-    font-weight: bold;
-    font-size:  1.25rem;
-    line-height: 2.188rem;
-    /* identical to box height, or 146% */
-    text-align: center;
-    color: #FFFFFF;
-    border: 0;
-    outline:0;
-}
+@include "./constant";
 
 
-.state_btn {
-    display: inline-block;
-    position: relative;
-    cursor: pointer;
-    font-size: 1.375rem;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    font-family: Inter;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 1rem;
-    text-align: center;
-    color: #7A7A7A;
-}
-/* Hide the browser's default radio button */
-.state_btn input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
+.cross_bar{
+    background-color:var(--light-orange);
 }
 
-/* Create a custom radio button */
-.checkmark {
-    display: block;
-    background-color: white;
-    height: 2.5rem;
-    width: 2.5rem;
-    border-radius: 50%;
-    z-index: 10;
+.page_description{
+    font-size:var(--font-md-lg);
+    font-weight: 700;
+    color:white;
 }
 
-/* On mouse-over, add a grey background color */
-.state_btn:hover input~.checkmark {
-    background-color: #ccc;
-}
-
-/* When the radio button is checked, add a blue background */
-.state_btn input:checked + .gradation1 {
-    background-color: #945AA9;
-}
-.state_btn input:checked +.gradation2 {
-    background-color: #AA6287;
-}
-.state_btn input:checked +.gradation3 {
-    background-color: #CC6F51;
-}
-.state_btn input:checked +.gradation4 {
-    background-color: #FF8301;
-}
-
-.gradation1 {
-    border:solid #945AA9 0.375rem;
-}
-
-.gradation2 {
-    border:solid #AA6287 0.375rem;
-}
-
-.gradation3 {
-    border:solid #CC6F51 0.375rem;
-}
-
-.gradation4 {
-    border:solid #FF8301 0.375rem;
-}
-
-.gradation_line{
-    background: linear-gradient(to right, #945AA9, #AA6287, #CC6F51, #FF8301);
-    height:0.375rem;
-    width:99%;
-    position:absolute;
-    z-index: 0;
-}
-
-.state{
-    margin-left: 0.625rem;
-    width: 23.06rem;
-    display:flex;
-    justify-content: space-between;
+.content_width{
+    margin:0 auto;
+    max-width:60rem;
     position:relative;
 }
 
+.book_detail_width{
+    max-width:25rem;
+    margin:0 auto;
+}
+
+.img_box{
+    width:100%;
+    height:25rem;
+    background-color:var(--book-row-color);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.book_detail_image{
+    height:100%;
+} 
+
+.title{
+    font-size:var(--font-lg);
+    font-weight: 700;
+}
+
+.writer{
+    font-size:var(--font-md-lg);
+}
+
+.writer span{
+    font-weight: 900;
+}
+
+.upload_date, .author{
+    font-size:var(--font-md-sm);
+}
+
+.price span{
+    font-size:var(--font-md-lg);
+    font-weight:700;
+}
+
+.btn_update_delete a{
+    color:var(--text-color);
+}
+
+.circle{
+    border-radius:50%;
+    border:4px solid;
+    width:1.75rem;
+    height:1.75rem;
+}
+
+.active_circle{
+    border-radius:50%;
+    width:1.75rem;
+    height:1.75rem;
+}
+
+.perfect .circle{
+    border-color: #945AA9;
+    background-color:white;
+}
+
+.perfect .active_circle{
+    background-color: #945AA9;
+}
+
+.good .circle{
+    border-color: #AA6287;
+    background-color:white;
+}
+
+.good .active_circle{
+    background-color: #AA6287;
+}
+
+.ok .circle{
+    border-color: #CC6F51;
+    background-color:white;
+}
+
+.ok .active_circle{
+    background-color: #CC6F51;
+}
+
+.bad .circle{
+    border-color: #FF8301;
+    background-color:white;
+}
+
+.bad .active_circle{
+    background-color: #FF8301;
+}
+
+.book_state_graphic{
+    position:relative;
+    max-width:25rem;
+    font-size: var(--font-sm);
+    margin:0.5em 0;
+}
+
+hr.gradation_line{
+    opacity:1;
+    background: linear-gradient(to right, #945AA9, #AA6287, #CC6F51, #FF8301);
+    height:0.4rem;
+    width:95%;
+    position:absolute;
+    z-index: -1;
+    top:0.7rem;
+    left:0.1rem;
+}
 
 
+/* modal */
+
+.delete_btn:hover{
+    cursor:pointer;
+}
 
 
+.modal-content h5.modal-title{
+    font-size:var(--font-md-lg);
+    font-weight:900;
+}
+
+@media screen and (min-width: 676px) {
+    .modal-dialog {
+      max-width: 500px; /* New width for default modal */
+    }
+    .modal-content{
+        min-height:300px;
+    }
+}
+
+.modal-content{
+    background: #FFFFFF;
+    box-shadow: 8px 10px 100px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+}
+
+.descript{
+    font-size:var(--font-md-sm);
+    color:var(--light-gray);
+}
+
+.cancel_btn{
+    background-color:var(--light-gray);
+}

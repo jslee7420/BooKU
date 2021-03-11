@@ -20,6 +20,7 @@ from config import settings
 from django.conf.urls.static import static
 from user import views as user_views
 
+
 urlpatterns = [
     path('', user_views.index, name='index'),
     path('admin/', admin.site.urls),
@@ -27,13 +28,13 @@ urlpatterns = [
     path('book/', include('book.urls')),
     path('notice/', include('notice.urls')),
 
+    # Password Reset
     path('password_reset/', auth_views.PasswordResetView.as_view(
-        template_name="user/password_reset.html"), name="password_reset"),
+        template_name="user/login.html"), name="password_reset"),
     path('password_reset_done/', auth_views.PasswordResetDoneView.as_view(
         template_name="user/password_reset_done.html"), name="password_reset_done"),
     path('password_reset_confirm/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(
         template_name="user/password_reset_confirm.html"), name="password_reset_confirm"),
     path('password_reset_complete/', auth_views.PasswordResetCompleteView.as_view(
         template_name="user/password_reset_complete.html"), name="password_reset_complete"),
-
 ] + static(settings.base.MEDIA_URL, document_root=settings.base.MEDIA_ROOT)

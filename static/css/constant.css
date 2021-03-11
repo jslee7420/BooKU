@@ -1,0 +1,131 @@
+:root{
+    /* colors */
+    --text-color:#484848;
+    --orange:#FB8F1D;
+    --light-orange:#FF9F46;
+    --black:black;
+    --light-gray:#767676;
+    --form-input-color:#F2F2F2;
+    --book-row-color:#E8E8E8;
+
+    /* font-size */
+    --font-xxl:3rem;
+    --font-xl:2.5rem;
+    --font-lg:2rem;
+    --font-md-lg: 1.2rem;
+    --font-md: 1rem;
+    --font-md-sm:0.9rem;
+    --font-sm:0.75rem;
+    --font-h1:1.75rem;
+    /* paddings */
+
+}
+
+body{
+    font-family: Inter;
+    color: var(--text-color);
+    box-sizing: border-box;
+}
+
+a{
+    text-decoration:none;
+    white-space:nowrap;
+}
+
+a:hover{
+    text-decoration:none;
+}
+
+
+.vh{
+    min-height:100vh;
+}
+
+/* 
+.width{
+ width:95%;
+ margin:0 auto;
+}
+@media screen and (min-width: 992px){
+    .width{
+        width:80%;
+    }
+} */
+
+
+/* 소제목 */
+
+.heading> h1{
+    margin-left:3em;
+    font-weight: 600;
+    font-size: var(--font-h1);
+    color: var(--text-color);
+}
+
+.heading> h1> hr{
+    margin-left:0;
+    width: 2.5rem;
+    height: 0.25rem;
+    background-color: var(--text-color);
+    opacity:1;
+    border-radius: 4px;
+}
+.heading{
+    margin-bottom:2em;
+}
+
+
+/* 폼 형식 */
+form .form-control{
+    border-radius: 0.625rem;
+    border:none;
+    background: var(--form-input-color);
+    padding:0.5em 0.75em;
+    margin-bottom: 1em;
+}
+
+
+form label{
+    font-size:var(--font-md-lg);
+    font-weight:600;
+    margin-bottom:0.5em;
+}
+
+
+.submit_btn{
+    background: var(--orange);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    border:none;
+    font-weight: 600;
+    text-align: center;
+    color: #FFFFFF;
+    width:12em;
+    padding:0.5em 0;
+}
+
+
+.major{
+    border-radius: 0.5rem;
+    border:1px solid var(--text-color);
+    background: white;
+    padding:0.5em 0.75em;
+    margin-bottom: 1em;
+}
+
+
+#first_major{
+    border-color:var(--orange);
+}
+
+
+input:focus{
+    outline: none;
+}
+
+
+.input_info{
+    font-size:var(--font-sm);
+    font-weight: bold;
+    margin-top:-0.8rem;
+}

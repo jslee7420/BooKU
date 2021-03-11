@@ -4,8 +4,8 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/notice_list.css' %}">
 {% endblock %}
 {% block content %}
-<div class="container">
-    <div class="header">
+<div class="container notice_board">
+    <div class="heading">
         <h1>공지사항<hr></h1>
     </div>
     <div class="lists">
@@ -21,10 +21,10 @@
             <tbody>
                 {% if notice_list %}
                 {% for notice in notice_list %}
-                <tr class="text-center content_font">
+                <tr class="text-center ">
                     <td>{{forloop.counter}}</td>
                     <td class="text-left">
-                        <a href="{% url 'notice:notice_detail' notice.id %}">{{notice.title}}</a>
+                        <a class="notice_title" href="{% url 'notice:notice_detail' notice.id %}">{{notice.title}}</a>
                     </td>
                     <td>{{notice.create_date|date:"Y.m.d"}}</td>
                     <td>{{notice.views}}</td>

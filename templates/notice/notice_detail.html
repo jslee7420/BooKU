@@ -4,21 +4,18 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/notice_detail.css' %}">
 {% endblock %}
 {% block content %}
-<div class="container">
-    <div>
-        <a href="{% url 'notice:notice_list' %}" class="to_notice_list">
-            <공지사항 목록</a> </div> <div class="header">
-                <div class="title">
-                    <p>{{notice.title}}</p>
-                </div>
-                <div class="info">
-                    <p>{{notice.create_date|date:"Y.m.d"}}&nbsp | &nbsp조회수 {{notice.views}}</p>
-                </div>
+<div class="container my-3 vh">
+    <div class="content_width mx-auto">
+        <a href="{% url 'notice:notice_list' %}" class="to_notice_list"><공지사항 목록</a> 
+        <div class="d-flex justify-content-between border-bottom my-3 align-itmes-end">
+            <h3 class="inline-block">{{notice.title}}</h3>
+            <p class="inline-block">{{notice.create_date|date:"Y.m.d"}}&nbsp | &nbsp조회수 {{notice.views}}</p>
+        </div>
+        <div class="card my-3">
+            <div class="card-body">
+                <div class="card-text" style="white-space: pre-line;">{{notice.content}}</div>
+            </div>
+        </div>
     </div>
-    <hr class="line1">
-    <textarea id="content" disabled>{{notice.content}}</textarea>
-    
-    <hr class="line2">
 </div>
-
 {% endblock %}
