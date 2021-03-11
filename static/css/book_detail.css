@@ -31,6 +31,11 @@
     align-items:center;
 }
 
+.no_img{
+    max-width:25rem;
+    height:100%;
+}
+
 .book_detail_image{
     height:100%;
 } 

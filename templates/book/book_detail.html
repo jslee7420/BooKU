@@ -19,7 +19,11 @@
         <div class="row justify-content-between">
             <div class="col-md-5 my-3 pe-0">
                 <div class="img_box mb-3">
-                    <img src=" {{ object.image.url }}" class="book_detail_image" alt="...">
+                    {% if object.image.url != '' %}
+                        <img src=" {{ object.image.url }}" class="book_detail_image" alt="...">
+                    {% else %}
+                        <div class="no_img d-flex justify-content-center align-items-center"><span>사진이 없습니다.</span></div>
+                    {% endif %}
                 </div>
                 {% if object.deal_flag == 1 %}
                 <!-- 거래중 -->

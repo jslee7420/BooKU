@@ -124,7 +124,7 @@
                 {% for object in object_list %}
                 <tr class="book_item" onclick="location.href='{% url 'book:detail' object.id %}'">
                     <td class="col_book_img"><a href="{% url 'book:detail' object.id %}">
-                            {% if object.image.url %}
+                            {% if object.image.url != '' %}
                             <img src=" {{ object.image.url }}" class="book_img" alt="book image">
                             {% endif %}
                         </a>
