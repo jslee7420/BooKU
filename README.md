@@ -3,7 +3,9 @@ BooKU는 선후배간에 전공책을 쉽게 교환하고 거래할 수 있도�
 
 사용자 계정 모델을 생성하였고 CRUD를 구현했으며, 회원가입 시 이메일 인증 기능을 Gmail 계정과 연동하여 SMTP를 활용하여 구현했습니다. 
 사용자 계정으로부터 토큰을 생성하여 암호화하여 이메일로 URL을 생성하여 전송하였습니다. 모든 웹페이지를 반응형으로 제작하였습니다.
-AWS EC2 서비스를 활용하여 Ubuntu 환경에서 웹서버는 Nginx, WSGI server는 Gunicorn을 사용해 서비스를 배포했습니다. 
+AWS EC2 서비스를 활용하여 Ubuntu 환경에서 웹서버는 Nginx, WSGI server는 Gunicorn을 사용해 서비스를 배포했습니다.
+
+**기술스택**:HTML5, CSS, Bootstrap, Python, Django, AWS
 
 Site Url: http://booku.club
 
